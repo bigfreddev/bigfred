@@ -1,0 +1,47 @@
+﻿# Sensitive credentials
+/passwords
+**/.env
+**/.env.*
+!**/.env.example
+**/auth.json
+**/*.pem
+**/*.key
+
+# Laravel
+/backend/vendor/
+/backend/node_modules/
+/backend/public/build/
+/backend/public/storage
+/backend/storage/*.key
+/backend/.phpunit.cache/
+/backend/.phpunit.result.cache
+
+# Next.js
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+/frontend/build/
+/frontend/.vercel/
+/frontend/coverage/
+
+# Dependencies and generated files
+**/node_modules/
+**/*.tsbuildinfo
+
+# Logs and temporary files
+**/*.log
+*.log
+*.bak
+*.backup
+**/*-backup/
+
+# Operating system and IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Historical source backups
+**/*.backup*
+**/*.before-*
+**/*.bak*

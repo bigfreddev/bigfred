@@ -1,0 +1,498 @@
+
+/* =========================================================
+   BIGFRED — PREMIUM PRODUCTS PAGE
+   Scoped styles: products page only
+   ========================================================= */
+
+.bf-products-page {
+  --bf-ink: #302522;
+  --bf-muted: #8b7b75;
+  --bf-rose: #a65f68;
+  --bf-rose-dark: #874751;
+  --bf-rose-soft: #f8edef;
+  --bf-cream: #fbf8f5;
+  --bf-white: #ffffff;
+  --bf-border: #eee5e0;
+  --bf-green: #397b5b;
+  --bf-shadow: 0 12px 35px rgba(63, 42, 35, 0.045);
+
+  min-height: 100%;
+  padding: 30px;
+  color: var(--bf-ink);
+  background: var(--bf-cream);
+  font-family: inherit;
+}
+
+.bf-products-inner {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* Page heading */
+
+.bf-products-page .bf-page-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.bf-products-page .bf-eyebrow {
+  margin-bottom: 9px;
+  color: var(--bf-rose);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+.bf-products-page .bf-page-title {
+  margin: 0;
+  color: var(--bf-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.bf-products-page .bf-page-description {
+  margin: 9px 0 0;
+  color: var(--bf-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Primary action */
+
+.bf-products-page .bf-primary-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 20px;
+  border: 1px solid var(--bf-rose);
+  border-radius: 7px;
+  background: var(--bf-rose);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.bf-products-page .bf-primary-button:hover {
+  transform: translateY(-1px);
+  background: var(--bf-rose-dark);
+  box-shadow: 0 7px 18px rgba(166, 95, 104, 0.2);
+}
+
+/* Statistics */
+
+.bf-products-page .bf-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 28px;
+}
+
+.bf-products-page .bf-stat-card {
+  position: relative;
+  min-width: 0;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid var(--bf-border);
+  border-radius: 10px;
+  background: var(--bf-white);
+  box-shadow: 0 3px 12px rgba(63, 42, 35, 0.025);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.bf-products-page .bf-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--bf-shadow);
+}
+
+.bf-products-page .bf-stat-icon {
+  display: flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 17px;
+  border-radius: 9px;
+  background: var(--bf-rose-soft);
+  color: var(--bf-rose);
+}
+
+.bf-products-page .bf-stat-label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--bf-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.bf-products-page .bf-stat-value {
+  display: block;
+  color: var(--bf-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.bf-products-page .bf-stat-detail {
+  display: block;
+  margin-top: 7px;
+  color: var(--bf-muted);
+  font-size: 10px;
+}
+
+/* Inventory section */
+
+.bf-products-page .bf-inventory {
+  overflow: hidden;
+  border: 1px solid var(--bf-border);
+  border-radius: 11px;
+  background: var(--bf-white);
+  box-shadow: var(--bf-shadow);
+}
+
+.bf-products-page .bf-inventory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--bf-border);
+}
+
+.bf-products-page .bf-inventory-title {
+  margin: 0;
+  color: var(--bf-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.bf-products-page .bf-inventory-description {
+  margin: 5px 0 0;
+  color: var(--bf-muted);
+  font-size: 11px;
+}
+
+.bf-products-page .bf-count-pill {
+  display: inline-flex;
+  min-width: 30px;
+  height: 27px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border-radius: 20px;
+  background: var(--bf-rose-soft);
+  color: var(--bf-rose-dark);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Filters */
+
+.bf-products-page .bf-filter-panel {
+  padding: 17px 24px;
+  border-bottom: 1px solid var(--bf-border);
+  background: #fdfbf9;
+}
+
+.bf-products-page .bf-filter-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) repeat(3, minmax(130px, 1fr));
+  gap: 11px;
+}
+
+.bf-products-page .bf-filter-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 41px;
+  padding: 0 12px;
+  border: 1px solid #e9dfda;
+  border-radius: 6px;
+  outline: none;
+  background: #fff;
+  color: var(--bf-ink);
+  font-size: 11px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.bf-products-page .bf-filter-input::placeholder {
+  color: #ad9e97;
+}
+
+.bf-products-page .bf-filter-input:focus {
+  border-color: var(--bf-rose);
+  box-shadow: 0 0 0 3px rgba(166, 95, 104, 0.09);
+}
+
+/* Table */
+
+.bf-products-page .bf-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.bf-products-page .bf-products-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.bf-products-page .bf-products-table thead {
+  background: #faf7f4;
+}
+
+.bf-products-page .bf-products-table th {
+  padding: 13px 17px;
+  border-bottom: 1px solid var(--bf-border);
+  color: #97867f;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bf-products-page .bf-products-table td {
+  padding: 15px 17px;
+  border-bottom: 1px solid #f2ece8;
+  color: #574843;
+  font-size: 11px;
+  vertical-align: middle;
+}
+
+.bf-products-page .bf-products-table tbody tr {
+  transition: background 150ms ease;
+}
+
+.bf-products-page .bf-products-table tbody tr:hover {
+  background: #fdf9f7;
+}
+
+.bf-products-page .bf-products-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.bf-products-page .bf-product-thumb {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  overflow: hidden;
+  border: 1px solid var(--bf-border);
+  border-radius: 7px;
+  background: #f8f1ed;
+  object-fit: cover;
+}
+
+.bf-products-page .bf-product-name {
+  display: block;
+  color: var(--bf-ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bf-products-page .bf-product-sku {
+  display: block;
+  margin-top: 4px;
+  color: #a18f88;
+  font-size: 10px;
+}
+
+.bf-products-page .bf-action-button {
+  display: inline-flex;
+  min-width: 31px;
+  min-height: 31px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  border: 1px solid var(--bf-border);
+  border-radius: 6px;
+  background: #fff;
+  color: #78665f;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.bf-products-page .bf-action-button:hover {
+  border-color: #d9b8b9;
+  background: var(--bf-rose-soft);
+  color: var(--bf-rose-dark);
+}
+
+.bf-products-page .bf-action-button.bf-danger {
+  color: #b34d55;
+}
+
+.bf-products-page .bf-action-button.bf-danger:hover {
+  border-color: #edc7c9;
+  background: #fff1f1;
+  color: #a62f38;
+}
+
+/* Status labels */
+
+.bf-products-page .bf-products-table [class*="bg-green"],
+.bf-products-page .bf-products-table [class*="bg-emerald"] {
+  border-radius: 20px;
+}
+
+.bf-products-page .bf-products-table [class*="bg-red"] {
+  border-radius: 20px;
+}
+
+/* Pagination and footer */
+
+.bf-products-page .bf-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 24px;
+  border-top: 1px solid var(--bf-border);
+  background: #fdfbf9;
+}
+
+.bf-products-page .bf-pagination button {
+  min-height: 33px;
+  padding: 0 12px;
+  border: 1px solid var(--bf-border);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--bf-ink);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.bf-products-page .bf-pagination button:hover:not(:disabled) {
+  border-color: var(--bf-rose);
+  color: var(--bf-rose);
+}
+
+.bf-products-page .bf-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.bf-products-page .bf-products-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 2px;
+  color: var(--bf-muted);
+  font-size: 10px;
+}
+
+/* Empty state */
+
+.bf-products-page .bf-empty-state {
+  padding: 55px 20px;
+  text-align: center;
+  color: var(--bf-muted);
+}
+
+.bf-products-page .bf-empty-state h3 {
+  margin: 12px 0 6px;
+  color: var(--bf-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.bf-products-page .bf-empty-state p {
+  margin: 0;
+  font-size: 11px;
+}
+
+/* Modal — scoped to this page */
+
+.bf-products-page [role="dialog"] {
+  border-radius: 12px;
+}
+
+.bf-products-page input:focus,
+.bf-products-page select:focus,
+.bf-products-page textarea:focus {
+  outline-color: var(--bf-rose);
+}
+
+.bf-products-page button {
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+/* Responsive layout */
+
+@media (max-width: 1050px) {
+  .bf-products-page .bf-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bf-products-page .bf-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .bf-products-page {
+    padding: 18px 12px;
+  }
+
+  .bf-products-page .bf-page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bf-products-page .bf-primary-button {
+    width: 100%;
+  }
+
+  .bf-products-page .bf-stats {
+    gap: 10px;
+  }
+
+  .bf-products-page .bf-stat-card {
+    padding: 15px;
+  }
+
+  .bf-products-page .bf-stat-value {
+    font-size: 24px;
+  }
+
+  .bf-products-page .bf-inventory-header {
+    padding: 17px;
+  }
+
+  .bf-products-page .bf-filter-panel {
+    padding: 13px;
+  }
+
+  .bf-products-page .bf-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bf-products-page .bf-products-table th,
+  .bf-products-page .bf-products-table td {
+    padding: 12px;
+  }
+
+  .bf-products-page .bf-pagination {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 15px;
+  }
+}
