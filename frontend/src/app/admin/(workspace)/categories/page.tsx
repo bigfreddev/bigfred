@@ -1,7 +1,9 @@
-﻿
-"use client";
 
-import { useCallback, useEffect, useState } from "react";
+"use client";
+import Image from "next/image";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import api from "@/lib/api";
 
@@ -54,6 +56,28 @@ export default function AdminCategories() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [removeImage, setRemoveImage] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const imagePreviewUrlRef = useRef<string | null>(null);
+
+  const updateImagePreview = (file: File | null) => {
+    if (imagePreviewUrlRef.current) {
+      URL.revokeObjectURL(imagePreviewUrlRef.current);
+    }
+
+    const nextPreview = file ? URL.createObjectURL(file) : null;
+
+    imagePreviewUrlRef.current = nextPreview;
+    setImagePreview(nextPreview);
+  };
+
+  // Release the active preview URL when this component unmounts.
+  useEffect(() => {
+    return () => {
+      if (imagePreviewUrlRef.current) {
+        URL.revokeObjectURL(imagePreviewUrlRef.current);
+        imagePreviewUrlRef.current = null;
+      }
+    };
+  }, []);
 
   const [saving, setSaving] = useState(false);
   const [actionLoading, setActionLoading] = useState<number | null>(null);
@@ -71,23 +95,9 @@ export default function AdminCategories() {
     return `${apiOrigin}/storage/${image.replace(/^\/+/, "")}`;
   };
 
-  // Generate and clean up a temporary preview URL.
-  useEffect(() => {
-    if (!imageFile) {
-      setImagePreview(null);
-      return;
-    }
 
-    const objectUrl = URL.createObjectURL(imageFile);
-    setImagePreview(objectUrl);
-
-    return () => {
-      URL.revokeObjectURL(objectUrl);
-    };
-  }, [imageFile]);
-
-  const handleAuthError = (err: any) => {
-    const status = err.response?.status;
+  const handleAuthError = useCallback((err: unknown): boolean => {
+    const status = isAxiosError(err) ? err.response?.status : undefined;
 
     if (status === 401 || status === 403) {
       router.replace("/admin/login");
@@ -95,7 +105,7 @@ export default function AdminCategories() {
     }
 
     return false;
-  };
+  }, [router]);
 
   const fetchCategories = useCallback(async () => {
     setLoading(true);
@@ -104,26 +114,28 @@ export default function AdminCategories() {
     try {
       const response = await api.get("/admin/categories");
       setCategories(response.data.data || []);
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (handleAuthError(err)) return;
 
       setError(
-        err.response?.data?.message ||
+        (isAxiosError(err) ? err.response?.data?.message : undefined) ||
           "Unable to load categories. Please try again."
       );
     } finally {
       setLoading(false);
     }
-  }, [router]);
+  }, [handleAuthError]);
 
   useEffect(() => {
+    // This effect initiates the initial asynchronous category request.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchCategories();
   }, [fetchCategories]);
 
   const resetImageSelection = () => {
     setImageFile(null);
     setRemoveImage(false);
-    setImagePreview(null);
+    updateImagePreview(null);
   };
 
   const openCreateModal = () => {
@@ -170,6 +182,7 @@ export default function AdminCategories() {
 
     setError("");
     setImageFile(file);
+    updateImagePreview(file);
     setRemoveImage(false);
 
     // Allow selecting the same file again later.
@@ -178,7 +191,7 @@ export default function AdminCategories() {
 
   const handleRemoveImage = () => {
     setImageFile(null);
-    setImagePreview(null);
+    updateImagePreview(null);
     setRemoveImage(true);
     setError("");
   };
@@ -241,10 +254,14 @@ export default function AdminCategories() {
       resetImageSelection();
 
       await fetchCategories();
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (handleAuthError(err)) return;
 
-      const validationErrors = err.response?.data?.errors;
+      const responseData: {
+        errors?: Record<string, unknown[]>;
+        message?: string;
+      } | undefined = isAxiosError(err) ? err.response?.data : undefined;
+      const validationErrors = responseData?.errors;
       const firstValidationError = validationErrors
         ? Object.values(validationErrors).flat()[0]
         : null;
@@ -252,7 +269,7 @@ export default function AdminCategories() {
       setError(
         String(
           firstValidationError ||
-            err.response?.data?.message ||
+            responseData?.message ||
             "Unable to save category."
         )
       );
@@ -278,11 +295,11 @@ export default function AdminCategories() {
       );
 
       await fetchCategories();
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (handleAuthError(err)) return;
 
       setError(
-        err.response?.data?.message ||
+        (isAxiosError(err) ? err.response?.data?.message : undefined) ||
           "Unable to update category status."
       );
     } finally {
@@ -307,11 +324,11 @@ export default function AdminCategories() {
       setNotice("Category deleted successfully.");
 
       await fetchCategories();
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (handleAuthError(err)) return;
 
       setError(
-        err.response?.data?.message ||
+        (isAxiosError(err) ? err.response?.data?.message : undefined) ||
           "Unable to delete category."
       );
     } finally {
@@ -578,11 +595,7 @@ export default function AdminCategories() {
                   >
                     <div className="relative h-48 overflow-hidden bg-[#f4ebe7]">
                       {category.image ? (
-                        <img
-                          src={getImageUrl(category.image)}
-                          alt={category.name}
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                        />
+                        <Image src={getImageUrl(category.image)} alt={category.name} fill unoptimized sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                       ) : (
                         <div className="flex h-full flex-col items-center justify-center bg-gradient-to-br from-[#f8f0ed] to-[#ead9d2]">
                           <span className="font-serif text-5xl text-[#bd8d8b]">
@@ -780,11 +793,7 @@ export default function AdminCategories() {
                 <div className="overflow-hidden rounded-xl border border-dashed border-[#d9c5bc] bg-[#fcfaf8] p-4">
                   {currentImage ? (
                     <div className="relative overflow-hidden rounded-lg bg-[#f4ebe7]">
-                      <img
-                        src={currentImage}
-                        alt="Category image preview"
-                        className="h-48 w-full object-cover"
-                      />
+                      <Image src={currentImage} alt="Category image preview" width={400} height={192} unoptimized className="h-48 w-full object-cover" />
 
                       <div className="absolute right-3 top-3">
                         <span className="rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#49352f] shadow">

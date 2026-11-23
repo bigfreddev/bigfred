@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import api, { initializeCsrf } from "@/lib/api";
+import { isAxiosError } from "axios";
 
 type Customer = {
   id: number;
@@ -134,9 +135,12 @@ export default function AccountPage() {
 
           setOrders(pagination.data || []);
           setOrderCount(pagination.total || 0);
-        } catch (orderError: any) {
-          if (active) {
-            if (orderError.response?.status === 401) {
+        } catch (orderError: unknown) {
+  if (active) {
+    if (
+      isAxiosError(orderError) &&
+      orderError.response?.status === 401
+    ) {
               router.replace("/login");
             } else {
               setOrdersError(
@@ -149,9 +153,12 @@ export default function AccountPage() {
             setOrdersLoading(false);
           }
         }
-      } catch (err: any) {
-        if (active) {
-          if (err.response?.status === 401) {
+      } catch (err: unknown) {
+  if (active) {
+    if (
+      isAxiosError(err) &&
+      err.response?.status === 401
+    ) {
             router.replace("/login");
           } else {
             setError(
@@ -543,7 +550,7 @@ export default function AccountPage() {
                   </h4>
 
                   <p className="mx-auto mt-2 max-w-sm text-xs leading-6 text-[#927d73]">
-                    You haven't placed any orders yet. Explore our collection
+                    You haven&apos;t placed any orders yet. Explore our collection
                     and your purchases will automatically appear here.
                   </p>
 

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -131,6 +132,7 @@ export default function ProductDetailsPage() {
       if (savedCart) {
         const parsed: CartItem[] = JSON.parse(savedCart);
         if (Array.isArray(parsed)) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setCartCount(
             parsed.reduce(
               (total, item) => total + (Number(item.qty) || 0),
@@ -310,12 +312,7 @@ export default function ProductDetailsPage() {
         <div className="bf-product-gallery">
           <div className="bf-product-main-image">
             {selectedImageUrl ? (
-              <img
-                src={selectedImageUrl}
-                alt={
-                  images[selectedImage]?.alt_text || product.name
-                }
-              />
+              <Image src={selectedImageUrl} alt={images[selectedImage]?.alt_text || product.name} width={1200} height={1200} unoptimized />
             ) : (
               <div className="bf-product-no-image">
                 Product image coming soon
@@ -339,13 +336,7 @@ export default function ProductDetailsPage() {
                   onClick={() => setSelectedImage(index)}
                   aria-label={`View product image ${index + 1}`}
                 >
-                  <img
-                    src={imageUrl(image.image_path)}
-                    alt={
-                      image.alt_text ||
-                      `${product.name} image ${index + 1}`
-                    }
-                  />
+                  <Image src={imageUrl(image.image_path)} alt={image.alt_text || `${product.name} image ${index + 1}`} width={160} height={160} unoptimized />
                 </button>
               ))}
             </div>
@@ -489,10 +480,7 @@ export default function ProductDetailsPage() {
                 >
                   <div className="bf-related-image">
                     {relatedImages[0]?.image_path ? (
-                      <img
-                        src={imageUrl(relatedImages[0].image_path)}
-                        alt={item.name}
-                      />
+                      <Image src={imageUrl(relatedImages[0].image_path)} alt={item.name} width={600} height={600} unoptimized />
                     ) : (
                       <span>Image coming soon</span>
                     )}

@@ -4,8 +4,32 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAdmin } from "@/components/admin/AdminContext";
+import { isAxiosError } from "axios";
 import api from "@/lib/api";
 
+type SettingsApiError = {
+  message?: string;
+  errors?: {
+    whatsapp_number?: string[];
+  };
+};
+
+function isAuthError(error: unknown): boolean {
+  return (
+    isAxiosError(error) &&
+    (error.response?.status === 401 || error.response?.status === 403)
+  );
+}
+
+function getSettingsError(error: unknown, fallback: string): SettingsApiError {
+  if (isAxiosError<SettingsApiError>(error)) {
+    return error.response?.data ?? {};
+  }
+
+  return {
+    message: error instanceof Error ? error.message : fallback,
+  };
+}
 export default function SettingsPage() {
   const router = useRouter();
   const { admin } = useAdmin();
@@ -27,25 +51,21 @@ export default function SettingsPage() {
       setWhatsappNumber(
         response.data?.data?.whatsapp_number ?? ""
       );
-    } catch (err: any) {
-      if (
-        err.response?.status === 401 ||
-        err.response?.status === 403
-      ) {
+    } catch (err: unknown) {
+      if (isAuthError(err)) {
         router.push("/admin/login");
         return;
       }
 
-      setError(
-        err.response?.data?.message ||
-          "Unable to load your WhatsApp settings. Please try again."
-      );
+      setError(getSettingsError(err, "Unable to load your WhatsApp settings. Please try again.").message || "Unable to load your WhatsApp settings. Please try again.");
     } finally {
       setLoading(false);
     }
   }, [router]);
 
   useEffect(() => {
+    // Loads the saved WhatsApp Business configuration.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadSettings();
   }, [loadSettings]);
 
@@ -75,22 +95,22 @@ export default function SettingsPage() {
         response.data?.message ||
           "WhatsApp Business number updated successfully."
       );
-    } catch (err: any) {
-      if (
-        err.response?.status === 401 ||
-        err.response?.status === 403
-      ) {
+    } catch (err: unknown) {
+      if (isAuthError(err)) {
         router.push("/admin/login");
         return;
       }
 
-      const validationErrors = err.response?.data?.errors;
+      const responseError = getSettingsError(
+        err,
+        "Unable to save your WhatsApp number. Please try again."
+      );
 
-      if (validationErrors?.whatsapp_number?.length) {
-        setError(validationErrors.whatsapp_number[0]);
+      if (responseError.errors?.whatsapp_number?.length) {
+        setError(responseError.errors.whatsapp_number[0]);
       } else {
         setError(
-          err.response?.data?.message ||
+          responseError.message ||
             "Unable to save your WhatsApp number. Please try again."
         );
       }

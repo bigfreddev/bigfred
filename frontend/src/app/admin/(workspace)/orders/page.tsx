@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useCallback, useEffect, useState } from "react";
+import { isAxiosError } from "axios";
+import { useRouter } from "next/navigation";
 import api from "@/lib/api";
 
 type OrderItem = {
@@ -90,15 +92,6 @@ type NewOrderItem = {
   quantity: number;
 };
 
-const navigation = [
-  { name: "Dashboard", icon: "▦", path: "/admin/dashboard" },
-  { name: "Products", icon: "◇", path: "/admin/products" },
-  { name: "Categories", icon: "▤", path: "/admin/categories" },
-  { name: "Orders", icon: "▣", path: "/admin/orders" },
-  { name: "Customers", icon: "♡", path: "#" },
-  { name: "Reviews", icon: "☆", path: "/admin/reviews" },
-  { name: "Settings", icon: "⚙", path: "#" },
-];
 
 const orderStatuses = [
   "awaiting_confirmation",
@@ -112,7 +105,7 @@ const orderStatuses = [
 
 
 const formatMoney = (value: string | number) =>
-  `GH₵ ${Number(value || 0).toLocaleString("en-GH", {
+  `GHâ‚µ ${Number(value || 0).toLocaleString("en-GH", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`;
@@ -163,6 +156,27 @@ export default function AdminOrders() {
   const [page, setPage] = useState(1);
 
   const [loading, setLoading] = useState(true);
+
+  const router = useRouter();
+
+
+  const handleAuthError = useCallback((err: unknown): boolean => {
+
+    const status = isAxiosError(err) ? err.response?.status : undefined;
+
+
+    if (status === 401 || status === 403) {
+
+      router.replace("/admin/login");
+
+      return true;
+
+    }
+
+
+    return false;
+
+  }, [router]);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
 
@@ -230,22 +244,22 @@ export default function AdminOrders() {
       });
 
       setStatistics(statisticsResponse.data);
-    } catch (err: any) {
-      if ([401, 403].includes(err.response?.status)) {
-        window.location.href = "/admin/login";
-        return;
-      }
+    } catch (err: unknown) {
+      const errorData = isAxiosError(err) ? err.response?.data : undefined;
+      if (handleAuthError(err)) return;
 
       setError(
-        err.response?.data?.message ||
+        errorData?.message ||
           "Unable to load orders. Please check your connection and try again."
       );
     } finally {
       setLoading(false);
     }
-  }, [page, search, statusFilter, sourceFilter]);
+  }, [page, search, statusFilter, sourceFilter, handleAuthError]);
 
   useEffect(() => {
+    // This effect initiates the asynchronous orders request.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadOrders();
   }, [loadOrders]);
 
@@ -275,11 +289,8 @@ const loadProducts = async () => {
     );
 
     setProducts(productList ?? []);
-  } catch (err: any) {
-    if ([401, 403].includes(err.response?.status)) {
-      window.location.href = "/admin/login";
-      return;
-    }
+  } catch (err: unknown) {
+    if (handleAuthError(err)) return;
 
     console.error("Failed to load products:", err);
     setProducts([]);
@@ -326,13 +337,11 @@ const loadProducts = async () => {
         outstanding_balance: Math.max(0, orderTotal - netPaid),
         payment_status: paymentStatus,
       });
-    } catch (err: any) {
-      if ([401, 403].includes(err.response?.status)) {
-        window.location.href = "/admin/login";
-        return;
-      }
+    } catch (err: unknown) {
+      const errorData = isAxiosError(err) ? err.response?.data : undefined;
+      if (handleAuthError(err)) return;
       setPaymentTransactions([]);
-      setError(err.response?.data?.message || "Unable to load payment history.");
+      setError(errorData?.message || "Unable to load payment history.");
     } finally {
       setLoadingPayments(false);
     }
@@ -354,12 +363,10 @@ const loadProducts = async () => {
       setTransactionDate(new Date().toISOString().slice(0, 10));
       setTransactionNotes("");
       await loadPaymentHistory(fullOrder.id, Number(fullOrder.total));
-    } catch (err: any) {
-      if ([401, 403].includes(err.response?.status)) {
-        window.location.href = "/admin/login";
-        return;
-      }
-      setError(err.response?.data?.message || "Unable to load order details.");
+    } catch (err: unknown) {
+      const errorData = isAxiosError(err) ? err.response?.data : undefined;
+      if (handleAuthError(err)) return;
+      setError(errorData?.message || "Unable to load order details.");
     }
   };
 
@@ -390,15 +397,13 @@ const loadProducts = async () => {
       setNotice("Order status updated successfully.");
       await loadOrders();
       await openOrder(selectedOrder);
-    } catch (err: any) {
-      if ([401, 403].includes(err.response?.status)) {
-        window.location.href = "/admin/login";
-        return;
-      }
+    } catch (err: unknown) {
+      const errorData = isAxiosError(err) ? err.response?.data : undefined;
+      if (handleAuthError(err)) return;
 
       setError(
-        err.response?.data?.message ||
-          err.response?.data?.errors?.status?.[0] ||
+        errorData?.message ||
+          errorData?.errors?.status?.[0] ||
           "Unable to update order status."
       );
     } finally {
@@ -455,13 +460,11 @@ const loadProducts = async () => {
           payment_status: result.payment_status,
         });
       }
-    } catch (err: any) {
-      if ([401, 403].includes(err.response?.status)) {
-        window.location.href = "/admin/login";
-        return;
-      }
-      const errors = err.response?.data?.errors;
-      setError(errors ? Object.values(errors).flat().join(" ") : err.response?.data?.message || "Unable to record the transaction.");
+    } catch (err: unknown) {
+      const errorData = isAxiosError(err) ? err.response?.data : undefined;
+      if (handleAuthError(err)) return;
+      const errors = errorData?.errors;
+      setError(errors ? Object.values(errors).flat().join(" ") : errorData?.message || "Unable to record the transaction.");
     } finally {
       setSaving(false);
     }
@@ -501,17 +504,15 @@ const loadProducts = async () => {
       setPage(1);
       setNotice("Manual order created successfully.");
       await loadOrders();
-    } catch (err: any) {
-      if ([401, 403].includes(err.response?.status)) {
-        window.location.href = "/admin/login";
-        return;
-      }
+    } catch (err: unknown) {
+      const errorData = isAxiosError(err) ? err.response?.data : undefined;
+      if (handleAuthError(err)) return;
 
-      const errors = err.response?.data?.errors;
+      const errors = errorData?.errors;
       setError(
         errors
           ? Object.values(errors).flat().join(" ")
-          : err.response?.data?.message ||
+          : errorData?.message ||
               "Unable to create manual order."
       );
     } finally {
@@ -582,7 +583,7 @@ const loadProducts = async () => {
                 onClick={() => setError("")}
                 className="float-right font-bold"
               >
-                ×
+                Ã—
               </button>
             </div>
           )}
@@ -594,7 +595,7 @@ const loadProducts = async () => {
                 onClick={() => setNotice("")}
                 className="float-right font-bold"
               >
-                ×
+                Ã—
               </button>
             </div>
           )}
@@ -606,13 +607,13 @@ const loadProducts = async () => {
                 title: "Total Orders",
                 value: statistics?.total_orders ?? 0,
                 note: "All recorded orders",
-                icon: "▣",
+                icon: "â–£",
               },
               {
                 title: "Awaiting Confirmation",
                 value: statistics?.awaiting_confirmation ?? 0,
                 note: "Require your attention",
-                icon: "◷",
+                icon: "â—·",
               },
               {
                 title: "Processing",
@@ -620,13 +621,13 @@ const loadProducts = async () => {
                   (statistics?.processing ?? 0) +
                   (statistics?.ready_for_delivery ?? 0),
                 note: "Being prepared for delivery",
-                icon: "◇",
+                icon: "â—‡",
               },
               {
                 title: "Completed Revenue",
                 value: formatMoney(statistics?.total_revenue ?? 0),
                 note: "Revenue from completed orders",
-                icon: "₵",
+                icon: "â‚µ",
               },
             ].map((stat) => (
               <div
@@ -697,7 +698,7 @@ const loadProducts = async () => {
                   disabled={loading}
                   className="rounded-xl border border-[#e8dcd5] px-4 py-2.5 text-sm text-[#765c56] hover:bg-[#faf7f4] disabled:opacity-50"
                 >
-                  ↻ Refresh
+                  â†» Refresh
                 </button>
               </div>
 
@@ -754,7 +755,7 @@ const loadProducts = async () => {
             ) : orders.length === 0 ? (
               <div className="p-16 text-center">
                 <div className="mx-auto h-16 w-16 rounded-full bg-[#f8f0ed] flex items-center justify-center text-2xl text-[#a66c72]">
-                  ▣
+                  â–£
                 </div>
                 <h4 className="font-medium mt-4">No orders found</h4>
                 <p className="text-sm text-gray-400 mt-2">
@@ -859,7 +860,7 @@ const loadProducts = async () => {
                 <div className="px-6 py-5 border-t border-[#f0eae5] flex flex-col sm:flex-row items-center justify-between gap-4">
                   <p className="text-xs text-gray-400">
                     Showing page {pagination.current_page} of{" "}
-                    {pagination.last_page} · {pagination.total} orders
+                    {pagination.last_page} Â· {pagination.total} orders
                   </p>
 
                   <div className="flex items-center gap-2">
@@ -887,7 +888,7 @@ const loadProducts = async () => {
           </div>
 
           <footer className="text-center text-xs text-gray-400 py-8">
-            © {new Date().getFullYear()} BigFred. Admin Workspace.
+            Â© {new Date().getFullYear()} BigFred. Admin Workspace.
           </footer>
         </div>
       </div>
@@ -916,7 +917,7 @@ const loadProducts = async () => {
                 onClick={() => setSelectedOrder(null)}
                 className="h-9 w-9 rounded-full bg-[#f8f5f1] text-xl hover:bg-[#ead5d0]"
               >
-                ×
+                Ã—
               </button>
             </div>
 
@@ -978,7 +979,7 @@ const loadProducts = async () => {
                         </p>
                         <p className="text-xs text-gray-400 mt-1">
                           Quantity: {item.quantity}
-                          {item.product_sku ? ` · SKU: ${item.product_sku}` : ""}
+                          {item.product_sku ? ` Â· SKU: ${item.product_sku}` : ""}
                         </p>
                       </div>
                       <div className="text-right">
@@ -1157,7 +1158,7 @@ const loadProducts = async () => {
                               <p className="text-xs text-gray-500 mt-2">{formatDate(transaction.transaction_date || transaction.created_at)}</p>
                             </div>
                             <p className={`font-semibold ${transaction.type === "payment" ? "text-green-700" : "text-red-600"}`}>
-                              {transaction.type === "refund" ? "−" : "+"}{formatMoney(transaction.amount)}
+                              {transaction.type === "refund" ? "âˆ’" : "+"}{formatMoney(transaction.amount)}
                             </p>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-xs text-gray-500">
@@ -1184,7 +1185,7 @@ const loadProducts = async () => {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-gray-600 mb-1.5">Amount (GH₵)</label>
+                      <label className="block text-xs font-medium text-gray-600 mb-1.5">Amount (GHâ‚µ)</label>
                       <input required type="number" min="0.01" max={transactionType === "payment" ? paymentSummary.outstanding_balance : paymentSummary.net_paid} step="0.01" value={transactionAmount} onChange={(event) => setTransactionAmount(event.target.value)} placeholder="0.00" className="w-full rounded-xl border border-[#e8dcd5] px-4 py-3 text-sm outline-none focus:border-[#a66c72]" />
                       <p className="text-[11px] text-gray-400 mt-1">Maximum: {formatMoney(transactionType === "payment" ? paymentSummary.outstanding_balance : paymentSummary.net_paid)}</p>
                     </div>
@@ -1240,7 +1241,7 @@ const loadProducts = async () => {
                 onClick={() => setNewOrderOpen(false)}
                 className="h-9 w-9 rounded-full bg-[#f8f5f1] text-xl hover:bg-[#ead5d0]"
               >
-                ×
+                Ã—
               </button>
             </div>
 
@@ -1360,8 +1361,8 @@ const loadProducts = async () => {
                                 value={product.id}
                                 disabled={product.stock_quantity < 1}
                               >
-                                {product.name} —{" "}
-                                {formatMoney(product.price)} · Stock:{" "}
+                                {product.name} â€”{" "}
+                                {formatMoney(product.price)} Â· Stock:{" "}
                                 {product.stock_quantity}
                               </option>
                             ))}
@@ -1428,7 +1429,7 @@ const loadProducts = async () => {
                         delivery_fee: event.target.value,
                       })
                     }
-                    placeholder="Delivery fee (GH₵)"
+                    placeholder="Delivery fee (GHâ‚µ)"
                     className="w-full rounded-xl border border-[#e8dcd5] px-4 py-3 text-sm outline-none focus:border-[#a66c72]"
                   />
 

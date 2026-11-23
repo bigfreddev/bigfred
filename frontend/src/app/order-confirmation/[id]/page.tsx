@@ -43,15 +43,7 @@ export default function OrderConfirmationPage() {
   const [error, setError] = useState("");
   const [whatsappUrl, setWhatsappUrl] = useState("");
 
-  useEffect(() => {
-    const savedWhatsAppUrl = sessionStorage.getItem(
-      "bigfred_pending_whatsapp_url"
-    );
 
-    if (savedWhatsAppUrl) {
-      setWhatsappUrl(savedWhatsAppUrl);
-    }
-  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -67,7 +59,12 @@ export default function OrderConfirmationPage() {
 
         if (!isMounted) return;
 
-        const savedOrder = response.data?.data;
+const savedWhatsAppUrl = sessionStorage.getItem(
+  "bigfred_pending_whatsapp_url"
+);
+setWhatsappUrl(savedWhatsAppUrl || "");
+
+const savedOrder = response.data?.data;
 
         if (!savedOrder) {
           throw new Error("Order details could not be found.");
@@ -133,7 +130,7 @@ export default function OrderConfirmationPage() {
         <div className="bf-confirm-card">
           <div className="bf-confirm-mark">♡</div>
           <p className="bf-confirm-eyebrow">BIGFRED</p>
-          <h1>We couldn't load your order.</h1>
+          <h1>We couldn&apos;t load your order.</h1>
           <p>{error || "Please try again from your account."}</p>
 
           <div className="bf-confirm-actions">
@@ -163,7 +160,7 @@ export default function OrderConfirmationPage() {
         <h1>Thank you for choosing BigFred.</h1>
 
         <p className="bf-confirm-message">
-          Your order has been received and saved. We're looking forward to
+          Your order has been received and saved. We&apos;re looking forward to
           preparing your care essentials.
         </p>
 

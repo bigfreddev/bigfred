@@ -1,8 +1,10 @@
 
 
 "use client";
+import Image from "next/image";
 
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 import Testimonials from "./Testimonials";
 
@@ -110,15 +112,12 @@ const money = (amount: number) =>
 
 export default function Home() {
 
+  const router = useRouter();
+
   const [products, setProducts] = useState<Product[]>([]);
 
   const [categoryNames, setCategoryNames] = useState<string[]>([]);
-
-  const [productsLoading, setProductsLoading] = useState(true);
-
-  const [loadError, setLoadError] = useState("");
-
-  const [filter, setFilter] = useState("All");
+const [filter, setFilter] = useState("All");
 
   const [search, setSearch] = useState("");
 
@@ -156,6 +155,9 @@ export default function Home() {
 
           );
 
+          // Restore validated cart data from localStorage.
+
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setCart(validCart);
 
         }
@@ -248,9 +250,9 @@ export default function Home() {
 
       try {
 
-        setProductsLoading(true);
 
-        setLoadError("");
+
+
 
         const [productsResponse, categoriesResponse] = await Promise.all([
 
@@ -382,21 +384,11 @@ export default function Home() {
 
         console.error("Failed to load BigFred store data:", error);
 
-        if (isMounted) {
-
-          setLoadError(
-
-            "We couldn't load our products. Please refresh the page."
-
-          );
-
-        }
-
       } finally {
 
         if (isMounted) {
 
-          setProductsLoading(false);
+
 
         }
 
@@ -832,11 +824,7 @@ export default function Home() {
 
       // Redirect the current tab to the order confirmation page.
 
-      window.location.assign(
-
-        `/order-confirmation/${encodeURIComponent(String(order.id))}`
-
-      );
+      router.push(`/order-confirmation/${encodeURIComponent(String(order.id))}`);
 
     } catch (error: unknown) {
 
@@ -1362,7 +1350,7 @@ export default function Home() {
 
                 <div className="product-visual">
 
-                  <img src={product.image} alt={product.name} loading="lazy" />
+                  <Image src={product.image} alt={product.name} fill unoptimized sizes="(max-width: 700px) 50vw, (max-width: 1000px) 33vw, 25vw" className="object-cover transition-transform duration-500" />
 
                   {product.badge && (
 
@@ -1527,7 +1515,7 @@ export default function Home() {
 
             <p>
 
-              Self-care doesn't need to be complicated. We bring together body
+              Self-care doesn&apos;t need to be complicated. We bring together body
 
               oils, body creams and hair oils to make everyday care feel like a
 
@@ -1859,7 +1847,7 @@ export default function Home() {
 
                 <p>
 
-                  Enter your delivery details below. We'll prepare your order
+                  Enter your delivery details below. We&apos;ll prepare your order
 
                   and connect you to BigFred on WhatsApp for confirmation.
 
@@ -2151,7 +2139,7 @@ export default function Home() {
 
                   <div className="cart-line" key={item.id}>
 
-                    <img src={product.image} alt={product.name} />
+                    <Image src={product.image} alt={product.name} width={76} height={92} unoptimized />
 
                     <div>
 

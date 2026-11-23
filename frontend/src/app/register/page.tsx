@@ -1,14 +1,12 @@
-
+﻿
 "use client";
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import api, { initializeCsrf } from "@/lib/api";
 
 export default function RegisterPage() {
-  const router = useRouter();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -88,7 +86,7 @@ export default function RegisterPage() {
       <main className="min-h-screen bg-[#f8f4ef] flex items-center justify-center px-5 py-12">
         <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-8 sm:p-12 text-center">
           <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-full bg-[#f5e8e6] text-3xl text-[#a66c72]">
-            ✓
+            âœ“
           </div>
 
           <p className="text-xs uppercase tracking-[0.25em] text-[#a66c72] font-semibold">
@@ -150,7 +148,7 @@ export default function RegisterPage() {
           </div>
 
           <p className="text-sm text-[#765c56]">
-            © {new Date().getFullYear()} BigFred. All rights reserved.
+            Â© {new Date().getFullYear()} BigFred. All rights reserved.
           </p>
         </section>
 
@@ -328,12 +326,12 @@ export default function RegisterPage() {
                 href="/"
                 className="text-sm text-gray-500 hover:text-[#a66c72]"
               >
-                ← Back to BigFred Store
+                â† Back to BigFred Store
               </Link>
             </div>
 
             <p className="mt-10 text-center text-xs text-gray-400">
-              Your BigFred account · Your beauty shopping experience
+              Your BigFred account Â· Your beauty shopping experience
             </p>
 
           </div>

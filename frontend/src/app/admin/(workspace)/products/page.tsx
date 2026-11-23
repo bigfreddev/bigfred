@@ -1,5 +1,6 @@
-﻿
+
 "use client";
+import Image from "next/image";
 
 import {
   useCallback,
@@ -8,6 +9,7 @@ import {
   type FormEvent,
 } from "react";
 import { useRouter } from "next/navigation";
+import { isAxiosError } from "axios";
 import api from "@/lib/api";
 import "./products-redesign.css";
 
@@ -92,11 +94,33 @@ const initialPagination: Pagination = {
   to: null,
 };
 
-function getRows<T>(response: any): T[] {
-  const data = response?.data?.data;
+function getRows<T>(response: unknown): T[] {
+  if (!response || typeof response !== "object" || !("data" in response)) {
+    return [];
+  }
 
-  if (Array.isArray(data)) return data;
-  if (Array.isArray(data?.data)) return data.data;
+  const responseData = response.data;
+
+  if (
+    !responseData ||
+    typeof responseData !== "object" ||
+    !("data" in responseData)
+  ) {
+    return [];
+  }
+
+  const data = responseData.data;
+
+  if (Array.isArray(data)) return data as T[];
+
+  if (
+    data &&
+    typeof data === "object" &&
+    "data" in data &&
+    Array.isArray(data.data)
+  ) {
+    return data.data as T[];
+  }
 
   return [];
 }
@@ -108,25 +132,32 @@ function imageUrl(path?: string) {
   return `http://localhost:8001/storage/${path.replace(/^\/+/, "")}`;
 }
 
-function isAuthError(error: any) {
+function isAuthError(error: unknown): boolean {
+  if (!isAxiosError(error)) return false;
+
   return (
     error.response?.status === 401 ||
     error.response?.status === 403
   );
 }
 
-function getErrorMessage(error: any, fallback: string) {
-  const validationErrors = error.response?.data?.errors;
+type ApiErrorResponse = {
+  errors?: Record<string, string[]>;
+  message?: string;
+};
+
+function getErrorMessage(error: unknown, fallback: string): string {
+  const responseData = isAxiosError<ApiErrorResponse>(error)
+    ? error.response?.data
+    : undefined;
+
+  const validationErrors = responseData?.errors;
 
   const firstError = validationErrors
     ? Object.values(validationErrors).flat()[0]
     : null;
 
-  return String(
-    firstError ||
-      error.response?.data?.message ||
-      fallback
-  );
+  return String(firstError || responseData?.message || fallback);
 }
 
 export default function ProductsPage() {
@@ -201,15 +232,14 @@ export default function ProductsPage() {
             to: rows.length || null,
           });
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         if (isAuthError(err)) {
           router.replace("/admin/login");
           return;
         }
 
         setError(
-          err.response?.data?.message ||
-            "Unable to load products. Please try again."
+          getErrorMessage(err, "Unable to load products. Please try again.")
         );
       } finally {
         setLoading(false);
@@ -226,6 +256,8 @@ export default function ProductsPage() {
   );
 
   useEffect(() => {
+    // Starts the asynchronous product and category requests.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadData(currentPage);
   }, [loadData, currentPage]);
 
@@ -234,6 +266,8 @@ export default function ProductsPage() {
       URL.createObjectURL(file)
     );
 
+    // Synchronize previews with the temporary object URLs created above.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setImagePreviews(previews);
 
     return () => {
@@ -374,7 +408,7 @@ export default function ProductsPage() {
       setForm(emptyForm);
 
       await loadData(currentPage);
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (isAuthError(err)) {
         router.replace("/admin/login");
         return;
@@ -411,15 +445,14 @@ export default function ProductsPage() {
       } else {
         await loadData(currentPage);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (isAuthError(err)) {
         router.replace("/admin/login");
         return;
       }
 
       setError(
-        err.response?.data?.message ||
-          "Unable to delete this product."
+        getErrorMessage(err, "Unable to delete this product.")
       );
     }
   };
@@ -441,15 +474,14 @@ export default function ProductsPage() {
       );
 
       await loadData(currentPage);
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (isAuthError(err)) {
         router.replace("/admin/login");
         return;
       }
 
       setError(
-        err.response?.data?.message ||
-          "Unable to update product status."
+        getErrorMessage(err, "Unable to update product status.")
       );
     } finally {
       setStatusActionId(null);
@@ -487,15 +519,14 @@ export default function ProductsPage() {
       );
 
       setNotice("Primary image updated successfully.");
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (isAuthError(err)) {
         router.replace("/admin/login");
         return;
       }
 
       setError(
-        err.response?.data?.message ||
-          "Unable to update the primary image."
+        getErrorMessage(err, "Unable to update the primary image.")
       );
     } finally {
       setImageActionId(null);
@@ -539,15 +570,14 @@ export default function ProductsPage() {
       );
 
       setNotice("Product image deleted successfully.");
-    } catch (err: any) {
+    } catch (err: unknown) {
       if (isAuthError(err)) {
         router.replace("/admin/login");
         return;
       }
 
       setError(
-        err.response?.data?.message ||
-          "Unable to delete this image."
+        getErrorMessage(err, "Unable to delete this image.")
       );
     } finally {
       setImageActionId(null);
@@ -904,11 +934,7 @@ export default function ProductsPage() {
                             <div className="flex items-center gap-3">
                               <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-[#eee5df] bg-[#fcfaf8]">
                                 {primaryImage ? (
-                                  <img
-                                    src={imageUrl(primaryImage.image_path)}
-                                    alt={product.name}
-                                    className="h-full w-full object-cover"
-                                  />
+                                  <Image src={imageUrl(primaryImage.image_path)} alt={product.name} fill unoptimized sizes="56px" className="object-cover" />
                                 ) : (
                                   <div className="flex h-full items-center justify-center text-xl text-[#a66c72]">
                                     ✦
@@ -1346,14 +1372,7 @@ export default function ProductsPage() {
                           }`}
                         >
                           <div className="relative">
-                            <img
-                              src={imageUrl(image.image_path)}
-                              alt={
-                                image.alt_text ||
-                                editingProduct.name
-                              }
-                              className="h-32 w-full object-cover"
-                            />
+                            <Image src={imageUrl(image.image_path)} alt={image.alt_text || editingProduct.name} width={400} height={300} unoptimized className="h-32 w-full object-cover" />
 
                             {image.is_primary && (
                               <span className="absolute left-2 top-2 rounded-full bg-[#49352f] px-2.5 py-1 text-[10px] font-medium text-white">
@@ -1461,11 +1480,7 @@ export default function ProductsPage() {
                           }`}
                         >
                           {imagePreviews[index] && (
-                            <img
-                              src={imagePreviews[index]}
-                              alt={file.name}
-                              className="h-28 w-full object-cover"
-                            />
+                            <Image src={imagePreviews[index]} alt={file.name} width={400} height={300} unoptimized className="h-28 w-full object-cover" />
                           )}
 
                           <span className="block truncate p-2 text-xs font-medium text-[#49352f]">

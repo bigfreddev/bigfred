@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import api, { initializeCsrf } from "@/lib/api";
+import { isAxiosError } from "axios";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -32,8 +33,8 @@ export default function LoginPage() {
       await api.get("/customer/me");
 
       router.push("/account");
-    } catch (err: any) {
-      const response = err.response?.data;
+    } catch (err: unknown) {
+  const response = isAxiosError(err) ? err.response?.data : undefined;
 
       const validationError = response?.errors
         ? Object.values(response.errors).flat()[0]

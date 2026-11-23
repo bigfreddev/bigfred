@@ -96,9 +96,6 @@ export default function AdminSidebar({
         pathname === item.path || pathname.startsWith(`${item.path}/`)
     )?.name ?? "Admin Workspace";
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;

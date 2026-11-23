@@ -3,6 +3,7 @@
 
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { isAxiosError } from "axios";
 import api from "@/lib/api";
 
 type PromotionStatus = "active" | "scheduled" | "expired" | "disabled";
@@ -119,21 +120,61 @@ const primaryButton =
 const secondaryButton =
   "rounded-xl border border-[#e9dfd8] bg-white px-5 py-3 text-sm font-medium text-[#49352f] transition hover:bg-[#f8f5f1] disabled:opacity-50";
 
-function getRows<T>(response: any): T[] {
-  const data = response?.data?.data;
+function getRows<T>(response: unknown): T[] {
+  if (!response || typeof response !== "object" || !("data" in response)) {
+    return [];
+  }
 
-  if (Array.isArray(data)) return data;
-  if (Array.isArray(data?.data)) return data.data;
+  const responseData = response.data;
+
+  if (
+    !responseData ||
+    typeof responseData !== "object" ||
+    !("data" in responseData)
+  ) {
+    return [];
+  }
+
+  const data = responseData.data;
+
+  if (Array.isArray(data)) return data as T[];
+
+  if (
+    data &&
+    typeof data === "object" &&
+    "data" in data &&
+    Array.isArray(data.data)
+  ) {
+    return data.data as T[];
+  }
 
   return [];
 }
 
-function getErrorMessage(error: any): string {
-  if (error?.response?.status === 401 || error?.response?.status === 403) {
+type ApiErrorResponse = {
+  errors?: Record<string, string[]>;
+  message?: string;
+};
+
+function isAuthError(error: unknown): boolean {
+  return (
+    isAxiosError(error) &&
+    (error.response?.status === 401 || error.response?.status === 403)
+  );
+}
+
+function getErrorMessage(error: unknown): string {
+  if (!isAxiosError<ApiErrorResponse>(error)) {
+    return error instanceof Error
+      ? error.message
+      : "Something went wrong. Please try again.";
+  }
+
+  if (isAuthError(error)) {
     return "Your session has expired or you do not have permission. Please sign in again.";
   }
 
-  const validationErrors = error?.response?.data?.errors;
+  const validationErrors = error.response?.data?.errors;
 
   if (validationErrors && typeof validationErrors === "object") {
     const first = Object.values(validationErrors).flat()[0];
@@ -141,8 +182,8 @@ function getErrorMessage(error: any): string {
   }
 
   return (
-    error?.response?.data?.message ||
-    error?.message ||
+    error.response?.data?.message ||
+    error.message ||
     "Something went wrong. Please try again."
   );
 }
@@ -171,7 +212,7 @@ function formatMoney(value: number | string | null | undefined) {
 }
 
 function formatDate(value?: string | null) {
-  if (!value) return "—";
+  if (!value) return "â€”";
 
   const date = new Date(value);
 
@@ -283,10 +324,10 @@ export default function PromotionsPage() {
 
     try {
       await Promise.all([fetchPromotions(), fetchSupportingData()]);
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(getErrorMessage(err));
 
-      if ([401, 403].includes(err?.response?.status)) {
+      if (isAuthError(err)) {
         router.replace("/admin/login");
       }
     } finally {
@@ -295,6 +336,8 @@ export default function PromotionsPage() {
   }, [fetchPromotions, fetchSupportingData, router]);
 
   useEffect(() => {
+    // Starts the asynchronous promotions and supporting-data requests.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadPage();
   }, [loadPage]);
 
@@ -387,10 +430,10 @@ export default function PromotionsPage() {
         products: productRules,
         delivery_zone_ids: deliveryZoneIds.map(String),
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(getErrorMessage(err));
 
-      if ([401, 403].includes(err?.response?.status)) {
+      if (isAuthError(err)) {
         router.replace("/admin/login");
       }
     }
@@ -549,10 +592,10 @@ export default function PromotionsPage() {
       setShowModal(false);
       setPreview(null);
       await fetchPromotions();
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(getErrorMessage(err));
 
-      if ([401, 403].includes(err?.response?.status)) {
+      if (isAuthError(err)) {
         router.replace("/admin/login");
       }
     } finally {
@@ -577,7 +620,7 @@ export default function PromotionsPage() {
       );
 
       await fetchPromotions();
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(getErrorMessage(err));
     } finally {
       setTogglingId(null);
@@ -599,7 +642,7 @@ export default function PromotionsPage() {
       await api.delete(`/admin/promotions/${promotion.id}`);
       setNotice("Promotion deleted successfully.");
       await fetchPromotions();
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(getErrorMessage(err));
     } finally {
       setDeletingId(null);
@@ -647,7 +690,7 @@ export default function PromotionsPage() {
 
       const response = await api.post("/admin/promotions/preview", payload);
       setPreview(response.data.data);
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(getErrorMessage(err));
     } finally {
       setPreviewLoading(false);
@@ -693,7 +736,7 @@ export default function PromotionsPage() {
             className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700"
           >
             <span>{notice}</span>
-            <button type="button" onClick={() => setNotice("")}>×</button>
+            <button type="button" onClick={() => setNotice("")}>Ã—</button>
           </div>
         )}
 
@@ -703,17 +746,17 @@ export default function PromotionsPage() {
             className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
           >
             <span>{error}</span>
-            <button type="button" onClick={() => setError("")}>×</button>
+            <button type="button" onClick={() => setError("")}>Ã—</button>
           </div>
         )}
 
         <section className="mb-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {[
-            { label: "Total promotions", value: counts.total, icon: "✦" },
-            { label: "Active", value: counts.active, icon: "✓" },
-            { label: "Scheduled", value: counts.scheduled, icon: "◷" },
-            { label: "Expired", value: counts.expired, icon: "⌛" },
-            { label: "Disabled", value: counts.disabled, icon: "⊘" },
+            { label: "Total promotions", value: counts.total, icon: "âœ¦" },
+            { label: "Active", value: counts.active, icon: "âœ“" },
+            { label: "Scheduled", value: counts.scheduled, icon: "â—·" },
+            { label: "Expired", value: counts.expired, icon: "âŒ›" },
+            { label: "Disabled", value: counts.disabled, icon: "âŠ˜" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -763,7 +806,7 @@ export default function PromotionsPage() {
 
             <select
               value={filter}
-              onChange={(event) => setFilter(event.target.value as any)}
+              onChange={(event) => setFilter(event.target.value as "all" | PromotionStatus)}
               aria-label="Filter promotions"
               className={inputClass}
             >
@@ -782,7 +825,7 @@ export default function PromotionsPage() {
           ) : filteredPromotions.length === 0 ? (
             <div className="px-6 py-16 text-center">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f8f5f1] text-2xl text-[#a66c72]">
-                ✦
+                âœ¦
               </div>
 
               <h3 className="mt-4 font-serif text-xl text-[#49352f]">
@@ -939,7 +982,7 @@ export default function PromotionsPage() {
                 aria-label="Close promotion form"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f8f5f1] text-xl text-[#49352f] hover:bg-[#f0e7e1]"
               >
-                ×
+                Ã—
               </button>
             </div>
 
@@ -1195,7 +1238,7 @@ export default function PromotionsPage() {
                                         other.product_id === String(product.id)
                                     )}
                                   >
-                                    {product.name} — {formatMoney(product.price)}
+                                    {product.name} â€” {formatMoney(product.price)}
                                   </option>
                                 ))}
                               </select>
@@ -1497,7 +1540,7 @@ export default function PromotionsPage() {
                           <div className="flex justify-between gap-4">
                             <span className="text-gray-500">Product discount</span>
                             <span className="font-medium text-green-700">
-                              −{formatMoney(preview.product_discount_amount)}
+                              âˆ’{formatMoney(preview.product_discount_amount)}
                             </span>
                           </div>
 
@@ -1511,7 +1554,7 @@ export default function PromotionsPage() {
                           <div className="flex justify-between gap-4">
                             <span className="text-gray-500">Delivery discount</span>
                             <span className="font-medium text-green-700">
-                              −{formatMoney(preview.delivery_discount_amount)}
+                              âˆ’{formatMoney(preview.delivery_discount_amount)}
                             </span>
                           </div>
 
