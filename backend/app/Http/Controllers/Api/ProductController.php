@@ -17,7 +17,7 @@ class ProductController extends Controller
     // Public: list active products.
     public function index(Request $request): JsonResponse
     {
-        $query = Product::with(['category', 'images'])
+        $query = Product::with(['category', 'images'])->withCount('approvedReviews')->withAvg('approvedReviews', 'rating')
             ->where('is_active', true)
             ->whereHas('category', function ($q) {
                 $q->where('is_active', true);
@@ -62,7 +62,7 @@ class ProductController extends Controller
     // Public: view one active product by slug.
     public function show(string $slug): JsonResponse
     {
-        $product = Product::with(['category', 'images'])
+        $product = Product::with(['category', 'images'])->withCount('approvedReviews')->withAvg('approvedReviews', 'rating')
             ->where('slug', $slug)
             ->where('is_active', true)
             ->firstOrFail();

@@ -1,7 +1,7 @@
 
 "use client";
-import Image from "next/image";
 
+import Image from "next/image";
 import {
   useCallback,
   useEffect,
@@ -261,12 +261,20 @@ export default function ProductsPage() {
     loadData(currentPage);
   }, [loadData, currentPage]);
 
+  // Generate temporary preview URLs for selected product images.
   useEffect(() => {
-    const previews = form.images.map((file) =>
-      URL.createObjectURL(file)
-    );
+    console.log("PREVIEW EFFECT — image count:", form.images.length);
 
-    // Synchronize previews with the temporary object URLs created above.
+    const previews = form.images.map((file) => {
+      const url = URL.createObjectURL(file);
+
+      console.log("CREATED PREVIEW URL:", url);
+      console.log("PREVIEW FILE:", file.name, file.type, file.size);
+
+      return url;
+    });
+
+    // Synchronize preview URLs with the selected files.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setImagePreviews(previews);
 
@@ -274,6 +282,11 @@ export default function ProductsPage() {
       previews.forEach((url) => URL.revokeObjectURL(url));
     };
   }, [form.images]);
+
+  // Diagnostic: monitor the generated preview state.
+  useEffect(() => {
+    console.log("IMAGE PREVIEWS STATE:", imagePreviews);
+  }, [imagePreviews]);
 
   const updateField = <K extends keyof ProductForm>(
     key: K,
@@ -659,7 +672,7 @@ export default function ProductsPage() {
 
   return (
     <div className="bf-products-page">
-  <div className="bf-products-inner">
+      <div className="bf-products-inner">
 
         {/* Page heading */}
         <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
@@ -884,29 +897,12 @@ export default function ProductsPage() {
                 <table className="w-full min-w-[1000px] text-left">
                   <thead className="border-b border-[#eee5df] bg-[#fcfaf8]">
                     <tr className="text-xs uppercase tracking-wider text-gray-400">
-                      <th className="px-5 py-4 font-medium">
-                        Product
-                      </th>
-
-                      <th className="px-5 py-4 font-medium">
-                        Category
-                      </th>
-
-                      <th className="px-5 py-4 font-medium">
-                        Price
-                      </th>
-
-                      <th className="px-5 py-4 font-medium">
-                        Stock
-                      </th>
-
-                      <th className="px-5 py-4 font-medium">
-                        Status
-                      </th>
-
-                      <th className="px-5 py-4 text-right font-medium">
-                        Actions
-                      </th>
+                      <th className="px-5 py-4 font-medium">Product</th>
+                      <th className="px-5 py-4 font-medium">Category</th>
+                      <th className="px-5 py-4 font-medium">Price</th>
+                      <th className="px-5 py-4 font-medium">Stock</th>
+                      <th className="px-5 py-4 font-medium">Status</th>
+                      <th className="px-5 py-4 text-right font-medium">Actions</th>
                     </tr>
                   </thead>
 
@@ -934,7 +930,14 @@ export default function ProductsPage() {
                             <div className="flex items-center gap-3">
                               <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-[#eee5df] bg-[#fcfaf8]">
                                 {primaryImage ? (
-                                  <Image src={imageUrl(primaryImage.image_path)} alt={product.name} fill unoptimized sizes="56px" className="object-cover" />
+                                  <Image
+                                    src={imageUrl(primaryImage.image_path)}
+                                    alt={product.name}
+                                    fill
+                                    unoptimized
+                                    sizes="56px"
+                                    className="object-cover"
+                                  />
                                 ) : (
                                   <div className="flex h-full items-center justify-center text-xl text-[#a66c72]">
                                     ✦
@@ -1372,7 +1375,14 @@ export default function ProductsPage() {
                           }`}
                         >
                           <div className="relative">
-                            <Image src={imageUrl(image.image_path)} alt={image.alt_text || editingProduct.name} width={400} height={300} unoptimized className="h-32 w-full object-cover" />
+                            <Image
+                              src={imageUrl(image.image_path)}
+                              alt={image.alt_text || editingProduct.name}
+                              width={400}
+                              height={300}
+                              unoptimized
+                              className="h-32 w-full object-cover"
+                            />
 
                             {image.is_primary && (
                               <span className="absolute left-2 top-2 rounded-full bg-[#49352f] px-2.5 py-1 text-[10px] font-medium text-white">
@@ -1438,16 +1448,23 @@ export default function ProductsPage() {
                   multiple
                   onChange={(event) => {
                     const files = Array.from(
-                      event.target.files || []
+                      event.currentTarget.files ?? []
                     ).slice(0, 10);
 
-                    updateField("images", files);
-                    updateField(
-                      "primary_image_index",
-                      editingProduct ? -1 : 0
-                    );
+                    console.log("DHYSEM IMAGE INPUT FIRED");
+                    console.log("Selected files:", files);
+                    console.log("File count:", files.length);
 
-                    event.target.value = "";
+                    setForm((previous) => ({
+                      ...previous,
+                      images: files,
+                      primary_image_index: editingProduct ? -1 : 0,
+                    }));
+
+                    console.log(
+                      "Files added to product form:",
+                      files.length
+                    );
                   }}
                   className="block w-full rounded-xl border border-dashed border-[#e5d8d0] bg-[#fcfaf8] p-4 text-sm text-[#49352f] file:mr-4 file:rounded-lg file:border-0 file:bg-[#f6e9e7] file:px-4 file:py-2 file:text-xs file:font-medium file:text-[#a66c72] hover:file:bg-[#f1e5e1]"
                 />
@@ -1480,7 +1497,11 @@ export default function ProductsPage() {
                           }`}
                         >
                           {imagePreviews[index] && (
-                            <Image src={imagePreviews[index]} alt={file.name} width={400} height={300} unoptimized className="h-28 w-full object-cover" />
+                            <img
+                              src={imagePreviews[index]}
+                              alt={file.name}
+                              className="h-28 w-full object-cover"
+                            />
                           )}
 
                           <span className="block truncate p-2 text-xs font-medium text-[#49352f]">

@@ -2,6 +2,31 @@
 
 "use client";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBagShopping,
+  faBars,
+  faMagnifyingGlass,
+  faChevronDown,
+  faChevronUp,
+  faArrowRight,
+  faArrowLeft,
+  faArrowUp,
+  faHeart,
+  faStar,
+  faPlus,
+  faMinus,
+  faXmark,
+  faLeaf,
+  faCheck,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faFacebookF,
+  faInstagram,
+  faTiktok,
+} from "@fortawesome/free-brands-svg-icons";
 
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
@@ -21,6 +46,7 @@ type Product = {
   category: string;
 
   categoryId: number;
+  isFeatured: boolean;
 
   name: string;
 
@@ -63,6 +89,8 @@ type ApiProduct = {
   compare_at_price: string | number | null;
 
   is_featured: boolean;
+  approved_reviews_count?: number;
+  approved_reviews_avg_rating?: string | number | null;
 
   category?: {
 
@@ -94,6 +122,16 @@ type ApiCategory = {
 
 };
 
+type CustomerIdentity = {
+
+  id?: number;
+
+  name?: string;
+
+  email?: string;
+
+};
+
 const API_ORIGIN = (
 
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001/api"
@@ -101,15 +139,12 @@ const API_ORIGIN = (
 ).replace(/\/api\/?$/, "");
 
 const money = (amount: number) =>
-
-  `GH₵${amount.toLocaleString("en-GH", {
-
+  new Intl.NumberFormat("en-GH", {
+    style: "currency",
+    currency: "GHS",
     minimumFractionDigits: 2,
-
     maximumFractionDigits: 2,
-
-  })}`;
-
+  }).format(amount);
 export default function Home() {
 
   const router = useRouter();
@@ -201,8 +236,71 @@ const [filter, setFilter] = useState("All");
   const [searchOpen, setSearchOpen] = useState(false);
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const accountMenuRef = useRef<HTMLDivElement | null>(null);
+
+  const [signedInCustomer, setSignedInCustomer] =
+    useState<CustomerIdentity | null>(null);
 
   const [toast, setToast] = useState("");
+
+  // Resolve the current customer session so the navigation can greet
+  // returning customers by their real account name.
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadSignedInCustomer() {
+      try {
+        const response = await api.get("/customer/me");
+        const customer = response.data?.customer;
+
+        if (isMounted && customer) {
+          setSignedInCustomer({
+            id: customer.id,
+            name: customer.name || "",
+            email: customer.email || "",
+          });
+        }
+      } catch {
+        // A signed-out visitor is expected to receive an auth error here.
+        if (isMounted) setSignedInCustomer(null);
+      }
+    }
+
+    loadSignedInCustomer();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Close the account menu when the customer clicks elsewhere or presses Escape.
+  useEffect(() => {
+    if (!accountMenuOpen) return;
+
+    function handlePointerDown(event: PointerEvent) {
+      if (
+        accountMenuRef.current &&
+        !accountMenuRef.current.contains(event.target as Node)
+      ) {
+        setAccountMenuOpen(false);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setAccountMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [accountMenuOpen]);
 
   const [email, setEmail] = useState("");
 
@@ -330,7 +428,7 @@ const [filter, setFilter] = useState("All");
 
               : `${API_ORIGIN}/storage/${imagePath.replace(/^\/+/, "")}`
 
-            : "";
+            : "/images/dhysem-hero.jpg";
 
           return {
 
@@ -339,6 +437,7 @@ const [filter, setFilter] = useState("All");
             slug: product.slug,
 
             categoryId: product.category_id,
+            isFeatured: product.is_featured,
 
             category: product.category?.name ?? "Uncategorised",
 
@@ -364,10 +463,8 @@ const [filter, setFilter] = useState("All");
 
                 : null,
 
-            rating: 0,
-
-            reviews: 0,
-
+            rating: Number(product.approved_reviews_avg_rating ?? 0),
+            reviews: Number(product.approved_reviews_count ?? 0),
             badge: product.is_featured ? "Featured" : "",
 
             image: imageUrl,
@@ -382,7 +479,7 @@ const [filter, setFilter] = useState("All");
 
       } catch (error) {
 
-        console.error("Failed to load BigFred store data:", error);
+        console.error("Failed to load Dhysem store data:", error);
 
       } finally {
 
@@ -430,6 +527,7 @@ const [filter, setFilter] = useState("All");
 
     );
 
+    if (sort === "featured") result.sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured));
     if (sort === "price-low") result.sort((a, b) => a.price - b.price);
 
     if (sort === "price-high") result.sort((a, b) => b.price - a.price);
@@ -497,6 +595,19 @@ const [filter, setFilter] = useState("All");
     setFilter(value);
 
     setMenuOpen(false);
+
+  }
+
+  function chooseCategoryCard(value: string) {
+
+    chooseFilter(value);
+
+    document.getElementById("shop")?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
 
   }
 
@@ -720,7 +831,7 @@ const [filter, setFilter] = useState("All");
 
       const message = [
 
-        "Hello BigFred! I have just placed an order.",
+        "Hello Dhysem! I have just placed an order.",
 
         "",
 
@@ -904,10 +1015,9 @@ const [filter, setFilter] = useState("All");
 
       <div className="announcement">
 
-        A little luxury, delivered to your door <span>✦</span> Free delivery on
+        A little luxury, delivered to your door <span><FontAwesomeIcon icon={faStar} aria-hidden="true" /></span> Free delivery on
 
-        orders over GH₵500
-
+        orders over {"GH\u20B5500"}
       </div>
 
       <header className="site-header">
@@ -922,13 +1032,13 @@ const [filter, setFilter] = useState("All");
 
         >
 
-          ☰
+          <FontAwesomeIcon icon={faBars} aria-hidden="true" />
 
         </button>
 
-        <a className="brand" href="#top" aria-label="BigFred home">
+        <a className="brand" href="#top" aria-label="Dhysem home">
 
-          bigfred<span>.</span>
+          dhysem<span>.</span>
 
         </a>
 
@@ -974,53 +1084,62 @@ const [filter, setFilter] = useState("All");
 
           >
 
-            ⌕
+            <FontAwesomeIcon icon={faMagnifyingGlass} aria-hidden="true" />
 
           </button>
 
-          <a
+          {signedInCustomer ? (
+            <div className="account-menu" ref={accountMenuRef}>
+              <button
+                type="button"
+                className="account-greeting"
+                aria-haspopup="menu"
+                aria-expanded={accountMenuOpen}
+                aria-controls="customer-account-menu"
+                aria-label={`Open account menu for ${signedInCustomer.name || "customer"}`}
+                onClick={() => setAccountMenuOpen((open) => !open)}
+              >
+                <span className="account-greeting-prefix">Hi,</span>{" "}
+                <strong>
+                  {(signedInCustomer.name || "there").trim().split(/\s+/)[0]}
+                </strong>
+                <span className="account-greeting-chevron" aria-hidden="true">
+                  {accountMenuOpen ? <FontAwesomeIcon icon={faChevronUp} aria-hidden="true" /> : <FontAwesomeIcon icon={faChevronDown} aria-hidden="true" />}
+                </span>
+              </button>
 
-            href="/account"
-
-            className="icon-btn profile-btn"
-
-            aria-label="My account"
-
-            title="My account"
-
-          >
-
-            <svg
-
-              xmlns="http://www.w3.org/2000/svg"
-
-              width="21"
-
-              height="21"
-
-              viewBox="0 0 24 24"
-
-              fill="none"
-
-              stroke="currentColor"
-
-              strokeWidth="1.7"
-
-              strokeLinecap="round"
-
-              strokeLinejoin="round"
-
-              aria-hidden="true"
-
-            >
-
-              <circle cx="12" cy="8" r="4" />
-
-              <path d="M5 21v-2a7 7 0 0 1 14 0v2" />
-
-            </svg>
-
-          </a>
+              {accountMenuOpen && (
+                <div
+                  className="account-dropdown"
+                  id="customer-account-menu"
+                  role="menu"
+                >
+                  <div className="account-dropdown-heading">
+                    <span className="account-dropdown-kicker">SIGNED IN AS</span>
+                    <strong>{signedInCustomer.name || "Dhysem customer"}</strong>
+                    {signedInCustomer.email && (
+                      <span className="account-dropdown-email">
+                        {signedInCustomer.email}
+                      </span>
+                    )}
+                  </div>
+                  <a
+                    href="/account"
+                    className="account-dropdown-link"
+                    role="menuitem"
+                    onClick={() => setAccountMenuOpen(false)}
+                  >
+                    <span>My account</span>
+                    <span aria-hidden="true"><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></span>
+                  </a>
+                </div>
+              )}
+            </div>
+          ) : (
+            <a href="/login" className="login-link">
+              Login
+            </a>
+          )}
 
           <button
 
@@ -1032,7 +1151,8 @@ const [filter, setFilter] = useState("All");
 
           >
 
-            ♧ <span className="cart-count">{cartCount}</span>
+            <FontAwesomeIcon icon={faBagShopping} aria-hidden="true" />
+            <span className="cart-count">{cartCount}</span>
 
           </button>
 
@@ -1046,7 +1166,7 @@ const [filter, setFilter] = useState("All");
 
         <div className="search-field">
 
-          <span>⌕</span>
+          <span><FontAwesomeIcon icon={faMagnifyingGlass} aria-hidden="true" /></span>
 
           <input
 
@@ -1070,7 +1190,7 @@ const [filter, setFilter] = useState("All");
 
           >
 
-            ×
+            <FontAwesomeIcon icon={faXmark} aria-hidden="true" />
 
           </button>
 
@@ -1112,13 +1232,13 @@ const [filter, setFilter] = useState("All");
 
               <a className="button button-dark" href="#shop">
 
-                Explore our products <span>↗</span>
+                Explore our products <span><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></span>
 
               </a>
 
               <a className="text-link" href="#story">
 
-                Discover our story <span>→</span>
+                Discover our story <span><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></span>
 
               </a>
 
@@ -1128,11 +1248,11 @@ const [filter, setFilter] = useState("All");
 
               <div className="avatar-stack">
 
-                <span>✿</span>
+                <span><FontAwesomeIcon icon={faLeaf} aria-hidden="true" /></span>
 
-                <span>✦</span>
+                <span><FontAwesomeIcon icon={faStar} aria-hidden="true" /></span>
 
-                <span>♡</span>
+                <span><FontAwesomeIcon icon={faHeart} aria-hidden="true" /></span>
 
               </div>
 
@@ -1156,13 +1276,13 @@ const [filter, setFilter] = useState("All");
 
               role="img"
 
-              aria-label="Body care oils and creams"
+              aria-label="Dhysem hair-care ritual with nourishing hair oil"
 
             />
 
             <div className="floating-note">
 
-              <span className="note-star">✳</span>
+              <span className="note-star"><FontAwesomeIcon icon={faStar} aria-hidden="true" /></span>
 
               <div>
 
@@ -1180,7 +1300,7 @@ const [filter, setFilter] = useState("All");
 
               <strong>YOUR<br />RITUAL</strong>
 
-              <span>✦ EVERY DAY ✦</span>
+              <span><FontAwesomeIcon icon={faStar} aria-hidden="true" /> EVERY DAY <FontAwesomeIcon icon={faStar} aria-hidden="true" /></span>
 
             </div>
 
@@ -1192,13 +1312,13 @@ const [filter, setFilter] = useState("All");
 
         <section className="trust-strip" aria-label="Our promises">
 
-          <div><span>✧</span> Curated with care</div>
+          <div><span><FontAwesomeIcon icon={faCheck} aria-hidden="true" /></span> Curated with care</div>
 
-          <div><span>♡</span> Everyday nourishment</div>
+          <div><span><FontAwesomeIcon icon={faHeart} aria-hidden="true" /></span> Everyday nourishment</div>
 
-          <div><span>♧</span> Skin &amp; hair essentials</div>
+          <div><span><FontAwesomeIcon icon={faLeaf} aria-hidden="true" /></span> Skin &amp; hair essentials</div>
 
-          <div><span>✦</span> Easy, thoughtful shopping</div>
+          <div><span><FontAwesomeIcon icon={faStar} aria-hidden="true" /></span> Easy, thoughtful shopping</div>
 
         </section>
 
@@ -1224,7 +1344,7 @@ const [filter, setFilter] = useState("All");
 
               <span className="category-side-note">
 
-                THOUGHTFUL CARE, EVERY DAY ✳
+                THOUGHTFUL CARE, EVERY DAY <FontAwesomeIcon icon={faStar} aria-hidden="true" />
 
               </span>
 
@@ -1250,7 +1370,7 @@ const [filter, setFilter] = useState("All");
 
                   className={`category-card ${filter === category.name ? "active" : ""}`}
 
-                  onClick={() => chooseFilter(category.name)}
+                  onClick={() => chooseCategoryCard(category.name)}
 
                 >
 
@@ -1260,7 +1380,7 @@ const [filter, setFilter] = useState("All");
 
                     <strong>{category.title}</strong>
 
-                    <small>{category.desc} <b>↗</b></small>
+                    <small>{category.desc} <b><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></b></small>
 
                   </span>
 
@@ -1343,127 +1463,125 @@ const [filter, setFilter] = useState("All");
           </div>
 
           <div className="product-grid">
+  {visibleProducts.map((product) => (
+    <article
+      className="product-card"
+      key={product.id}
+      role="link"
+      tabIndex={0}
+      aria-label={`View ${product.name} details`}
+      onClick={(event) => {
+        const target = event.target as HTMLElement;
+        if (target.closest("button, a")) return;
+        router.push(`/products/${encodeURIComponent(product.slug)}`);
+      }}
+      onKeyDown={(event) => {
+        if (
+          event.target === event.currentTarget &&
+          (event.key === "Enter" || event.key === " ")
+        ) {
+          event.preventDefault();
+          router.push(`/products/${encodeURIComponent(product.slug)}`);
+        }
+      }}
+    >
+      <div className="product-visual">
+        <Image
+          src={product.image || "/images/dhysem-hero.jpg"}
+          alt={product.name}
+          fill
+          unoptimized
+          sizes="(max-width: 700px) 50vw, (max-width: 1000px) 33vw, 25vw"
+          className="object-cover transition-transform duration-500"
+        />
 
-            {visibleProducts.map((product) => (
+        {product.badge && (
+          <span className="product-badge">{product.badge}</span>
+        )}
 
-              <article className="product-card" key={product.id}>
+        <button
+          className={liked.includes(product.id) ? "wishlist liked" : "wishlist"}
+          aria-label="Toggle wishlist"
+          onClick={() => {
+            const alreadyLiked = liked.includes(product.id);
 
-                <div className="product-visual">
+            setLiked((current) =>
+              alreadyLiked
+                ? current.filter((id) => id !== product.id)
+                : [...current, product.id]
+            );
 
-                  <Image src={product.image} alt={product.name} fill unoptimized sizes="(max-width: 700px) 50vw, (max-width: 1000px) 33vw, 25vw" className="object-cover transition-transform duration-500" />
+            notify(
+              alreadyLiked
+                ? "Removed from your wishlist"
+                : "Saved to your wishlist"
+            );
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faHeart}
+            aria-hidden="true"
+            className={
+              liked.includes(product.id)
+                ? "wishlist-icon is-active"
+                : "wishlist-icon"
+            }
+          />
+        </button>
 
-                  {product.badge && (
+        <button
+          className="quick-add"
+          onClick={() => addToCart(product.id)}
+        >
+          Add to bag
+          <span>
+            <FontAwesomeIcon icon={faPlus} aria-hidden="true" />
+          </span>
+        </button>
+      </div>
 
-                    <span className="product-badge">{product.badge}</span>
+      <div className="product-info">
+        <div className="product-category">{product.category}</div>
 
-                  )}
+        <div className="product-name-row">
+          <h3 className="product-name">{product.name}</h3>
 
-                  <button
+          {product.rating > 0 && (
+            <div className="rating">
+              <FontAwesomeIcon icon={faStar} aria-hidden="true" />
+              {" "}{product.rating.toFixed(1)}{" "}
+              <span>({product.reviews})</span>
+            </div>
+          )}
+        </div>
 
-                    className={`wishlist ${liked.includes(product.id) ? "liked" : ""}`}
+        <div className="product-price">
+          <span className="price-current">{money(product.price)}</span>
 
-                    aria-label="Toggle wishlist"
+          {product.oldPrice && (
+            <span className="price-old">{money(product.oldPrice)}</span>
+          )}
+        </div>
 
-                    onClick={() => {
+        <p className="product-detail">{product.detail}</p>
 
-                      const alreadyLiked = liked.includes(product.id);
-
-                      setLiked((current) =>
-
-                        alreadyLiked
-
-                          ? current.filter((id) => id !== product.id)
-
-                          : [...current, product.id]
-
-                      );
-
-                      notify(alreadyLiked ? "Removed from your wishlist" : "Saved to your wishlist");
-
-                    }}
-
-                  >
-
-                    {liked.includes(product.id) ? "♥" : "♡"}
-
-                  </button>
-
-                  <button className="quick-add" onClick={() => addToCart(product.id)}>
-
-                    Add to bag <span>＋</span>
-
-                  </button>
-
-                </div>
-
-                <div className="product-info">
-
-                  <div className="product-category">{product.category}</div>
-
-                  <div className="product-name-row">
-
-                    <h3 className="product-name">{product.name}</h3>
-
-                    {product.rating > 0 && (
-
-                      <div className="rating">
-
-                        ★ {product.rating.toFixed(1)} <span>({product.reviews})</span>
-
-                      </div>
-
-                    )}
-
-                  </div>
-
-                  <p className="product-detail">{product.detail}</p>
-
-                  <a
-                    className="product-detail-link"
-                    href={`/products/${encodeURIComponent(product.slug)}`}
-                  >
-                    View product details →
-                  </a>
-
-                  <div className="product-bottom">
-
-                    <div className="price">
-
-                      {money(product.price)}
-
-                      {product.oldPrice && (
-
-                        <span className="price-old">{money(product.oldPrice)}</span>
-
-                      )}
-
-                    </div>
-
-                    <div className="swatches">
-
-                      {product.swatches.map((colour) => (
-
-                        <i key={colour} style={{ background: colour }} />
-
-                      ))}
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </article>
-
+        <div className="product-bottom">
+          <div className="swatches">
+            {product.swatches.map((colour) => (
+              <i key={colour} style={{ background: colour }} />
             ))}
-
           </div>
+        </div>
+      </div>
+    </article>
+  ))}
+</div>
 
           {visibleProducts.length === 0 && (
 
             <div className="empty-state">
 
-              <span>⌕</span>
+              <span><FontAwesomeIcon icon={faMagnifyingGlass} aria-hidden="true" /></span>
 
               <h3>No matches just yet</h3>
 
@@ -1495,7 +1613,7 @@ const [filter, setFilter] = useState("All");
 
             >
 
-              Explore all essentials <span>↗</span>
+              Explore all essentials <span><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></span>
 
             </button>
 
@@ -1503,53 +1621,105 @@ const [filter, setFilter] = useState("All");
 
         </section>
 
-        <section className="ritual-section" id="story">
+        <section className="dhysem-story" id="story">
+  <div className="dhysem-story-inner">
 
-          <div className="ritual-image" />
+    <div className="dhysem-story-visual">
+      <div className="story-image-main">
+        <div className="story-image-label">
+          <span>THE DHYSEM EDIT</span>
+          <strong>Care, with intention.</strong>
+        </div>
+      </div>
 
-          <div className="ritual-copy">
+      <div className="story-image-detail" />
 
-            <p className="eyebrow">A SOFTER KIND OF BEAUTY</p>
+      <div className="story-roundel">
+        <span>BEAUTY</span>
+        <strong>In your<br />own way.</strong>
+        <span>ALWAYS.</span>
+      </div>
 
-            <h2>Your routine.<br />Your <em>little ritual.</em></h2>
+      <div className="story-image-index">
+        <span>01</span>
+        <i />
+        <span>02</span>
+      </div>
+    </div>
 
-            <p>
+    <div className="dhysem-story-copy">
+      <p className="story-eyebrow">
+        <span /> THE DHYSEM STORY
+      </p>
 
-              Self-care doesn&apos;t need to be complicated. We bring together body
+      <h2>
+        Beauty is in
+        <br />
+        the little <em>things.</em>
+      </h2>
 
-              oils, body creams and hair oils to make everyday care feel like a
+      <p className="story-lead">
+        The moments you make time for. The care you give yourself.
+        The little rituals that remind you to feel good in your own skin.
+      </p>
 
-              moment just for you.
+      <p className="story-description">
+        At Dhysem, we believe everyday beauty should feel personal,
+        uncomplicated and entirely your own. That is why we bring
+        together body oils, nourishing creams and hair oils to make
+        caring for yourself a pleasure, not another task on your list.
+      </p>
 
-            </p>
-
-            <a className="button button-light" href="#shop">
-
-              Find your ritual <span>↗</span>
-
-            </a>
-
-            <div className="ritual-signature">
-
-              A little more you, every day. <span>♡</span>
-
-            </div>
-
+      <div className="story-pillars">
+        <div className="story-pillar">
+          <span>01</span>
+          <div>
+            <strong>Thoughtful care</strong>
+            <p>Essentials chosen with your everyday routine in mind.</p>
           </div>
+        </div>
 
-        </section>
+        <div className="story-pillar">
+          <span>02</span>
+          <div>
+            <strong>Your kind of beauty</strong>
+            <p>Personal care that celebrates your individual style.</p>
+          </div>
+        </div>
 
-        <Testimonials />
+        <div className="story-pillar">
+          <span>03</span>
+          <div>
+            <strong>Little daily rituals</strong>
+            <p>Simple moments that make looking after yourself matter.</p>
+          </div>
+        </div>
+      </div>
+
+      <a className="story-cta" href="#shop">
+        Shop the essentials <span>{"\u2192"}</span>
+      </a>
+
+      <div className="story-signature">
+        A little more you, every day.
+        <span>{"\u2713"}</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+<Testimonials />
 
         <section className="newsletter section-wrap">
 
-          <div className="newsletter-icon">✳</div>
+
+          <div className="newsletter-icon" aria-hidden="true">D</div>
 
           <p className="eyebrow">NOTES FROM OUR WORLD</p>
 
           <h2>A little care in<br />your <em>inbox.</em></h2>
 
-          <p>New arrivals, care tips and a treat for your first order.</p>
+          <p>Join our world of beauty notes and enjoy <strong>10% off your first order.</strong></p>
 
           <form
 
@@ -1559,7 +1729,7 @@ const [filter, setFilter] = useState("All");
 
               event.preventDefault();
 
-              setNewsletterMessage("Thanks for joining BigFred's care notes!");
+              setNewsletterMessage("Thanks for joining Dhysem's care notes!");
 
               setEmail("");
 
@@ -1585,37 +1755,73 @@ const [filter, setFilter] = useState("All");
 
             />
 
-            <button type="submit">Count me in <span>→</span></button>
+            <button type="submit">Count me in <span><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></span></button>
 
           </form>
 
-          <small>{newsletterMessage}</small>
+          <small className="newsletter-note">{newsletterMessage || "No spam, unsubscribe anytime."}</small>
 
         </section>
 
       </main>
 
-      <footer className="site-footer">
+      <footer className="site-footer" id="site-footer">
 
-        <a className="brand" href="#top">bigfred<span>.</span></a>
+  <div className="footer-main">
 
-        <p>Body &amp; hair care, beautifully chosen.</p>
+    <div className="footer-brand-column">
+      <a className="brand" href="#top">dhysem<span>.</span></a>
+      <p className="footer-tagline">Body &amp; hair care,<br /><em>beautifully chosen.</em></p>
 
-        <div className="footer-links">
+      <div className="footer-socials" aria-label="Social media and email">
+        <a href="#top" aria-label="Facebook" className="footer-social-icon"><FontAwesomeIcon icon={faFacebookF} /></a>
+        <a href="#top" aria-label="Instagram" className="footer-social-icon"><FontAwesomeIcon icon={faInstagram} /></a>
+        <a href="#top" aria-label="TikTok" className="footer-social-icon"><FontAwesomeIcon icon={faTiktok} /></a>
+        <a href="mailto:hello@bigfred.example" aria-label="Email" className="footer-social-icon"><FontAwesomeIcon icon={faEnvelope} /></a>
+      </div>
+    </div>
 
-          <a href="#shop">Shop</a>
+    <div className="footer-column">
+      <h3>SHOP</h3>
+      <a href="#shop">All products</a>
+      <a href="#shop">Body oils</a>
+      <a href="#shop">Body creams</a>
+      <a href="#shop">Hair oils</a>
+    </div>
 
-          <a href="#story">Our story</a>
+    <div className="footer-column">
+      <h3>HELP</h3>
+      <a href="mailto:hello@bigfred.example?subject=Shipping%20and%20delivery">Shipping &amp; delivery</a>
+      <a href="mailto:hello@bigfred.example?subject=Returns">Returns</a>
+      <a href="mailto:hello@bigfred.example?subject=FAQs">FAQs</a>
+      <a href="mailto:hello@bigfred.example">Contact</a>
+    </div>
 
-          <a href="mailto:hello@bigfred.example">Contact</a>
+    <div className="footer-column">
+      <h3>DHYSEM</h3>
+      <a href="#story">Our story</a>
+      <a href="#customer-reviews">Reviews</a>
+      <a href="#newsletter">Care notes</a>
+    </div>
 
-          <a href="#top">Back to top ↑</a>
+  </div>
 
-        </div>
+  <div className="footer-bottom">
+    <small>&copy; 2026 Dhysem. All rights reserved.</small>
 
-        <small>© 2026 BigFred. All rights reserved.</small>
+    <div className="footer-trust">
+      <span>Delivery across Ghana</span>
+      <span>Mobile Money · Visa · Mastercard</span>
+    </div>
 
-      </footer>
+    <div className="footer-bottom-right">
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+      <a href="#top" className="footer-back-top" aria-label="Back to top">↑</a>
+    </div>
+  </div>
+
+</footer>
 
       <div
 
@@ -1651,7 +1857,7 @@ const [filter, setFilter] = useState("All");
 
                 ? signInPrompt
 
-                  ? "Welcome to BigFred"
+                  ? "Welcome to Dhysem"
 
                   : "Checkout"
 
@@ -1683,7 +1889,7 @@ const [filter, setFilter] = useState("All");
 
           >
 
-            ×
+            <FontAwesomeIcon icon={faXmark} aria-hidden="true" />
 
           </button>
 
@@ -1713,7 +1919,7 @@ const [filter, setFilter] = useState("All");
 
               >
 
-                ← Back to your bag
+                <FontAwesomeIcon icon={faArrowLeft} aria-hidden="true" /> Back to your bag
 
               </button>
 
@@ -1723,7 +1929,7 @@ const [filter, setFilter] = useState("All");
 
                 <p>
 
-                  Please sign in to your BigFred account before proceeding
+                  Please sign in to your Dhysem account before proceeding
 
                   to checkout. Your account helps us manage your orders
 
@@ -1749,7 +1955,7 @@ const [filter, setFilter] = useState("All");
 
                       <span>
 
-                        {product.name} × {item.qty}
+                        {product.name} {"\u00D7"} {item.qty}
 
                       </span>
 
@@ -1785,7 +1991,7 @@ const [filter, setFilter] = useState("All");
 
                 >
 
-                  Sign in to continue <span>→</span>
+                  Sign in to continue <span><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></span>
 
                 </a>
 
@@ -1805,7 +2011,7 @@ const [filter, setFilter] = useState("All");
 
               <small className="checkout-secure-note">
 
-                ♡ Your BigFred account keeps your orders and details together.
+                <FontAwesomeIcon icon={faHeart} aria-hidden="true" /> Your Dhysem account keeps your orders and details together.
 
               </small>
 
@@ -1837,7 +2043,7 @@ const [filter, setFilter] = useState("All");
 
               >
 
-                ← Back to your bag
+                <FontAwesomeIcon icon={faArrowLeft} aria-hidden="true" /> Back to your bag
 
               </button>
 
@@ -1849,7 +2055,7 @@ const [filter, setFilter] = useState("All");
 
                   Enter your delivery details below. We&apos;ll prepare your order
 
-                  and connect you to BigFred on WhatsApp for confirmation.
+                  and connect you to Dhysem on WhatsApp for confirmation.
 
                 </p>
 
@@ -1875,7 +2081,7 @@ const [filter, setFilter] = useState("All");
 
                   />
 
-                  <small>Retrieved from your BigFred account.</small>
+                  <small>Retrieved from your Dhysem account.</small>
 
                 </div>
 
@@ -2023,7 +2229,7 @@ const [filter, setFilter] = useState("All");
 
                       <span>
 
-                        {product.name} × {item.qty}
+                        {product.name} {"\u00D7"} {item.qty}
 
                       </span>
 
@@ -2045,7 +2251,7 @@ const [filter, setFilter] = useState("All");
 
                 <p>
 
-                  Final order totals are calculated by BigFred when your
+                  Final order totals are calculated by Dhysem when your
 
                   order is submitted. Delivery arrangements will be confirmed
 
@@ -2081,13 +2287,13 @@ const [filter, setFilter] = useState("All");
 
                   : "Place order & continue to WhatsApp"}
 
-                {!checkoutLoading && <span>→</span>}
+                {!checkoutLoading && <span><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></span>}
 
               </button>
 
               <small className="checkout-secure-note">
 
-                ♡ No online payment required. Confirm your order with us on WhatsApp.
+                <FontAwesomeIcon icon={faHeart} aria-hidden="true" /> No online payment required. Confirm your order with us on WhatsApp.
 
               </small>
 
@@ -2139,7 +2345,7 @@ const [filter, setFilter] = useState("All");
 
                   <div className="cart-line" key={item.id}>
 
-                    <Image src={product.image} alt={product.name} width={76} height={92} unoptimized />
+                    <Image src={product.image || "/images/dhysem-hero.jpg"} alt={product.name} width={76} height={92} unoptimized />
 
                     <div>
 
@@ -2163,7 +2369,7 @@ const [filter, setFilter] = useState("All");
 
                         >
 
-                          −
+                          <FontAwesomeIcon icon={faMinus} aria-hidden="true" />
 
                         </button>
 
@@ -2203,7 +2409,7 @@ const [filter, setFilter] = useState("All");
 
                     >
 
-                      ×
+            <FontAwesomeIcon icon={faXmark} aria-hidden="true" />
 
                     </button>
 
@@ -2219,7 +2425,7 @@ const [filter, setFilter] = useState("All");
 
               <div className="cart-empty">
 
-                <span>♡</span>
+                <span><FontAwesomeIcon icon={faHeart} aria-hidden="true" /></span>
 
                 <h3>Your bag is taking a breather</h3>
 
@@ -2283,11 +2489,11 @@ const [filter, setFilter] = useState("All");
 
                     : "Continue to checkout"}
 
-                  {!checkingCustomer && <span>→</span>}
+                  {!checkingCustomer && <span><FontAwesomeIcon icon={faArrowRight} aria-hidden="true" /></span>}
 
                 </button>
 
-                <small>♡ Thoughtful shopping, made easy</small>
+                <small><FontAwesomeIcon icon={faHeart} aria-hidden="true" /> Thoughtful shopping, made easy</small>
 
               </div>
 

@@ -10,11 +10,34 @@ use Illuminate\Validation\Rule;
 
 class ReviewController extends Controller
 {
-    // Public: display approved customer reviews.
-    public function index(): JsonResponse
+    // Public: display approved customer reviews, optionally filtered by product.
+    public function index(Request $request): JsonResponse
     {
-        $reviews = Review::query()
-            ->where('status', 'approved')
+        $validated = $request->validate([
+            'product_id' => 'nullable|integer|min:1',
+            'product_name' => 'nullable|string|max:255',
+        ]);
+
+        $query = Review::query()
+            ->where('status', 'approved');
+
+        if (!empty($validated['product_id']) || !empty($validated['product_name'])) {
+            $query->where(function ($builder) use ($validated) {
+                if (!empty($validated['product_id'])) {
+                    $builder->where('product_id', $validated['product_id']);
+                }
+
+                if (!empty($validated['product_name'])) {
+                    if (!empty($validated['product_id'])) {
+                        $builder->orWhere('product_name', $validated['product_name']);
+                    } else {
+                        $builder->where('product_name', $validated['product_name']);
+                    }
+                }
+            });
+        }
+
+        $reviews = $query
             ->latest()
             ->paginate(12);
 

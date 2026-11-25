@@ -49,6 +49,12 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    public function approvedReviews(): HasMany
+    {
+        return $this->hasMany(Review::class)
+            ->where('status', 'approved');
+    }
+
     public function primaryImage(): HasMany
     {
         return $this->hasMany(ProductImage::class)

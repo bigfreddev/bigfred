@@ -33,7 +33,13 @@ type Product = {
   };
   images?: ProductImage[];
 };
-type CartItem = {
+type Review = {
+  id: number;
+  customer_name: string;
+  rating: number;
+  review_text: string;
+  created_at?: string;
+};type CartItem = {
   id: number;
   qty: number;
 };
@@ -54,6 +60,8 @@ export default function ProductDetailsPage() {
   const slug = params.slug;
   const [product, setProduct] = useState<Product | null>(null);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviewsLoading, setReviewsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [cartCount, setCartCount] = useState(0);
@@ -92,6 +100,31 @@ export default function ProductDetailsPage() {
           ...currentProduct,
           images: sortedImages,
         });
+        // Load approved customer reviews for this product.
+        setReviewsLoading(true);
+
+        try {
+          const reviewsResponse = await api.get("/reviews", {
+            params: {
+              product_id: currentProduct.id,
+              product_name: currentProduct.name,
+            },
+          });
+
+          if (active) {
+            setReviews(reviewsResponse.data?.data?.data ?? []);
+          }
+        } catch (reviewError) {
+          console.error("Unable to load product reviews:", reviewError);
+
+          if (active) {
+            setReviews([]);
+          }
+        } finally {
+          if (active) {
+            setReviewsLoading(false);
+          }
+        }
         const allProducts: Product[] =
           productsResponse.data?.data?.data ?? [];
                 // Prefer same-category products; otherwise recommend products
@@ -454,6 +487,61 @@ export default function ProductDetailsPage() {
             </div>
           </div>
         </div>
+      </section>
+      <section className="bf-reviews-section">
+        <div className="bf-reviews-heading">
+          <p className="eyebrow">CUSTOMER EXPERIENCES</p>
+          <h2>What customers <em>say</em></h2>
+          <p>Honest feedback from customers who have tried this product.</p>
+        </div>
+
+        {reviewsLoading ? (
+          <p className="bf-reviews-message">Loading customer reviews...</p>
+        ) : reviews.length > 0 ? (
+          <>
+            <div className="bf-reviews-summary">
+              <strong>{reviews.length}</strong>
+              <span>approved {reviews.length === 1 ? "review" : "reviews"}</span>
+            </div>
+
+            <div className="bf-reviews-grid">
+              {reviews.map((review) => {
+                const rating = Math.max(0, Math.min(5, Number(review.rating) || 0));
+
+                return (
+                  <article className="bf-review-card" key={review.id}>
+                    <div
+                      className="bf-review-stars"
+                      aria-label={`${rating} out of 5 stars`}
+                    >
+                      {"★".repeat(rating)}
+                      <span>{"★".repeat(5 - rating)}</span>
+                    </div>
+
+                    <p className="bf-review-text">{review.review_text}</p>
+
+                    <div className="bf-review-author">
+                      <strong>{review.customer_name}</strong>
+                      {review.created_at && (
+                        <time dateTime={review.created_at}>
+                          {new Date(review.created_at).toLocaleDateString("en-GH", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}
+                        </time>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <p className="bf-reviews-message">
+            No approved reviews yet. Be the first to share your experience.
+          </p>
+        )}
       </section>
       {relatedProducts.length > 0 && (
         <section className="bf-related-section">

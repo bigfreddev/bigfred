@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--ink:#28231f;--muted:#81766e;--cream:#f7f1ec;--paper:#fffdfb;--rose:#d7a79a;--rose-dark:#a96859;--line:#e9dfd8;--green:#58634b;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{cursor:pointer}.announcement{height:34px;background:var(--ink);color:#f9f3ed;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;font-size:10px;letter-spacing:.07em}.announcement span{color:#e4b6a7}.site-header{height:82px;padding:0 6.2%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,253,251,.96);position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(233,223,216,.7);backdrop-filter:blur(14px)}.brand{font-family:var(--serif);font-size:27px;letter-spacing:-1.4px;font-weight:700;white-space:nowrap}.brand span{font-weight:500;font-style:italic}.brand i{font-family:var(--sans);font-style:normal;color:var(--rose-dark)}.main-nav{display:flex;gap:34px;align-items:center;margin-left:50px}.main-nav a{font-size:11px;color:#766b64;transition:color .2s;position:relative}.main-nav a:hover,.main-nav a.active{color:var(--ink)}.main-nav a.active:after{content:"";position:absolute;height:1px;background:var(--rose-dark);left:0;right:0;bottom:-9px}.header-actions{display:flex;align-items:center;gap:18px}.icon-btn{border:0;background:transparent;color:var(--ink);font-size:24px;line-height:1;padding:5px;position:relative}.bag-btn{font-size:23px}.cart-count{position:absolute;right:-6px;top:-4px;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;background:var(--rose-dark);color:white;font-size:9px;font-weight:700}.menu-toggle{display:none}.search-panel{display:none;position:sticky;top:82px;z-index:19;padding:20px 6.2%;background:#fffdfb;border-bottom:1px solid var(--line);box-shadow:0 12px 24px #3120180b}.search-panel.open{display:block}.search-panel>label{display:block;font-family:var(--serif);font-size:18px;margin-bottom:10px}.search-field{display:flex;align-items:center;gap:12px;border-bottom:1px solid #cdbdb3;padding:8px 0}.search-field span{font-size:23px}.search-field input{border:0;outline:0;background:transparent;flex:1;min-width:0;color:var(--ink)}.search-field button{border:0;background:none;font-size:23px;color:var(--muted)}
 .hero{min-height:585px;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding:58px 8.5% 56px 10.1%;gap:5.5%;align-items:center}.hero-copy{padding:8px 0 28px;z-index:1}.eyebrow{font-size:9px;letter-spacing:.2em;font-weight:700;color:var(--rose-dark);margin:0 0 19px}.eyebrow-line{display:inline-block;width:25px;height:1px;background:var(--rose-dark);vertical-align:middle;margin-right:9px}.hero h1{font:500 clamp(48px,5.3vw,75px)/1.08 var(--serif);letter-spacing:-2.4px;margin:0 0 21px}.hero h1 em,.section-heading h2 em,.ritual-copy h2 em,.newsletter h2 em{font-weight:500;color:var(--rose-dark)}.hero-description{font-size:12px;line-height:1.9;color:#756a63;max-width:365px;margin:0 0 26px}.hero-buttons{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.button{display:inline-flex;justify-content:center;align-items:center;gap:24px;border:1px solid transparent;padding:15px 20px;font-size:10px;font-weight:700;letter-spacing:.025em;transition:transform .2s,background .2s,border-color .2s}.button:hover{transform:translateY(-2px)}.button span{font-size:15px;font-weight:400}.button-dark{background:var(--ink);color:white}.button-dark:hover{background:#45382f}.text-link{font-size:10px;font-weight:700;border-bottom:1px solid #bca99d;padding-bottom:6px;white-space:nowrap}.text-link span{margin-left:8px;font-size:15px}.hero-proof{display:flex;align-items:center;gap:12px;margin-top:44px}.avatar-stack{display:flex;padding-left:3px}.avatar-stack span{width:28px;height:28px;border:2px solid var(--cream);border-radius:50%;margin-left:-5px;display:grid;place-items:center;background:#d9b6a7;color:#60463d;font-size:12px}.avatar-stack span:nth-child(2){background:#c7c5ac}.avatar-stack span:nth-child(3){background:#b88c7e}.hero-proof strong{font-size:11px}.hero-proof p{font-size:9px;color:var(--muted);margin:3px 0 0}.hero-art{position:relative;min-width:0;padding:0 7% 0 2%;height:465px}.hero-image{width:100%;height:100%;background:linear-gradient(180deg,#ead8c9 0%,#e1c1ad 100%);background-image:url('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1100&q=85');background-size:cover;background-position:center;border-radius:48% 48% 4px 4px;box-shadow:0 22px 60px #7253431c}.floating-note{position:absolute;left:-28px;bottom:35px;background:#fffdfb;padding:15px 18px;display:flex;gap:12px;align-items:center;box-shadow:0 10px 35px #4a302414}.note-star{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:#f1e5dd;color:var(--rose-dark);font-size:18px}.floating-note strong,.floating-note small{display:block}.floating-note strong{font:600 12px var(--serif)}.floating-note small{font-size:9px;color:var(--muted);margin-top:4px}.hero-stamp{position:absolute;right:-2px;top:31px;width:94px;height:94px;background:#e8d2c3;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(9deg);color:#795b4c;text-align:center}.hero-stamp span{font-size:6px;letter-spacing:.16em}.hero-stamp strong{font:600 17px/.95 var(--serif);margin:5px 0}.hero-bottom-note{position:absolute;bottom:18px;left:10.1%;font-size:8px;letter-spacing:.2em;color:#9c8d83}.trust-strip{min-height:76px;display:flex;justify-content:center;align-items:center;gap:clamp(25px,7vw,105px);border-bottom:1px solid var(--line);padding:18px 5%;flex-wrap:wrap}.trust-strip div{font-size:10px;color:#70645d;display:flex;align-items:center;gap:10px}.trust-strip span{color:var(--rose-dark);font-size:17px}.section-wrap{padding-left:8.5%;padding-right:8.5%}.shop-section{padding-top:91px;padding-bottom:88px}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:25px}.section-heading .eyebrow{margin-bottom:12px}.section-heading h2,.ritual-copy h2,.newsletter h2{font:500 clamp(32px,3.6vw,47px)/1.2 var(--serif);letter-spacing:-1.1px;margin:0}.section-subtitle{color:var(--muted);font-size:11px;margin:12px 0 0}.desktop-link{margin-bottom:7px}.shop-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:38px 0 22px}.filter-list{display:flex;gap:8px;flex-wrap:wrap}.filter-chip{background:transparent;border:1px solid var(--line);border-radius:30px;padding:10px 15px;font-size:10px;color:#7c716a;transition:all .2s}.filter-chip.selected,.filter-chip:hover{background:var(--ink);border-color:var(--ink);color:white}.filter-chip span{margin-left:9px;font-size:8px;opacity:.65}.sort-control{display:flex;align-items:center;gap:8px;font-size:10px;color:var(--muted);white-space:nowrap}.sort-control select{border:0;background:transparent;color:var(--ink);font-size:10px;outline:none;cursor:pointer}.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 18px}.product-card{min-width:0;position:relative;animation:fadeIn .35s ease both}.product-visual{aspect-ratio: .82;position:relative;overflow:hidden;background:#f1e7df;border-radius:2px}.product-visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s}.product-card:hover .product-visual img{transform:scale(1.045)}.product-badge{position:absolute;top:12px;left:12px;background:#fffaf5;padding:7px 9px;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:#7c5a4c}.quick-add{position:absolute;bottom:10px;left:10px;right:10px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,253,251,.96);border:0;padding:12px 13px;font-size:10px;font-weight:700;opacity:0;transform:translateY(8px);transition:all .25s}.product-card:hover .quick-add,.quick-add:focus{opacity:1;transform:translateY(0)}.quick-add span{font-size:16px}.wishlist{position:absolute;top:10px;right:10px;width:31px;height:31px;border:0;border-radius:50%;background:#fffdfbdb;font-size:18px;color:#5f5149;display:grid;place-items:center}.wishlist.liked{color:#b35e59}.product-info{padding:14px 1px 0}.product-category{font-size:8px;text-transform:uppercase;letter-spacing:.16em;color:#a18b7e;margin-bottom:7px}.product-name-row{display:flex;align-items:start;justify-content:space-between;gap:7px}.product-name{font:600 15px/1.35 var(--serif);margin:0}.rating{font-size:9px;white-space:nowrap;color:#a16c46;margin-top:3px}.rating span{color:#8a7c71}.product-detail{font-size:10px;color:var(--muted);margin:6px 0 11px}.product-bottom{display:flex;justify-content:space-between;align-items:center}.price{font-size:11px;font-weight:700}.price-old{font-size:9px;color:#a99a91;text-decoration:line-through;margin-left:5px;font-weight:400}.swatches{display:flex;gap:4px}.swatches i{width:10px;height:10px;border-radius:50%;border:1px solid #00000012}.center-action{text-align:center;margin-top:47px}.button-outline{background:transparent;border-color:#cdbcb0;color:var(--ink);min-width:208px}.button-outline:hover{background:#f7f0ea}.empty-state{text-align:center;padding:55px 20px}.empty-state>span,.cart-empty>span{font-size:34px;color:var(--rose-dark)}.empty-state h3,.cart-empty h3{font:500 24px var(--serif);margin:10px 0}.empty-state p,.cart-empty p{font-size:11px;color:var(--muted);margin-bottom:20px}.ritual-section{display:grid;grid-template-columns:1fr 1fr;min-height:440px;background:#f0e6df}.ritual-image{background:url('https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1100&q=85') center/cover;min-height:440px}.ritual-copy{padding:70px clamp(35px,8vw,120px);align-self:center}.ritual-copy .eyebrow{margin-bottom:16px}.ritual-copy>p:not(.eyebrow){max-width:350px;font-size:11px;line-height:1.9;color:#786b63;margin:18px 0 25px}.button-light{background:#fffaf6;color:var(--ink)}.button-light:hover{background:white}.ritual-signature{font:italic 14px var(--serif);color:#8c6b5e;margin-top:30px}.ritual-signature span{font:normal 17px var(--sans);margin-left:7px}.newsletter{text-align:center;padding-top:90px;padding-bottom:90px;background:#fffdfb}.newsletter-icon{margin:0 auto 16px;width:35px;height:35px;border-radius:50%;background:#f4e8df;color:var(--rose-dark);display:grid;place-items:center;font-size:19px}.newsletter .eyebrow{margin-bottom:13px}.newsletter h2{font-size:40px}.newsletter>p:not(.eyebrow){font-size:11px;color:var(--muted);margin:14px 0 24px}.newsletter-form{display:flex;max-width:430px;margin:0 auto;border-bottom:1px solid #c9b9ad}.newsletter-form input{flex:1;min-width:0;border:0;outline:0;padding:13px 3px;background:transparent;font-size:10px}.newsletter-form button{border:0;background:transparent;font-size:10px;font-weight:700;padding:0 4px 0 15px}.newsletter-form button span{font-size:16px;margin-left:8px}.newsletter>small{display:block;font-size:8px;color:#a19389;margin-top:13px}.site-footer{padding:35px 8.5% 25px;background:#f5eee8;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:9px}.site-footer .brand{font-size:23px}.site-footer>p{font-size:10px;color:var(--muted);margin:0}.footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:flex-end;font-size:10px;color:#75675e}.site-footer>small{font-size:8px;color:#9a8c82}.overlay{position:fixed;inset:0;background:#1d1714a6;z-index:40;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}.overlay.visible{opacity:1;visibility:visible}.cart-drawer{position:fixed;right:0;top:0;height:100dvh;width:min(440px,100%);background:#fffdfb;z-index:41;transform:translateX(102%);transition:transform .32s ease;display:flex;flex-direction:column;padding:29px 28px 23px;box-shadow:-15px 0 55px #00000010}.cart-drawer.open{transform:translateX(0)}.drawer-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--line)}.drawer-header .eyebrow{margin-bottom:6px}.drawer-header h2{font:500 28px var(--serif);margin:0}.drawer-header h2 span{font:400 11px var(--sans);color:var(--muted)}.close-btn{border:0;background:none;font-size:29px;color:#71655e}.shipping-progress{padding:17px 0;border-bottom:1px solid var(--line)}.shipping-progress p{font-size:10px;color:#76695f;margin:0 0 10px}.progress-track{height:4px;background:#eee5df;border-radius:5px;overflow:hidden}.progress-track span{display:block;height:100%;width:0;background:var(--green);transition:width .3s}.cart-items{overflow:auto;flex:1}.cart-line{display:grid;grid-template-columns:76px 1fr auto;gap:13px;padding:18px 0;border-bottom:1px solid var(--line)}.cart-line img{width:76px;height:92px;object-fit:cover;background:#f1e7df}.cart-line h3{font:600 14px var(--serif);margin:3px 0 6px}.cart-line p{font-size:9px;color:var(--muted);margin:0 0 9px}.cart-line .line-price{font-size:10px;font-weight:700}.quantity-control{display:flex;align-items:center;gap:12px;margin-top:10px}.quantity-control button{width:23px;height:23px;border:1px solid var(--line);background:transparent}.quantity-control span{font-size:10px}.remove-item{align-self:start;border:0;background:transparent;color:#a29287;font-size:17px}.cart-empty{margin:auto;text-align:center;padding:25px 0}.cart-empty[hidden]{display:none}.cart-footer{padding-top:18px;border-top:1px solid var(--line)}.subtotal-row{display:flex;justify-content:space-between;align-items:center;font-size:12px}.subtotal-row strong{font-size:15px}.cart-footer>p{font-size:9px;color:var(--muted);line-height:1.6}.checkout-btn{width:100%;justify-content:space-between;margin-top:9px}.cart-footer>small{display:block;text-align:center;font-size:8px;color:#95867c;margin-top:12px}.cart-footer[hidden]{display:none}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:white;padding:13px 19px;font-size:10px;z-index:60;opacity:0;pointer-events:none;transition:all .25s;box-shadow:0 8px 25px #0002;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -251,8 +251,8 @@
 
 /* BIGFRED CUSTOMER TESTIMONIALS */
 .bf-testimonials {
-  background: #faf5f0;
-  color: #38251f;
+  background: #E9EEE5;
+  color: #453D32;
   padding: 76px 24px;
 }
 
@@ -271,7 +271,7 @@
 .bf-eyebrow {
   display: inline-block;
   margin-bottom: 14px;
-  color: #a66e53;
+  color: #71816A;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -287,7 +287,7 @@
 
 .bf-testimonials-heading p,
 .bf-review-cta p {
-  color: #78645b;
+  color: #756E62;
   font-size: 14px;
   line-height: 1.7;
 }
@@ -315,19 +315,19 @@
 }
 
 .bf-average > span:last-child {
-  color: #78645b;
+  color: #756E62;
   font-size: 12px;
 }
 
 .bf-review-stars {
-  color: #bd8548;
+  color: #B88A50;
   font-size: 16px;
   letter-spacing: 2px;
   white-space: nowrap;
 }
 
 .bf-review-empty-stars {
-  color: #e2d6ca;
+  color: #E4E6DB;
 }
 
 .bf-review-filters {
@@ -337,10 +337,10 @@
 }
 
 .bf-review-filters button {
-  border: 1px solid #e4d7cd;
+  border: 1px solid #D9DFD3;
   border-radius: 30px;
   background: transparent;
-  color: #6d554a;
+  color: #5E6958;
   padding: 9px 15px;
   font-size: 12px;
   cursor: pointer;
@@ -349,9 +349,9 @@
 
 .bf-review-filters button:hover,
 .bf-review-filters button.active {
-  border-color: #4b3027;
-  background: #4b3027;
-  color: #fffaf5;
+  border-color: #71816A;
+  background: #71816A;
+  color: #FFFCF7;
 }
 
 .bf-review-grid {
@@ -365,9 +365,9 @@
   min-width: 0;
   flex-direction: column;
   padding: 25px;
-  border: 1px solid #eee3da;
+  border: 1px solid #DDE4D8;
   border-radius: 8px;
-  background: #fffdfa;
+  background: #FFFCF7;
   box-shadow: 0 8px 28px rgb(68 43 31 / 4%);
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -384,7 +384,7 @@
 }
 
 .bf-review-quote {
-  color: #e8d5c7;
+  color: #D7C7A9;
   font-family: Georgia, serif;
   font-size: 54px;
   line-height: 0.8;
@@ -393,7 +393,7 @@
 .bf-review-text {
   flex: 1;
   margin: 18px 0 24px;
-  color: #59463d;
+  color: #5E6958;
   font-family: Georgia, serif;
   font-size: 16px;
   line-height: 1.8;
@@ -406,7 +406,7 @@
   gap: 6px;
   margin-bottom: 22px;
   padding-top: 15px;
-  border-top: 1px solid #eee3da;
+  border-top: 1px solid #DDE4D8;
 }
 
 .bf-reviewed-product span {
@@ -473,7 +473,7 @@
 }
 
 .bf-carousel-controls span {
-  color: #78645b;
+  color: #756E62;
   font-size: 12px;
 }
 
@@ -482,16 +482,16 @@
   width: 38px;
   height: 38px;
   place-items: center;
-  border: 1px solid #dfcfc2;
+  border: 1px solid #D9DFD3;
   border-radius: 50%;
-  background: #fffdfa;
-  color: #4b3027;
+  background: #FFFCF7;
+  color: #71816A;
   font-size: 20px;
   cursor: pointer;
 }
 
 .bf-carousel-controls button:hover {
-  background: #4b3027;
+  background: #71816A;
   color: white;
 }
 
@@ -503,7 +503,7 @@
   margin-top: 40px;
   padding: 26px 30px;
   border-radius: 8px;
-  background: #eee1d6;
+  background: #DCE5D7;
 }
 
 .bf-review-cta h3,
@@ -520,9 +520,9 @@
 
 .bf-write-review,
 .bf-submit-review {
-  border: 1px solid #4b3027;
+  border: 1px solid #71816A;
   border-radius: 3px;
-  background: #4b3027;
+  background: #71816A;
   color: white;
   padding: 13px 19px;
   font-size: 12px;
@@ -539,7 +539,7 @@
 
 .bf-write-review:hover,
 .bf-submit-review:hover {
-  background: #68483b;
+  background: #5D7056;
 }
 
 .bf-review-form {
@@ -548,9 +548,9 @@
   max-width: 650px;
   margin: 25px auto 0;
   padding: 28px;
-  border: 1px solid #e6d8cc;
+  border: 1px solid #D9DFD3;
   border-radius: 8px;
-  background: #fffdfa;
+  background: #FFFCF7;
 }
 
 .bf-review-form h3 {
@@ -559,7 +559,7 @@
 
 .bf-review-form label {
   margin-top: 4px;
-  color: #59463d;
+  color: #5E6958;
   font-size: 12px;
   font-weight: 600;
 }
@@ -569,10 +569,10 @@
 .bf-review-form textarea {
   width: 100%;
   min-width: 0;
-  border: 1px solid #dfd1c6;
+  border: 1px solid #D9DFD3;
   border-radius: 4px;
   background: #fff;
-  color: #38251f;
+  color: #453D32;
   padding: 12px;
   font: inherit;
   font-size: 13px;
@@ -581,7 +581,7 @@
 .bf-review-form input:focus,
 .bf-review-form select:focus,
 .bf-review-form textarea:focus {
-  outline: 2px solid #b58b72;
+  outline: 2px solid #9BAA91;
   outline-offset: 1px;
 }
 
@@ -593,18 +593,18 @@
 .bf-rating-picker button {
   border: 0;
   background: transparent;
-  color: #d9cfc6;
+  color: #D8DCCF;
   font-size: 30px;
   cursor: pointer;
 }
 
 .bf-rating-picker button.selected {
-  color: #bd8548;
+  color: #B88A50;
 }
 
 .bf-form-note,
 .bf-review-message {
-  color: #78645b;
+  color: #756E62;
   font-size: 12px;
   line-height: 1.6;
 }
@@ -616,7 +616,7 @@
 
 .bf-no-reviews {
   padding: 32px;
-  border: 1px dashed #d8c6b8;
+  border: 1px dashed #C8D3C3;
   border-radius: 8px;
   text-align: center;
 }
@@ -624,7 +624,7 @@
 .bf-no-reviews button {
   border: 0;
   background: transparent;
-  color: #8d5b43;
+  color: #66775F;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -678,7 +678,177 @@
 }
 
 
-.checkout-auth-actions {
+
+/* =========================================================
+   BIGFRED TESTIMONIALS — DARK FOREST GREEN THEME
+   ========================================================= */
+
+.bf-testimonials {
+  background: #0D120E;
+  color: #DCEBDD;
+}
+
+.bf-testimonials-heading h2,
+.bf-average strong,
+.bf-review-cta h3,
+.bf-review-form h3 {
+  color: #DCEBDD;
+}
+
+.bf-eyebrow {
+  color: #83A982;
+}
+
+.bf-testimonials-heading p,
+.bf-review-cta p,
+.bf-average > span:last-child,
+.bf-carousel-controls span,
+.bf-form-note,
+.bf-review-message {
+  color: #B7C8B7;
+}
+
+.bf-review-stars,
+.bf-rating-picker button.selected {
+  color: #83A982;
+}
+
+.bf-review-empty-stars {
+  color: #405343;
+}
+
+.bf-review-filters button {
+  border-color: #2D3D2F;
+  background: #171F18;
+  color: #B7C8B7;
+}
+
+.bf-review-filters button:hover,
+.bf-review-filters button.active {
+  border-color: #456F49;
+  background: #355C3B;
+  color: #E4F0E3;
+}
+
+.bf-review-card {
+  border-color: #2D3D2F;
+  background: #171F18;
+  color: #DCEBDD;
+  box-shadow: 0 8px 28px rgb(0 0 0 / 16%);
+}
+
+.bf-review-card:hover {
+  box-shadow: 0 14px 32px rgb(0 0 0 / 25%);
+}
+
+.bf-review-quote {
+  color: #668B69;
+}
+
+.bf-review-text,
+.bf-reviewed-product strong,
+.bf-review-author-info strong {
+  color: #DCEBDD;
+}
+
+.bf-reviewed-product {
+  border-color: #2D3D2F;
+}
+
+.bf-reviewed-product span,
+.bf-review-author-info span {
+  color: #9FB69F;
+}
+
+.bf-review-avatar {
+  background: #263B29;
+  color: #C8DEC8;
+}
+
+.bf-verified {
+  color: #83A982;
+}
+
+.bf-unverified {
+  color: #9FB69F;
+}
+
+.bf-review-cta {
+  background: #1D2B1F;
+  color: #DCEBDD;
+}
+
+.bf-write-review,
+.bf-submit-review {
+  border-color: #456F49;
+  background: #355C3B;
+  color: #E4F0E3;
+}
+
+.bf-write-review:hover,
+.bf-submit-review:hover {
+  background: #456F49;
+}
+
+.bf-review-form {
+  border-color: #2D3D2F;
+  background: #171F18;
+  color: #DCEBDD;
+}
+
+.bf-review-form label {
+  color: #B7C8B7;
+}
+
+.bf-review-form input,
+.bf-review-form select,
+.bf-review-form textarea {
+  border-color: #2D3D2F;
+  background: #101710;
+  color: #DCEBDD;
+}
+
+.bf-review-form input::placeholder,
+.bf-review-form textarea::placeholder {
+  color: #829582;
+}
+
+.bf-review-form input:focus,
+.bf-review-form select:focus,
+.bf-review-form textarea:focus {
+  outline-color: #83A982;
+}
+
+.bf-rating-picker button {
+  color: #405343;
+}
+
+.bf-carousel-controls button {
+  border-color: #2D3D2F;
+  background: #171F18;
+  color: #B7C8B7;
+}
+
+.bf-carousel-controls button:hover {
+  background: #355C3B;
+  color: #E4F0E3;
+}
+
+.bf-no-reviews {
+  border-color: #405343;
+  color: #B7C8B7;
+}
+
+.bf-no-reviews button {
+  color: #83A982;
+}
+
+.bf-submit-review:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* END DARK FOREST GREEN THEME */.checkout-auth-actions {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -1547,3 +1717,3305 @@
     padding: 25px 5%;
   }
 }
+
+
+/* =========================================================
+   DHYSEM â€” OBSIDIAN & CHAMPAGNE VISUAL IDENTITY
+   Layered overrides: preserves the original component system.
+   ========================================================= */
+
+:root{
+  --ink:#f3eee5;
+  --muted:#aaa197;
+  --cream:#11100e;
+  --paper:#090909;
+  --rose:#d7b46a;
+  --rose-dark:#d7b46a;
+  --line:rgba(215,180,106,.19);
+  --green:#b89a60;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Manrope',Arial,sans-serif;
+  color-scheme:dark;
+}
+html{background:#080808;scroll-padding-top:100px}
+body{background:#080808;color:#f3eee5;font-family:var(--sans)}
+::selection{background:#d7b46a;color:#090909}
+a{color:inherit}
+.announcement{
+  height:32px;background:#d7b46a;color:#090909;
+  font-size:9px;font-weight:800;letter-spacing:.17em;text-transform:uppercase
+}
+.announcement span{color:#090909}
+.site-header{
+  height:84px;padding:0 7%;background:rgba(8,8,8,.91);
+  border-bottom:1px solid rgba(215,180,106,.2);
+  box-shadow:0 10px 35px rgba(0,0,0,.18)
+}
+.brand{font-family:var(--serif);font-size:34px;letter-spacing:.045em;color:#f3eee5;font-weight:600}
+.brand span{color:#d7b46a;font-style:normal}
+.main-nav{gap:clamp(18px,2.6vw,38px)}
+.main-nav a{color:#b9b0a5;font-size:10px;letter-spacing:.13em;text-transform:uppercase}
+.main-nav a:hover,.main-nav a.active{color:#e4c987}
+.main-nav a.active:after{background:#d7b46a;height:2px}
+.header-actions{gap:15px}
+.icon-btn{color:#f3eee5}
+.cart-count{background:#d7b46a;color:#090909}
+.search-panel{background:rgba(13,13,12,.98);border-color:var(--line);box-shadow:0 20px 50px #000}
+.search-panel>label{color:#f3eee5}
+.search-field{border-color:rgba(215,180,106,.45)}
+.search-field input{color:#f3eee5}
+.search-field input::placeholder{color:#80786e}
+.search-field button{color:#d7b46a}
+
+.hero{
+  min-height:630px;padding:70px 9% 68px 10%;
+  background:
+    radial-gradient(ellipse at 78% 48%,rgba(145,111,53,.17),transparent 36%),
+    linear-gradient(115deg,#090909 0%,#11100e 56%,#17130d 100%);
+  color:#f3eee5
+}
+.hero:after{
+  content:"";position:absolute;inset:18px 3.5%;border:1px solid rgba(215,180,106,.12);
+  pointer-events:none
+}
+.hero-copy{padding:8px 0 28px}
+.eyebrow{color:#d7b46a;font-size:9px;letter-spacing:.25em}
+.eyebrow-line{background:#d7b46a}
+.hero h1{font-size:clamp(58px,6.2vw,88px);line-height:.99;letter-spacing:-.025em;color:#f3eee5}
+.hero h1 em,.section-heading h2 em,.ritual-copy h2 em,.newsletter h2 em{color:#d7b46a}
+.hero-description{color:#b3aaa0;font-size:12px;line-height:2}
+.button{border-radius:0;letter-spacing:.12em;text-transform:uppercase;font-size:9px}
+.button-dark{background:#d7b46a;color:#090909;border-color:#d7b46a}
+.button-dark:hover{background:#ebd39a;border-color:#ebd39a}
+.text-link{color:#e8dfd2;border-color:rgba(215,180,106,.55)}
+.hero-proof strong{color:#f3eee5}
+.hero-proof p{color:#a69c90}
+.avatar-stack span{border-color:#11100e;background:#b38e54;color:#090909}
+.avatar-stack span:nth-child(2){background:#d5c19b}
+.avatar-stack span:nth-child(3){background:#8e7046}
+.hero-art{height:490px}
+.hero-image{
+  background-image:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.18)),url('/images/dhysem-hero.jpg');
+  background-position:center 43%;
+  border:1px solid rgba(215,180,106,.38);border-radius:48% 48% 2px 2px;
+  box-shadow:0 28px 80px rgba(0,0,0,.5),0 0 0 8px rgba(215,180,106,.035);
+  transform:translateZ(0);animation:heroImageReveal 1.1s cubic-bezier(.2,.7,.2,1) both,heroImageDrift 18s ease-in-out 1.1s infinite alternate
+}
+.hero-copy{animation:heroCopyReveal .85s cubic-bezier(.2,.7,.2,1) both}
+.hero-stamp{animation:heroStampReveal .9s .45s cubic-bezier(.2,.7,.2,1) both}
+.floating-note{animation:heroNoteFloat 5.5s ease-in-out 1.2s infinite}
+@keyframes heroImageReveal{from{opacity:0;transform:scale(1.055) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes heroImageDrift{from{background-position:50% 43%}to{background-position:54% 47%}}
+@keyframes heroCopyReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroStampReveal{from{opacity:0;transform:rotate(-4deg) scale(.86)}to{opacity:1;transform:rotate(9deg) scale(1)}}
+@keyframes heroNoteFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.floating-note{background:rgba(17,16,14,.94);border:1px solid rgba(215,180,106,.27);color:#f3eee5;box-shadow:0 18px 45px #0008}
+.note-star{background:rgba(215,180,106,.15);color:#d7b46a}
+.floating-note small{color:#b2a89b}
+.hero-stamp{background:#d7b46a;color:#15110a}
+.hero-bottom-note{color:#9d8c6c}
+.trust-strip{background:#0c0c0b;border-color:var(--line);gap:clamp(20px,5vw,75px)}
+.trust-strip div{color:#c3b9ac;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.trust-strip span{color:#d7b46a}
+
+.category-section{background:#0d0d0c;color:#f3eee5;border-top:1px solid rgba(215,180,106,.1);border-bottom:1px solid rgba(215,180,106,.1)}
+.category-heading h2,.section-heading h2{color:#f3eee5}
+.section-subtitle{color:#aaa197;line-height:1.8}
+.category-side-note,.product-count-note{color:#9c8a67;font-size:8px;letter-spacing:.2em}
+.category-card{background:#151411;border:1px solid rgba(215,180,106,.17);color:#f3eee5;transition:transform .3s,border-color .3s,box-shadow .3s}
+.category-card:hover,.category-card.active{border-color:rgba(215,180,106,.7);box-shadow:0 15px 38px #0007;transform:translateY(-4px)}
+.category-card-copy strong{color:#f3eee5}
+.category-card-copy small{color:#aaa197}
+.category-image{filter:saturate(.78) brightness(.83)}
+.shop-section{background:#090909;color:#f3eee5}
+.shop-toolbar{border-top:1px solid rgba(215,180,106,.12);padding-top:24px}
+.filter-chip{border-color:rgba(215,180,106,.25);color:#bdb3a7;background:#11100e}
+.filter-chip.selected,.filter-chip:hover{background:#d7b46a;border-color:#d7b46a;color:#090909}
+.sort-control{color:#aaa197}
+.sort-control select{color:#f3eee5;background:#11100e}
+.product-grid{gap:38px 20px}
+.product-card{background:#0d0d0c;border:1px solid rgba(215,180,106,.12);padding:0 0 17px;transition:border-color .3s,transform .3s,box-shadow .3s}
+.product-card:hover{border-color:rgba(215,180,106,.55);transform:translateY(-4px);box-shadow:0 18px 40px #0008}
+.product-visual{background:#171512;border-radius:0;aspect-ratio:.82}
+.product-visual img{filter:saturate(.9)}
+.product-badge{background:#d7b46a;color:#11100e;font-weight:800;letter-spacing:.1em}
+.quick-add{background:#d7b46a;color:#090909;letter-spacing:.1em;text-transform:uppercase;font-size:9px}
+.quick-add:hover{background:#ecd49a}
+.wishlist{background:rgba(8,8,8,.82);color:#f3eee5;border:1px solid rgba(215,180,106,.22)}
+.wishlist.liked{color:#e2b5a7}
+.product-info{padding:16px 15px 0}
+.product-category{color:#c3a66d}
+.product-name{color:#f3eee5;font-size:17px}
+.rating{color:#d7b46a}
+.rating span{color:#9c9388}
+.product-detail{color:#aaa197;line-height:1.65}
+.product-detail-link{color:#d7b46a}
+.price{color:#f0e7d9}
+.price-old{color:#82786e}
+.swatches i{border-color:#ffffff33}
+.button-outline{border-color:rgba(215,180,106,.55);color:#e9dfd0}
+.button-outline:hover{background:rgba(215,180,106,.12);border-color:#d7b46a}
+.empty-state h3,.cart-empty h3{color:#f3eee5}
+.empty-state p,.cart-empty p{color:#aaa197}
+
+.ritual-section{background:#11100e;color:#f3eee5;border-top:1px solid var(--line)}
+.ritual-image{filter:saturate(.7) brightness(.72)}
+.ritual-copy{background:radial-gradient(circle at 100% 0%,rgba(215,180,106,.12),transparent 45%),#11100e}
+.ritual-copy h2{color:#f3eee5}
+.ritual-copy>p:not(.eyebrow){color:#b4aa9d;line-height:2}
+.button-light{background:#d7b46a;color:#090909;border-color:#d7b46a}
+.button-light:hover{background:#ecd49a}
+.ritual-signature{color:#b8aa95}
+.ritual-signature span{color:#d7b46a}
+.newsletter{background:#090909;color:#f3eee5}
+.newsletter h2{color:#f3eee5}
+.newsletter>p:not(.eyebrow){color:#aaa197}
+.newsletter-icon{color:#d7b46a}
+.newsletter-form{border-color:rgba(215,180,106,.45)}
+.newsletter-form input{color:#f3eee5;background:transparent}
+.newsletter-form input::placeholder{color:#81786d}
+.newsletter-form button{background:#d7b46a;color:#090909}
+.newsletter small{color:#958b7e}
+.site-footer{background:#050505;color:#aaa197;border-top:1px solid rgba(215,180,106,.22)}
+.site-footer .brand{color:#f3eee5}
+.site-footer .brand span{color:#d7b46a}
+.site-footer p{color:#9f9589}
+.footer-links a{color:#b8ad9f}
+.footer-links a:hover{color:#d7b46a}
+.site-footer small{color:#746b61}
+
+.overlay{background:rgba(0,0,0,.72);backdrop-filter:blur(5px)}
+.cart-drawer{background:#10100e;color:#f3eee5;border-left:1px solid rgba(215,180,106,.28);box-shadow:-20px 0 70px #0009}
+.drawer-header{border-color:var(--line)}
+.close-btn{color:#f3eee5}
+.cart-line{border-color:var(--line)}
+.cart-line img{background:#1c1914}
+.cart-line h3,.cart-line strong{color:#f3eee5}
+.cart-line p,.cart-line small{color:#a99f92}
+.quantity-control{border-color:rgba(215,180,106,.3)}
+.quantity-control button{color:#f3eee5}
+.remove-item{color:#c7a96b}
+.cart-footer{border-color:var(--line)}
+.subtotal-row{color:#f3eee5}
+.shipping-progress{background:#191712;color:#c9bda9}
+.progress-track{background:#393126}
+.progress-track span{background:#d7b46a}
+.cart-empty p{color:#aaa197}
+.checkout-form{color:#f3eee5}
+.checkout-intro h2,.checkout-intro h3{color:#f3eee5}
+.checkout-intro p,.checkout-secure-note{color:#aaa197}
+.checkout-fields input,.checkout-fields textarea,.checkout-fields select,
+.checkout-field input,.checkout-field textarea,.checkout-field select{
+  background:#171613!important;color:#f3eee5!important;border:1px solid rgba(215,180,106,.24)!important
+}
+.checkout-fields input::placeholder,.checkout-field input::placeholder,.checkout-field textarea::placeholder{color:#82796e}
+.checkout-summary{background:#171613;border:1px solid rgba(215,180,106,.18);color:#f3eee5}
+.checkout-summary-line,.checkout-summary-total{border-color:var(--line);color:#e9dfd2}
+.checkout-error{background:#321b18;color:#f0c2b6;border-color:#744036}
+.toast{background:#d7b46a;color:#090909}
+
+@media(min-width:1400px){
+  .hero{padding-left:12%;padding-right:10%}
+  .section-wrap{padding-left:10%;padding-right:10%}
+}
+@media(max-width:1000px){
+  .site-header{padding:0 4%}
+  .hero{padding-left:6%;padding-right:6%}
+}
+@media(max-width:700px){
+  .announcement{height:32px;font-size:8px;letter-spacing:.1em}
+  .site-header{height:68px;padding:0 5%}
+  .brand{font-size:29px}
+  .main-nav{top:68px;background:#10100e;border-color:var(--line);box-shadow:0 18px 35px #000b}
+  .main-nav a{color:#c6bbad}
+  .search-panel{top:68px;background:#10100e}
+  .hero{padding:52px 7% 48px;gap:27px}
+  .hero:after{inset:10px 3%}
+  .hero h1{font-size:clamp(49px,13vw,66px)}
+  .hero-art{height:360px}
+  .trust-strip{background:#0c0c0b}
+  .shop-section{padding-top:65px;padding-bottom:65px}
+  .product-grid{gap:24px 11px}
+  .product-card{padding-bottom:13px}
+  .product-info{padding:11px 9px 0}
+  .product-name{font-size:14px}
+  .product-detail{font-size:9px}
+  .ritual-copy{padding:45px 8% 48px}
+  .newsletter{padding-top:65px;padding-bottom:65px}
+  .site-footer{background:#050505}
+  .cart-drawer{padding:24px 20px 18px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+
+/* Dhysem navigation refinement */
+@media (min-width: 701px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(170px, 1fr) auto minmax(170px, 1fr);
+    column-gap: 28px;
+  }
+
+  .brand {
+    justify-self: start;
+  }
+
+  .main-nav {
+    justify-self: center;
+    margin-left: 0;
+    white-space: nowrap;
+  }
+
+  .header-actions {
+    justify-self: end;
+    gap: 21px;
+  }
+}
+
+.login-link,
+.account-greeting {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid rgba(215, 180, 106, .58);
+  border-radius: 2px;
+  color: #e8d5a7;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background .22s ease,
+    color .22s ease,
+    border-color .22s ease,
+    transform .22s ease;
+}
+
+.login-link:hover,
+.account-greeting:hover {
+  background: #d7b46a;
+  border-color: #d7b46a;
+  color: #090909;
+  transform: translateY(-1px);
+}
+
+.account-greeting {
+  letter-spacing: .055em;
+  text-transform: none;
+  font-size: 11px;
+  gap: 4px;
+}
+
+.account-greeting-prefix {
+  color: #b9b0a5;
+  font-weight: 500;
+}
+
+.account-greeting strong {
+  color: inherit;
+  font-weight: 800;
+}
+
+.account-greeting-chevron {
+  margin-left: 3px;
+  font-size: 10px;
+  opacity: .8;
+}
+
+@media (max-width: 700px) {
+  .header-actions {
+    gap: 9px;
+  }
+
+  .login-link,
+  .account-greeting {
+    min-height: 34px;
+    padding: 0 9px;
+    font-size: 9px;
+    letter-spacing: .07em;
+  }
+
+  .account-greeting {
+    font-size: 10px;
+    letter-spacing: 0;
+    max-width: 112px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .account-greeting-prefix,
+  .account-greeting strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+
+/* Dhysem customer account dropdown */
+.account-menu {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.account-greeting {
+  appearance: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.account-dropdown {
+  position: absolute;
+  z-index: 35;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(285px, calc(100vw - 32px));
+  padding: 8px 17px 12px;
+  background: #11110f;
+  border: 1px solid rgba(215, 180, 106, .42);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .28);
+  color: #f3eee5;
+  animation: accountDropdownIn .18s ease both;
+}
+
+.account-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 23px;
+  width: 10px;
+  height: 10px;
+  background: #11110f;
+  border-top: 1px solid rgba(215, 180, 106, .42);
+  border-left: 1px solid rgba(215, 180, 106, .42);
+  transform: rotate(45deg);
+}
+
+.account-dropdown-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 2px 15px;
+  border-bottom: 1px solid rgba(243, 238, 229, .12);
+  overflow: hidden;
+}
+
+.account-dropdown-kicker {
+  color: #d7b46a;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.account-dropdown-heading strong {
+  color: #f3eee5;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.account-dropdown-email {
+  color: #aaa197;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.account-dropdown-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 2px 5px;
+  color: #e9dfd0;
+  font-size: 11px;
+  font-weight: 700;
+  transition: color .18s ease;
+}
+
+.account-dropdown-link span:last-child {
+  color: #d7b46a;
+  font-size: 15px;
+}
+
+.account-dropdown-link:hover {
+  color: #d7b46a;
+}
+
+@keyframes accountDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .account-dropdown {
+    top: calc(100% + 10px);
+    right: -3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .account-dropdown {
+    animation: none;
+  }
+}
+
+/* Dhysem glassmorphism category cards */
+.category-cards {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 0;
+}
+
+.category-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: .92;
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: left;
+  color: #f3eee5;
+  background: rgba(18, 17, 14, .72);
+  border: 1px solid rgba(215, 180, 106, .3);
+  border-radius: 17px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .08);
+  transition: transform .45s cubic-bezier(.2, .7, .2, 1), border-color .35s ease, box-shadow .35s ease;
+}
+
+.category-card::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.025) 24%, transparent 48%, rgba(215,180,106,.08) 100%);
+  opacity: .7;
+  transition: opacity .35s ease;
+}
+
+.category-card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(5,5,5,.02) 20%, rgba(5,5,5,.12) 47%, rgba(5,5,5,.72) 100%);
+}
+
+.category-card:hover,
+.category-card.active {
+  border-color: rgba(215, 180, 106, .88);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, .42), 0 0 0 1px rgba(215,180,106,.13), inset 0 1px 0 rgba(255,255,255,.15);
+  transform: translateY(-7px);
+}
+
+.category-card.active {
+  box-shadow: 0 0 0 2px rgba(215,180,106,.3), 0 22px 48px rgba(0,0,0,.4);
+}
+
+.category-image {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  background-color: #211c15;
+  background-position: center;
+  background-size: cover;
+  filter: saturate(.82) brightness(.82);
+  transform: scale(1.001);
+  transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+}
+
+.category-card:hover .category-image,
+.category-card.active .category-image {
+  filter: saturate(.98) brightness(.94);
+  transform: scale(1.075);
+}
+
+.category-card.active .category-image {
+  outline: 0;
+}
+
+.category-card-copy {
+  position: absolute;
+  z-index: 2;
+  left: 13px;
+  right: 13px;
+  bottom: 13px;
+  display: block;
+  padding: 17px 17px 15px;
+  overflow: hidden;
+  border: 1px solid rgba(215,180,106,.35);
+  border-radius: 12px;
+  background: rgba(13, 12, 10, .58);
+  color: #f3eee5;
+  box-shadow: 0 8px 28px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.09);
+  -webkit-backdrop-filter: blur(17px) saturate(125%);
+  backdrop-filter: blur(17px) saturate(125%);
+  transition: background .35s ease, border-color .35s ease, transform .35s ease;
+}
+
+.category-card-copy::before {
+  content: "THE DHYSEM EDIT";
+  display: block;
+  margin-bottom: 8px;
+  color: #d7b46a;
+  font: 700 7px/1.2 var(--sans);
+  letter-spacing: .2em;
+}
+
+.category-card-copy strong {
+  display: block;
+  margin: 0 0 7px;
+  color: #fffaf1;
+  font: 500 clamp(17px, 1.55vw, 22px)/1.15 var(--serif);
+  letter-spacing: -.02em;
+}
+
+.category-card-copy small {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  color: rgba(243,238,229,.78);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.category-card-copy small b {
+  display: grid;
+  flex: 0 0 25px;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border: 1px solid rgba(215,180,106,.55);
+  border-radius: 50%;
+  color: #e4c47e;
+  font-size: 14px;
+  font-weight: 400;
+  transition: color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.category-card:hover .category-card-copy,
+.category-card.active .category-card-copy {
+  background: rgba(19, 17, 13, .72);
+  border-color: rgba(215,180,106,.62);
+}
+
+.category-card:hover .category-card-copy small b,
+.category-card.active .category-card-copy small b {
+  color: #100e0a;
+  background: #d7b46a;
+  transform: rotate(45deg);
+}
+
+.category-card:focus-visible {
+  outline: 2px solid #e5c77f;
+  outline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .category-cards { gap: 13px; }
+  .category-card { aspect-ratio: .88; }
+  .category-card-copy { left: 9px; right: 9px; bottom: 9px; padding: 14px 12px 12px; }
+  .category-card-copy strong { font-size: 18px; }
+}
+
+@media (max-width: 700px) {
+  .category-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .category-card { aspect-ratio: .9; border-radius: 13px; }
+  .category-card-copy { left: 8px; right: 8px; bottom: 8px; padding: 12px 10px 10px; border-radius: 9px; }
+  .category-card-copy::before { font-size: 6px; margin-bottom: 6px; }
+  .category-card-copy strong { font-size: 16px; margin-bottom: 5px; }
+  .category-card-copy small { font-size: 8px; }
+  .category-card-copy small b { flex-basis: 22px; width: 22px; height: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-card,
+  .category-image,
+  .category-card-copy,
+  .category-card-copy small b {
+    transition: none !important;
+  }
+  .category-card:hover,
+  .category-card.active { transform: none; }
+  .category-card:hover .category-image,
+  .category-card.active .category-image { transform: none; }
+}
+
+
+/* Keep the product section clear of the sticky navigation after category selection. */
+#shop {
+  scroll-margin-top: 110px;
+}
+
+@media (max-width: 768px) {
+  #shop {
+    scroll-margin-top: 86px;
+  }
+}
+/* =========================================
+   DHYSEM ï¿½ COMPACT GLASS PRODUCT CARDS
+   ========================================= */
+
+.product-grid {
+  gap: 28px 18px;
+}
+
+.product-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(215, 180, 106, .20);
+  border-radius: 15px;
+  padding: 0 0 12px;
+  background: rgba(23, 21, 18, .76);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035),
+              0 8px 24px rgba(0,0,0,.16);
+  transition: transform .3s ease,
+              border-color .3s ease,
+              box-shadow .3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(215, 180, 106, .58);
+  box-shadow: 0 15px 35px rgba(0,0,0,.32),
+              0 0 18px rgba(215,180,106,.07);
+}
+
+.product-visual {
+  aspect-ratio: 1.04;
+  overflow: hidden;
+  background: linear-gradient(145deg, #211e19, #100f0d);
+  border-radius: 14px 14px 0 0;
+}
+
+.product-visual img {
+  transition: transform .65s cubic-bezier(.2,.7,.2,1),
+              filter .4s ease;
+}
+
+.product-card:hover .product-visual img {
+  transform: scale(1.055);
+  filter: saturate(1.05);
+}
+
+.product-badge {
+  top: 10px;
+  left: 10px;
+  padding: 6px 9px;
+  border-radius: 30px;
+  font-size: 7px;
+  letter-spacing: .12em;
+  box-shadow: 0 3px 12px rgba(0,0,0,.2);
+}
+
+.wishlist {
+  width: 30px;
+  height: 30px;
+  top: 9px;
+  right: 9px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.quick-add {
+  left: 9px;
+  right: 9px;
+  bottom: 9px;
+  padding: 10px 13px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 8px;
+  background: rgba(215,180,106,.94);
+  color: #090909;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 9px;
+  letter-spacing: .09em;
+}
+
+.product-info {
+  padding: 11px 12px 0;
+}
+
+.product-category {
+  font-size: 7px;
+  letter-spacing: .17em;
+  margin-bottom: 5px;
+}
+
+.product-name-row {
+  align-items: center;
+  gap: 5px;
+}
+
+.product-name {
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.rating {
+  font-size: 8px;
+  margin-top: 0;
+}
+
+.product-detail {
+  font-size: 9px;
+  line-height: 1.45;
+  margin: 5px 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-bottom {
+  padding-top: 2px;
+}
+
+.price {
+  font-size: 11px;
+}
+
+@media (max-width: 700px) {
+  .product-grid {
+    gap: 19px 11px;
+  }
+
+  .product-card {
+    border-radius: 12px;
+    padding-bottom: 10px;
+  }
+
+  .product-visual {
+    aspect-ratio: .98;
+    border-radius: 11px 11px 0 0;
+  }
+
+  .product-info {
+    padding: 9px 9px 0;
+  }
+
+  .product-name {
+    font-size: 13px;
+  }
+
+  .product-detail {
+    font-size: 8px;
+    margin: 4px 0 7px;
+  }
+
+  .quick-add {
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    padding: 8px 9px;
+    font-size: 8px;
+  }
+
+  .wishlist {
+    width: 27px;
+    height: 27px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-visual img,
+  .quick-add {
+    transition: none !important;
+  }
+}
+
+/* Dhysem clickable product cards */
+.product-card {
+  cursor: pointer;
+}
+
+.product-card:focus-visible {
+  outline: 2px solid #d7b46a;
+  outline-offset: 4px;
+}
+
+/* =====================================================
+   DHYSEM â€” CINEMATIC OUR STORY REDESIGN
+   ===================================================== */
+
+.ritual-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  min-height: 590px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0b0a09;
+  border-top: 1px solid rgba(215,180,106,.22);
+  border-bottom: 1px solid rgba(215,180,106,.22);
+  scroll-margin-top: 80px;
+}
+
+/* Editorial image panel */
+.ritual-image {
+  position: relative;
+  min-height: 590px;
+  overflow: hidden;
+  isolation: isolate;
+  background-position: center;
+  background-size: cover;
+  filter: none;
+}
+
+.ritual-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.04);
+  animation: dhysemStoryImage 18s ease-in-out infinite alternate;
+}
+
+.ritual-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 65%, rgba(11,10,9,.48) 100%),
+    linear-gradient(0deg, rgba(8,8,8,.35), transparent 45%);
+  pointer-events: none;
+}
+
+/* Floating editorial label */
+.ritual-image {
+  display: flex;
+  align-items: flex-end;
+}
+
+.ritual-image::selection {
+  background: #d7b46a;
+  color: #090909;
+}
+
+/* Story text panel */
+.ritual-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(45px, 7vw, 105px);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 90% 12%, rgba(215,180,106,.13), transparent 42%),
+    radial-gradient(ellipse at 5% 95%, rgba(112,81,58,.13), transparent 42%),
+    #0d0c0a;
+  animation: dhysemStoryReveal 1.1s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.ritual-copy::before {
+  content: "DHYSEM";
+  position: absolute;
+  right: -18px;
+  top: 12px;
+  color: rgba(215,180,106,.045);
+  font-family: Georgia, serif;
+  font-size: clamp(75px, 10vw, 145px);
+  letter-spacing: -.08em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.ritual-copy::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  left: 0;
+  width: 2px;
+  height: 76%;
+  background: linear-gradient(
+    transparent,
+    rgba(215,180,106,.55),
+    transparent
+  );
+}
+
+.ritual-copy .eyebrow {
+  position: relative;
+  color: #d7b46a;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .27em;
+  margin-bottom: 27px;
+}
+
+.ritual-copy h2 {
+  position: relative;
+  max-width: 560px;
+  color: #f3eee5;
+  font-family: var(--serif);
+  font-size: clamp(43px, 5vw, 70px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  margin: 0 0 26px;
+}
+
+.ritual-copy h2 em {
+  color: #d7b46a;
+  font-weight: 400;
+}
+
+.ritual-copy > p:not(.eyebrow) {
+  position: relative;
+  max-width: 440px;
+  color: #b9afa2;
+  font-size: 13px;
+  line-height: 2;
+  margin: 0 0 32px;
+}
+
+.ritual-copy .button-light {
+  position: relative;
+  min-height: 48px;
+  padding: 15px 23px;
+  border: 1px solid #d7b46a;
+  border-radius: 2px;
+  background: #d7b46a;
+  color: #090909;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: background .3s ease, transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.ritual-copy .button-light:hover {
+  background: #ecd49a;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(215,180,106,.18);
+}
+
+.ritual-signature {
+  position: relative;
+  margin-top: 38px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(215,180,106,.2);
+  color: #b8aa95;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: .02em;
+}
+
+.ritual-signature span {
+  display: inline-block;
+  margin-left: 7px;
+  color: #d7b46a;
+  animation: dhysemHeart 3s ease-in-out infinite;
+}
+
+/* Motion */
+@keyframes dhysemStoryImage {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.15); }
+}
+
+@keyframes dhysemStoryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dhysemHeart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.16); }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .ritual-section {
+    grid-template-columns: 1fr 1fr;
+    min-height: 510px;
+  }
+
+  .ritual-image {
+    min-height: 510px;
+  }
+
+  .ritual-copy {
+    padding: 45px 8%;
+  }
+
+  .ritual-copy h2 {
+    font-size: clamp(38px, 5vw, 53px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .ritual-section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .ritual-image {
+    min-height: 370px;
+    height: 370px;
+  }
+
+  .ritual-image::after {
+    background: linear-gradient(
+      0deg,
+      rgba(8,8,8,.35),
+      transparent 65%
+    );
+  }
+
+  .ritual-copy {
+    padding: 55px 8% 48px;
+  }
+
+  .ritual-copy::before {
+    font-size: 85px;
+    top: 5px;
+  }
+
+  .ritual-copy h2 {
+    font-size: clamp(42px, 11vw, 55px);
+  }
+
+  .ritual-copy > p:not(.eyebrow) {
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  .ritual-signature {
+    margin-top: 30px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .ritual-image::before,
+  .ritual-copy,
+  .ritual-signature span {
+    animation: none !important;
+  }
+
+  .ritual-copy .button-light {
+    transition: none !important;
+  }
+}
+
+
+/* =========================================================
+   DHYSEM â€” EDITORIAL OUR STORY V2
+   Two-image diagonal composition
+   ========================================================= */
+
+.dhysem-story-v2 {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: center;
+  gap: clamp(45px, 7vw, 105px);
+  min-height: 690px;
+  padding: 100px 9%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 22% 48%, rgba(130, 91, 43, .17), transparent 42%),
+    radial-gradient(ellipse at 90% 10%, rgba(215, 180, 106, .07), transparent 34%),
+    linear-gradient(120deg, #090909 0%, #11100e 55%, #0b0a09 100%);
+  border-top: 1px solid rgba(215,180,106,.14);
+  border-bottom: 1px solid rgba(215,180,106,.14);
+}
+
+.dhysem-story-v2::before {
+  content: "";
+  position: absolute;
+  inset: 22px 3%;
+  border: 1px solid rgba(215,180,106,.10);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dhysem-story-gallery {
+  position: relative;
+  width: 100%;
+  max-width: 570px;
+  height: 530px;
+  margin: 0 auto;
+}
+
+.dhysem-story-photo {
+  position: absolute;
+  overflow: hidden;
+  background-color: #211a14;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(215,180,106,.38);
+  box-shadow: 0 28px 70px rgba(0,0,0,.48);
+  transition: transform .8s cubic-bezier(.2,.7,.2,1), box-shadow .5s;
+}
+
+.dhysem-story-photo-primary {
+  top: 0;
+  left: 0;
+  width: 69%;
+  height: 76%;
+  background-image:
+    linear-gradient(180deg, transparent 60%, rgba(0,0,0,.48)),
+    url('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1000&q=85');
+  background-position: center;
+  animation: dhysemStoryPrimary 1s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.dhysem-story-photo-secondary {
+  right: 0;
+  bottom: 0;
+  width: 57%;
+  height: 60%;
+  background-image:
+    linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4)),
+    url('https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=900&q=85');
+  background-position: center;
+  animation: dhysemStorySecondary 1.15s .15s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.dhysem-story-photo:hover {
+  box-shadow: 0 35px 85px rgba(0,0,0,.65), 0 0 25px rgba(215,180,106,.10);
+}
+
+.dhysem-photo-caption,
+.dhysem-photo-number {
+  position: absolute;
+  bottom: 18px;
+  color: #f3eee5;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.dhysem-photo-caption {
+  left: 17px;
+}
+
+.dhysem-photo-number {
+  right: 16px;
+  color: #e5c987;
+}
+
+.dhysem-story-seal {
+  position: absolute;
+  z-index: 3;
+  top: 39%;
+  left: 57%;
+  width: 116px;
+  height: 116px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(215,180,106,.75);
+  border-radius: 50%;
+  background: rgba(12,11,9,.94);
+  color: #d7b46a;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0,0,0,.45);
+  animation: dhysemSealReveal 1s .7s both;
+}
+
+.dhysem-story-seal span {
+  font-size: 6px;
+  letter-spacing: .22em;
+}
+
+.dhysem-story-seal strong {
+  margin: 7px 0;
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: .92;
+}
+
+.dhysem-story-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+  padding: 20px 0;
+  animation: dhysemStoryTextReveal .9s .2s both;
+}
+
+.dhysem-story-copy .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #d7b46a;
+  font-size: 9px;
+  letter-spacing: .25em;
+  margin-bottom: 25px;
+}
+
+.dhysem-story-line {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: #d7b46a;
+}
+
+.dhysem-story-copy h2 {
+  max-width: 560px;
+  margin: 0;
+  color: #f3eee5;
+  font-family: var(--serif);
+  font-size: clamp(48px, 5.1vw, 72px);
+  font-weight: 500;
+  line-height: .99;
+  letter-spacing: -.035em;
+}
+
+.dhysem-story-copy h2 em {
+  display: inline-block;
+  margin-top: 8px;
+  color: #d7b46a;
+  font-weight: 400;
+}
+
+.dhysem-story-description {
+  max-width: 430px;
+  margin: 25px 0 27px;
+  color: #b8afa4;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.dhysem-story-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 15px;
+  max-width: 510px;
+  margin: 28px 0 30px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(215,180,106,.2);
+  border-bottom: 1px solid rgba(215,180,106,.2);
+}
+
+.dhysem-story-values div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.dhysem-story-values span {
+  color: #d7b46a;
+  font-family: var(--serif);
+  font-size: 17px;
+}
+
+.dhysem-story-values strong {
+  color: #f3eee5;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.dhysem-story-values small {
+  color: #92877b;
+  font-size: 8px;
+  line-height: 1.6;
+}
+
+.dhysem-story-copy .button-light {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 25px;
+  padding: 15px 22px;
+  border: 1px solid #d7b46a;
+  background: #d7b46a;
+  color: #090909;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  transition: all .3s ease;
+}
+
+.dhysem-story-copy .button-light:hover {
+  background: #ecd49a;
+  border-color: #ecd49a;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(215,180,106,.15);
+}
+
+.dhysem-story-copy .ritual-signature {
+  max-width: 430px;
+  margin-top: 26px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(215,180,106,.17);
+  color: #b8aa95;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+}
+
+.dhysem-story-copy .ritual-signature span {
+  color: #d7b46a;
+  animation: dhysemHeart 3s ease-in-out infinite;
+}
+
+/* Editorial entrance animations */
+
+@keyframes dhysemStoryPrimary {
+  from { opacity: 0; transform: translate(-20px, 20px) scale(.96); }
+  to { opacity: 1; transform: translate(0,0) scale(1); }
+}
+
+@keyframes dhysemStorySecondary {
+  from { opacity: 0; transform: translate(22px, 25px) scale(.96); }
+  to { opacity: 1; transform: translate(0,0) scale(1); }
+}
+
+@keyframes dhysemStoryTextReveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dhysemSealReveal {
+  from { opacity: 0; transform: scale(.7) rotate(-15deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes dhysemHeart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.16); }
+}
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+  .dhysem-story-v2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    padding: 85px 6%;
+  }
+
+  .dhysem-story-gallery {
+    height: 450px;
+  }
+
+  .dhysem-story-copy h2 {
+    font-size: clamp(43px, 5vw, 59px);
+  }
+
+  .dhysem-story-values {
+    gap: 9px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .dhysem-story-v2 {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding: 75px 7% 65px;
+  }
+
+  .dhysem-story-v2::before {
+    inset: 12px 3%;
+  }
+
+  .dhysem-story-gallery {
+    width: 100%;
+    max-width: 440px;
+    height: 410px;
+  }
+
+  .dhysem-story-photo-primary {
+    width: 72%;
+    height: 77%;
+  }
+
+  .dhysem-story-photo-secondary {
+    width: 57%;
+    height: 58%;
+  }
+
+  .dhysem-story-seal {
+    width: 94px;
+    height: 94px;
+    left: 56%;
+    top: 40%;
+  }
+
+  .dhysem-story-seal strong {
+    font-size: 16px;
+  }
+
+  .dhysem-story-copy {
+    padding: 0 2px;
+  }
+
+  .dhysem-story-copy h2 {
+    font-size: clamp(45px, 11vw, 61px);
+  }
+
+  .dhysem-story-description {
+    font-size: 11px;
+  }
+
+  .dhysem-story-values {
+    gap: 10px;
+  }
+
+  .dhysem-story-values strong {
+    font-size: 8px;
+  }
+
+  .dhysem-story-values small {
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 380px) {
+  .dhysem-story-gallery {
+    height: 350px;
+  }
+
+  .dhysem-story-values {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .dhysem-story-values div {
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    align-items: center;
+  }
+
+  .dhysem-story-values small {
+    grid-column: 2;
+  }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .dhysem-story-v2 *,
+  .dhysem-story-v2 *::before,
+  .dhysem-story-v2 *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* =========================================
+   DHYSEM OUR STORY
+========================================= */
+
+.dhysem-story {
+  position: relative;
+  overflow: hidden;
+  background: #090909;
+  color: #f3eee5;
+  padding: 105px 7%;
+}
+
+.dhysem-story-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: center;
+  gap: clamp(45px, 6vw, 90px);
+}
+
+.dhysem-story-visual {
+  position: relative;
+  min-width: 0;
+  min-height: 590px;
+}
+
+.story-image-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 490px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, transparent 55%, #0009),
+    url("https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=85")
+    center / cover;
+}
+
+.story-image-detail {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 43%;
+  height: 275px;
+  border: 9px solid #090909;
+  background:
+    url("https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=85")
+    center / cover;
+}
+
+.story-image-label {
+  position: absolute;
+  left: 25px;
+  bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.story-image-label span {
+  color: #e0c58d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.story-image-label strong {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 23px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.story-roundel {
+  position: absolute;
+  z-index: 2;
+  top: 65px;
+  right: 1%;
+  width: 142px;
+  height: 142px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #d7b46a;
+  color: #17130d;
+  text-align: center;
+  transform: rotate(9deg);
+}
+
+.story-roundel span {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .18em;
+}
+
+.story-roundel strong {
+  margin: 7px 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 23px;
+  line-height: .95;
+  font-weight: 600;
+}
+
+.story-image-index {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #d7b46a;
+  font-size: 11px;
+  letter-spacing: .1em;
+}
+
+.story-image-index i {
+  width: 42px;
+  height: 1px;
+  background: #76613b;
+}
+
+.dhysem-story-copy {
+  min-width: 0;
+  padding: 22px 0;
+}
+
+.story-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 23px;
+  color: #d7b46a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .19em;
+}
+
+.story-eyebrow span {
+  width: 27px;
+  height: 1px;
+  background: #d7b46a;
+}
+
+.dhysem-story-copy h2 {
+  margin: 0;
+  color: #f5f0e8;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(48px, 5.2vw, 72px);
+  line-height: .99;
+  letter-spacing: -.035em;
+  font-weight: 500;
+}
+
+.dhysem-story-copy h2 em {
+  color: #d7b46a;
+  font-weight: 500;
+}
+
+.story-lead {
+  max-width: 510px;
+  margin: 25px 0 13px;
+  color: #e3ddd2;
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 500;
+}
+
+.story-description {
+  max-width: 510px;
+  margin: 0;
+  color: #bcb5aa;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.story-pillars {
+  display: grid;
+  gap: 0;
+  margin-top: 29px;
+  border-top: 1px solid #ffffff20;
+}
+
+.story-pillar {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 13px;
+  padding: 16px 0;
+  border-bottom: 1px solid #ffffff20;
+}
+
+.story-pillar > span {
+  padding-top: 2px;
+  color: #d7b46a;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 20px;
+}
+
+.story-pillar strong {
+  display: block;
+  color: #f3eee5;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.story-pillar p {
+  margin: 4px 0 0;
+  color: #bcb5aa;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.story-cta {
+  min-height: 51px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  margin-top: 29px;
+  padding: 0 21px;
+  background: #d7b46a;
+  color: #17130d;
+  font-size: 12px;
+  font-weight: 800;
+  transition: background .2s, transform .2s;
+}
+
+.story-cta:hover {
+  background: #e6c982;
+  transform: translateY(-2px);
+}
+
+.story-cta span {
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.story-signature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+  color: #d8c6a2;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px;
+  font-style: italic;
+}
+
+.story-signature span {
+  color: #d7b46a;
+  font-size: 17px;
+}
+
+/* Tablet */
+
+@media (max-width: 950px) {
+  .dhysem-story {
+    padding: 80px 5%;
+  }
+
+  .dhysem-story-inner {
+    gap: 38px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dhysem-story-visual {
+    min-height: 490px;
+  }
+
+  .story-image-main {
+    height: 410px;
+    width: 82%;
+  }
+
+  .story-image-detail {
+    height: 220px;
+    width: 46%;
+  }
+
+  .story-roundel {
+    width: 115px;
+    height: 115px;
+  }
+
+  .story-roundel strong {
+    font-size: 19px;
+  }
+
+  .dhysem-story-copy h2 {
+    font-size: 53px;
+  }
+
+  .story-lead {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .dhysem-story {
+    padding: 62px 6% 66px;
+  }
+
+  .dhysem-story-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .dhysem-story-visual {
+    min-height: 410px;
+    margin: 0 3%;
+  }
+
+  .story-image-main {
+    width: 79%;
+    height: 350px;
+  }
+
+  .story-image-detail {
+    width: 43%;
+    height: 190px;
+    border-width: 6px;
+  }
+
+  .story-roundel {
+    top: 38px;
+    right: -2%;
+    width: 105px;
+    height: 105px;
+  }
+
+  .story-roundel strong {
+    font-size: 18px;
+  }
+
+  .story-image-label {
+    left: 15px;
+    bottom: 17px;
+  }
+
+  .story-image-label strong {
+    font-size: 19px;
+  }
+
+  .story-image-index {
+    bottom: 4px;
+  }
+
+  .dhysem-story-copy {
+    padding: 0;
+  }
+
+  .story-eyebrow {
+    font-size: 10px;
+    margin-bottom: 17px;
+  }
+
+  .dhysem-story-copy h2 {
+    font-size: clamp(46px, 12vw, 60px);
+  }
+
+  .story-lead {
+    margin-top: 21px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .story-description {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .story-pillars {
+    margin-top: 23px;
+  }
+
+  .story-pillar {
+    padding: 14px 0;
+  }
+
+  .story-pillar strong {
+    font-size: 19px;
+  }
+
+  .story-pillar p {
+    font-size: 12px;
+  }
+
+  .story-cta {
+    width: 100%;
+    margin-top: 25px;
+  }
+}
+
+
+/* DHYSEM GOLD BACKGROUND TOUCH */
+.dhysem-story{background:radial-gradient(ellipse at 18% 50%,rgba(215,180,106,.07) 0%,transparent 48%),linear-gradient(115deg,#0d0c0a 0%,#13110e 52%,#0b0a09 100%)!important;border-top:1px solid rgba(215,180,106,.12);border-bottom:1px solid rgba(215,180,106,.12)}
+.dhysem-story-v2{background:radial-gradient(ellipse at 18% 50%,rgba(215,180,106,.07) 0%,transparent 48%),linear-gradient(115deg,#0d0c0a 0%,#13110e 52%,#0b0a09 100%)!important;border-top:1px solid rgba(215,180,106,.12);border-bottom:1px solid rgba(215,180,106,.12)}
+.bf-product-layout{background:radial-gradient(ellipse at 12% 20%,rgba(215,180,106,.06) 0%,transparent 42%),radial-gradient(ellipse at 88% 78%,rgba(215,180,106,.035) 0%,transparent 38%),linear-gradient(135deg,#0d0c0a 0%,#13110e 55%,#0b0a09 100%)!important;border-top:1px solid rgba(215,180,106,.10);border-bottom:1px solid rgba(215,180,106,.10)}
+
+/* =========================================
+   DHYSEM â€” REFINED PRODUCT CARD PRESENTATION
+   ========================================= */
+
+.product-grid {
+  column-gap: 20px;
+  row-gap: 30px;
+}
+
+.product-card {
+  min-width: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(215, 180, 106, 0.19);
+  border-radius: 15px;
+  background: rgba(23, 21, 18, 0.82);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(215, 180, 106, 0.55);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
+}
+
+.product-card:focus-visible {
+  outline: 2px solid #d7b46a;
+  outline-offset: 4px;
+}
+
+.product-visual {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #211e19;
+}
+
+.product-visual img {
+  transition: transform 0.6s ease;
+}
+
+.product-card:hover .product-visual img {
+  transform: scale(1.045);
+}
+
+.product-badge {
+  top: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  border: 1px solid rgba(215, 180, 106, 0.3);
+  border-radius: 30px;
+  background: rgba(18, 16, 13, 0.82);
+  color: #e4c98f;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.product-info {
+  padding: 14px 14px 13px;
+}
+
+.product-category {
+  margin-bottom: 7px;
+  color: #b89c6a;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.product-name-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.product-name {
+  min-width: 0;
+  margin: 0;
+  color: #f4eee3;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.rating {
+  flex-shrink: 0;
+  color: #d7b46a;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.rating span {
+  color: rgba(239, 232, 218, 0.55);
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 8px;
+}
+
+.price-current {
+  color: #e5c98f;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+.product-price .price-old {
+  color: rgba(239, 232, 218, 0.42);
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.product-detail {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 9px 0 0;
+  color: rgba(239, 232, 218, 0.63);
+  font-size: 11px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 8px;
+  padding-top: 8px;
+}
+
+.product-bottom .swatches {
+  display: flex;
+  gap: 5px;
+}
+
+.product-bottom .swatches i {
+  width: 11px;
+  height: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+.quick-add {
+  z-index: 2;
+  min-height: 40px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.045em;
+}
+
+.wishlist {
+  z-index: 3;
+}
+
+.product-detail-link {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .product-grid {
+    column-gap: 11px;
+    row-gap: 20px;
+  }
+
+  .product-card {
+    border-radius: 12px;
+  }
+
+  .product-visual {
+    aspect-ratio: 0.96;
+  }
+
+  .product-info {
+    padding: 11px 10px 10px;
+  }
+
+  .product-category {
+    margin-bottom: 5px;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+  }
+
+  .product-name-row {
+    gap: 4px;
+  }
+
+  .product-name {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .rating {
+    font-size: 8px;
+  }
+
+  .product-price {
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .price-current {
+    font-size: 15px;
+  }
+
+  .product-price .price-old {
+    font-size: 10px;
+  }
+
+  .product-detail {
+    margin-top: 7px;
+    font-size: 9px;
+    line-height: 1.45;
+  }
+
+  .quick-add {
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    min-height: 35px;
+    padding: 8px 9px;
+    font-size: 9px;
+  }
+
+  .wishlist {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* ==========================================
+   PHASE 1 - PRODUCT TYPOGRAPHY REFINEMENT
+   ========================================== */
+
+.product-info {
+    padding: 18px 16px 17px;
+}
+
+.product-category {
+    font-size: 10px;
+    letter-spacing: 0.17em;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    color: #c6a96b;
+}
+
+.product-name {
+    font-size: 19px;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+}
+
+.product-price {
+    margin-top: 8px;
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+}
+
+.product-price .price-current {
+    font-size: 19px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #e2c58b;
+}
+
+.product-price .price-old {
+    font-size: 12px;
+    opacity: 0.65;
+}
+
+.product-detail {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.65;
+    color: rgba(235, 229, 216, 0.72);
+}
+
+@media (max-width: 700px) {
+    .product-info {
+        padding: 14px 12px 14px;
+    }
+
+    .product-name {
+        font-size: 16px;
+    }
+
+    .product-price .price-current {
+        font-size: 17px;
+    }
+
+    .product-detail {
+        font-size: 11px;
+    }
+}
+
+/* ==========================================
+   DHYSEM PHASE 1 - PREMIUM PRODUCT CARD REFINEMENT
+   ========================================== */
+
+/* Product grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 22px;
+    row-gap: 32px;
+}
+
+/* Product card */
+.product-card {
+    position: relative;
+    overflow: hidden;
+    background: #151515;
+    border: 1px solid rgba(198, 169, 107, 0.16);
+    border-radius: 10px;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(198, 169, 107, 0.55);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Product image */
+.product-visual {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: #202020;
+}
+
+.product-visual img {
+    transition: transform 0.6s ease;
+}
+
+.product-card:hover .product-visual img {
+    transform: scale(1.045);
+}
+
+/* Product information */
+.product-info {
+    padding: 18px 16px 17px;
+}
+
+.product-category {
+    margin-bottom: 8px;
+    color: #c6a96b;
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.product-name {
+    color: #f3eee5;
+    font-size: 19px;
+    line-height: 1.35;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+}
+
+.product-price {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 9px;
+}
+
+.product-price .price-current {
+    color: #e2c58b;
+    font-size: 19px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.product-price .price-old {
+    color: rgba(235, 229, 216, 0.55);
+    font-size: 12px;
+    text-decoration: line-through;
+}
+
+.product-detail {
+    margin-top: 8px;
+    color: rgba(235, 229, 216, 0.72);
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+/* Product badge */
+.product-badge {
+    border: 1px solid rgba(226, 197, 139, 0.45);
+    border-radius: 3px;
+    background: rgba(15, 15, 15, 0.88);
+    color: #e2c58b;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+}
+
+/* Add to bag */
+.quick-add {
+    min-height: 43px;
+    border: 1px solid #c6a96b;
+    border-radius: 4px;
+    background: #c6a96b;
+    color: #171411;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+}
+
+.quick-add:hover {
+    background: transparent;
+    color: #e2c58b;
+}
+
+/* Wishlist */
+.wishlist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(226, 197, 139, 0.35);
+    background: rgba(15, 15, 15, 0.75);
+    color: #e2c58b;
+    transition: all 0.25s ease;
+}
+
+.wishlist:hover {
+    border-color: #c6a96b;
+    background: rgba(198, 169, 107, 0.15);
+}
+
+/* Keyboard accessibility */
+.product-card:focus-visible,
+.quick-add:focus-visible,
+.wishlist:focus-visible {
+    outline: 2px solid #e2c58b;
+    outline-offset: 3px;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+    .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px 18px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 12px;
+    }
+
+    .product-info {
+        padding: 14px 12px;
+    }
+
+    .product-name {
+        font-size: 16px;
+        line-height: 1.35;
+    }
+
+    .product-price .price-current {
+        font-size: 17px;
+    }
+
+    .product-detail {
+        font-size: 11px;
+    }
+
+    .quick-add {
+        min-height: 39px;
+        font-size: 10px;
+    }
+}
+
+
+/* DHYSEM PHASE 2 - Keep Add to Bag visible */
+@media (min-width: 701px) {
+    .quick-add {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+/* BIGFRED TESTIMONIAL LIGHT OVERRIDES */
+.bf-testimonials {
+  background: #EEF1E9;
+  color: #453D32;
+}
+
+.bf-testimonials .bf-testimonials-heading h2,
+.bf-testimonials .bf-average strong,
+.bf-testimonials .bf-review-cta h3,
+.bf-testimonials .bf-review-form h3 {
+  color: #453D32;
+}
+
+.bf-testimonials .bf-testimonials-heading p,
+.bf-testimonials .bf-review-cta p,
+.bf-testimonials .bf-average > span:last-child,
+.bf-testimonials .bf-carousel-controls span,
+.bf-testimonials .bf-form-note,
+.bf-testimonials .bf-review-message {
+  color: #756E62;
+}
+
+.bf-testimonials .bf-review-stars,
+.bf-testimonials .bf-rating-picker button.selected {
+  color: #B88A50;
+}
+
+.bf-testimonials .bf-review-empty-stars {
+  color: #E5DED2;
+}
+
+.bf-testimonials .bf-review-filters button {
+  border-color: #E5DED2;
+  background: transparent;
+  color: #5E6958;
+}
+
+.bf-testimonials .bf-review-filters button:hover,
+.bf-testimonials .bf-review-filters button.active {
+  border-color: #71816A;
+  background: #71816A;
+  color: #FFFCF7;
+}
+
+.bf-testimonials .bf-review-card,
+.bf-testimonials .bf-review-form {
+  border-color: #E5DED2;
+  background: #FFFCF7;
+  color: #453D32;
+  box-shadow: 0 8px 28px rgb(68 43 31 / 4%);
+}
+
+.bf-testimonials .bf-review-card:hover {
+  box-shadow: 0 14px 32px rgb(68 43 31 / 8%);
+}
+
+.bf-testimonials .bf-review-quote {
+  color: #B88A50;
+}
+
+.bf-testimonials .bf-review-text,
+.bf-testimonials .bf-reviewed-product strong,
+.bf-testimonials .bf-review-author-info strong {
+  color: #453D32;
+}
+
+.bf-testimonials .bf-reviewed-product {
+  border-color: #E5DED2;
+}
+
+.bf-testimonials .bf-reviewed-product span,
+.bf-testimonials .bf-review-author-info span {
+  color: #756E62;
+}
+
+.bf-testimonials .bf-review-avatar {
+  background: #EDE5D8;
+  color: #453D32;
+}
+
+.bf-testimonials .bf-review-cta {
+  background: #E3E9DE;
+  color: #453D32;
+}
+
+.bf-testimonials .bf-review-form label {
+  color: #5E6958;
+}
+
+.bf-testimonials .bf-review-form input,
+.bf-testimonials .bf-review-form select,
+.bf-testimonials .bf-review-form textarea {
+  border-color: #E5DED2;
+  background: #FFFFFF;
+  color: #453D32;
+}
+
+.bf-testimonials .bf-review-form input::placeholder,
+.bf-testimonials .bf-review-form textarea::placeholder {
+  color: #8A8276;
+}
+
+.bf-testimonials .bf-review-form input:focus,
+.bf-testimonials .bf-review-form select:focus,
+.bf-testimonials .bf-review-form textarea:focus {
+  outline-color: #9BAA91;
+}
+/* =========================================================
+   DHYSEM REVIEW SECTION — WARM WHITE AND GOLD
+   Scoped exclusively to the customer review section
+   ========================================================= */
+
+.bf-testimonials {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(201,169,97,0.14) 0%, transparent 60%),
+    linear-gradient(180deg, #FBF8F1 0%, #FFFFFF 50%, #FBF8F1 100%);
+  color: #14100B;
+}
+
+.bf-testimonials::before,
+.bf-testimonials::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  pointer-events: none;
+}
+
+.bf-testimonials::before {
+  top: 0;
+  background: linear-gradient(
+    180deg,
+    #C9A961 0,
+    rgba(201,169,97,0.25) 1px,
+    transparent 80px
+  );
+}
+
+.bf-testimonials::after {
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    #C9A961 0,
+    rgba(201,169,97,0.25) 1px,
+    transparent 80px
+  );
+}
+
+.bf-testimonials .bf-testimonials-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.bf-testimonials .bf-testimonials-heading h2,
+.bf-testimonials .bf-average strong,
+.bf-testimonials .bf-review-cta h3,
+.bf-testimonials .bf-review-form h3 {
+  color: #14100B;
+}
+
+.bf-testimonials .bf-eyebrow {
+  color: #9A7B2F;
+}
+
+.bf-testimonials .bf-testimonials-heading p,
+.bf-testimonials .bf-review-cta p,
+.bf-testimonials .bf-average > span:last-child,
+.bf-testimonials .bf-carousel-controls span,
+.bf-testimonials .bf-form-note,
+.bf-testimonials .bf-review-message {
+  color: #5A5245;
+}
+
+.bf-testimonials .bf-review-stars,
+.bf-testimonials .bf-rating-picker button.selected {
+  color: #C9A961;
+}
+
+.bf-testimonials .bf-review-empty-stars {
+  color: rgba(201,169,97,0.30);
+}
+
+.bf-testimonials .bf-review-card,
+.bf-testimonials .bf-review-form {
+  border: 1px solid rgba(201,169,97,0.35);
+  background: #FFFFFF;
+  color: #14100B;
+  box-shadow: 0 8px 30px rgba(120,90,30,0.08);
+}
+
+.bf-testimonials .bf-review-card:hover {
+  box-shadow: 0 14px 34px rgba(120,90,30,0.13);
+}
+
+.bf-testimonials .bf-review-quote {
+  color: rgba(201,169,97,0.40);
+}
+
+.bf-testimonials .bf-review-text,
+.bf-testimonials .bf-reviewed-product strong,
+.bf-testimonials .bf-review-author-info strong {
+  color: #5A5245;
+}
+
+.bf-testimonials .bf-reviewed-product {
+  border-color: rgba(201,169,97,0.25);
+}
+
+.bf-testimonials .bf-reviewed-product span,
+.bf-testimonials .bf-review-author-info span {
+  color: #9A7B2F;
+}
+
+.bf-testimonials .bf-review-avatar {
+  background: #F3EAD3;
+  color: #8A6D2B;
+}
+
+.bf-testimonials .bf-review-filters button {
+  border: 1px solid rgba(201,169,97,0.55);
+  background: #FFFFFF;
+  color: #14100B;
+}
+
+.bf-testimonials .bf-review-filters button:hover,
+.bf-testimonials .bf-review-filters button.active {
+  border-color: #C9A961;
+  background: #C9A961;
+  color: #0A0A0A;
+}
+
+.bf-testimonials .bf-review-cta {
+  border: 1px solid rgba(201,169,97,0.40);
+  background: #F7F0DE;
+  color: #14100B;
+}
+
+.bf-testimonials .bf-review-write,
+.bf-testimonials .bf-write-review,
+.bf-testimonials .bf-submit-review {
+  border: 1px solid #C9A961;
+  background: #C9A961;
+  color: #0A0A0A;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.bf-testimonials .bf-write-review:hover,
+.bf-testimonials .bf-submit-review:hover {
+  border-color: #B8923F;
+  background: #B8923F;
+  color: #0A0A0A;
+}
+
+.bf-testimonials .bf-review-form label {
+  color: #5A5245;
+}
+
+.bf-testimonials .bf-review-form input,
+.bf-testimonials .bf-review-form select,
+.bf-testimonials .bf-review-form textarea {
+  border-color: rgba(201,169,97,0.40);
+  background: #FFFFFF;
+  color: #14100B;
+}
+
+.bf-testimonials .bf-review-form input::placeholder,
+.bf-testimonials .bf-review-form textarea::placeholder {
+  color: #8A8173;
+}
+
+.bf-testimonials .bf-review-form input:focus,
+.bf-testimonials .bf-review-form select:focus,
+.bf-testimonials .bf-review-form textarea:focus {
+  outline-color: #C9A961;
+}
+/* DHYSEM NEWSLETTER SECTION — GOLD EDITION */
+.newsletter {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 45%, rgba(201,169,97,.14) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 40% at 50% 100%, rgba(201,169,97,.10) 0%, transparent 70%),
+    #0A0A0A;
+  color: #F5F0E7;
+  box-shadow: inset 0 1px 0 rgba(201,169,97,.08);
+}
+
+.newsletter::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,97,.65), transparent);
+}
+
+.newsletter::after {
+  content: "DHYSEM";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(201,169,97,.035);
+  font-family: inherit;
+  font-size: clamp(90px, 19vw, 240px);
+  font-weight: 700;
+  letter-spacing: .16em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.newsletter .newsletter-frame {
+  position: absolute;
+  z-index: 0;
+  inset: 40px;
+  border: 1px solid rgba(201,169,97,.15);
+  pointer-events: none;
+}
+
+.newsletter > *:not(.newsletter-frame) {
+  position: relative;
+  z-index: 1;
+}
+
+.newsletter .newsletter-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 24px;
+  border: 1px solid rgba(201,169,97,.65);
+  border-radius: 50%;
+  color: #C9A961;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  letter-spacing: .04em;
+  background: rgba(201,169,97,.06);
+}
+
+.newsletter .eyebrow {
+  color: #C9A961;
+  letter-spacing: .24em;
+}
+
+.newsletter h2 {
+  color: #F7F2E9;
+}
+
+.newsletter > p:not(.eyebrow) {
+  color: #C7BFB2;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.newsletter > p strong {
+  color: #D8B96F;
+  font-weight: 600;
+}
+
+.newsletter .newsletter-form {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid rgba(201,169,97,.55);
+  background: rgba(0,0,0,.28);
+  box-shadow: 0 0 55px rgba(201,169,97,.08);
+}
+
+.newsletter .newsletter-form input {
+  min-width: 0;
+  min-height: 56px;
+  color: #F7F2E9;
+  font-size: 15px;
+  background: transparent;
+}
+
+.newsletter .newsletter-form input::placeholder {
+  color: #B9AE9C;
+  opacity: 1;
+  font-size: 14px;
+}
+
+.newsletter .newsletter-form button {
+  min-height: 56px;
+  padding: 0 25px;
+  background: #C9A961;
+  color: #100F0C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background .25s ease, transform .25s ease;
+}
+
+.newsletter .newsletter-form button:hover {
+  background: #E0C681;
+}
+
+.newsletter .newsletter-note {
+  display: block;
+  margin-top: 18px;
+  color: #BDB3A4;
+  font-size: 13px;
+  letter-spacing: .025em;
+}
+
+@media (max-width: 700px) {
+  .newsletter .newsletter-frame {
+    inset: 16px;
+  }
+
+  .newsletter .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter .newsletter-form input,
+  .newsletter .newsletter-form button {
+    width: 100%;
+    min-height: 54px;
+  }
+
+  .newsletter::after {
+    font-size: 19vw;
+  }
+}
+/* END DHYSEM NEWSLETTER SECTION */
+
+/* DHYSEM NEWSLETTER CLEANUP */
+.newsletter {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.newsletter::after {
+  content: none !important;
+  display: none !important;
+}
+
+.newsletter .newsletter-frame {
+  display: none !important;
+}
+
+.newsletter .newsletter-form {
+  width: min(100%, 560px);
+  margin: 28px auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 10px;
+  padding: 0;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.newsletter .newsletter-form input {
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  padding: 0 18px;
+  border: 1px solid rgba(201,169,97,.45);
+  border-radius: 3px;
+  background: rgba(255,255,255,.055);
+  color: #F7F2E9;
+  font-size: 15px;
+  outline: none;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.newsletter .newsletter-form input:focus {
+  border-color: #C9A961;
+  background: rgba(255,255,255,.085);
+}
+
+.newsletter .newsletter-form input::placeholder {
+  color: #BDB3A4;
+  opacity: 1;
+}
+
+.newsletter .newsletter-form button {
+  min-height: 58px;
+  padding: 0 26px;
+  border: 1px solid #C9A961;
+  border-radius: 3px;
+  background: #C9A961;
+  color: #100F0C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.newsletter .newsletter-form button:hover {
+  background: #E0C681;
+  border-color: #E0C681;
+}
+
+@media (max-width: 600px) {
+  .newsletter .newsletter-form {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .newsletter .newsletter-form input,
+  .newsletter .newsletter-form button {
+    width: 100%;
+    min-height: 54px;
+  }
+}
+/* END DHYSEM NEWSLETTER CLEANUP */
+
+/* DHYSEM NEWSLETTER GOLD SOFTENING */
+.newsletter {
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 45%, rgba(201,169,97,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 40% at 50% 100%, rgba(201,169,97,.045) 0%, transparent 70%),
+    #0A0A0A !important;
+}
+/* END DHYSEM NEWSLETTER GOLD SOFTENING */
+
+/* DHYSEM FOOTER REFERENCE DESIGN */
+.site-footer {
+  display: block;
+  padding: 76px max(8%, calc((100% - 1210px) / 2)) 28px;
+  background: #080807 !important;
+  color: #EDE7DC;
+  border-top: 1px solid rgba(201,169,97,.22);
+}
+
+.site-footer .footer-main {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr .8fr;
+  gap: 55px;
+  padding-bottom: 62px;
+}
+
+.site-footer .footer-brand-column .brand {
+  display: inline-block;
+  color: #F3EEE5;
+  font-family: Georgia, serif;
+  font-size: 34px;
+  letter-spacing: -1.5px;
+}
+
+.site-footer .footer-brand-column .brand span {
+  color: #C9A961;
+}
+
+.site-footer .footer-tagline {
+  margin: 18px 0 27px;
+  color: #E8E0D4;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.site-footer .footer-tagline em {
+  color: #C9A961;
+}
+
+.site-footer .footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-footer .footer-social-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(201,169,97,.48);
+  border-radius: 50%;
+  color: #C9A961;
+  font-size: 19px;
+  transition: background .2s ease, color .2s ease;
+}
+
+.site-footer .footer-social-icon:hover {
+  background: #C9A961;
+  color: #080807;
+}
+
+.site-footer .footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.site-footer .footer-column h3 {
+  margin: 0 0 12px;
+  color: #C9A961;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.site-footer .footer-column a {
+  color: #BDB4A7;
+  font-size: 13px;
+  line-height: 1.5;
+  transition: color .2s ease;
+}
+
+.site-footer .footer-column a:hover,
+.site-footer .footer-bottom a:hover {
+  color: #C9A961;
+}
+
+.site-footer .footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(201,169,97,.20);
+}
+
+.site-footer .footer-bottom > small {
+  color: #928A7E;
+  font-size: 12px;
+}
+
+.site-footer .footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.site-footer .footer-bottom-right > a:not(.footer-back-top) {
+  color: #BDB4A7;
+  font-size: 12px;
+}
+
+.site-footer .footer-back-top {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 0;
+  border: 1px solid rgba(201,169,97,.48);
+  border-radius: 50%;
+  color: #C9A961;
+  font-size: 19px;
+  transition: background .2s ease, color .2s ease;
+}
+
+.site-footer .footer-back-top:hover {
+  background: #C9A961;
+  color: #080807;
+}
+
+@media (max-width: 800px) {
+  .site-footer {
+    padding: 55px 6% 24px;
+  }
+
+  .site-footer .footer-main {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 42px 30px;
+    padding-bottom: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 20px;
+  }
+
+  .site-footer .footer-brand-column {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer .footer-tagline {
+    font-size: 18px;
+  }
+
+  .site-footer .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .site-footer .footer-bottom-right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 15px;
+  }
+}
+/* END DHYSEM FOOTER REFERENCE DESIGN */
+
+
+/* DHYSEM FOOTER PREMIUM FINISH */
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 16% 0%, rgba(184, 145, 75, 0.12), transparent 43%),
+    radial-gradient(ellipse at 88% 100%, rgba(184, 145, 75, 0.07), transparent 38%),
+    #080807 !important;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 169, 97, 0.55),
+    transparent
+  );
+  z-index: 1;
+}
+
+.site-footer::after {
+  content: "dhysem.";
+  position: absolute;
+  left: 50%;
+  bottom: -0.42em;
+  transform: translateX(-50%);
+  color: rgba(201, 169, 97, 0.06);
+  font-family: inherit;
+  font-size: clamp(100px, 19vw, 240px);
+  font-weight: 600;
+  letter-spacing: -0.075em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-footer .footer-main,
+.site-footer .footer-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+.site-footer .footer-main {
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  column-gap: 34px;
+}
+
+.site-footer .footer-tagline {
+  width: 340px;
+  max-width: 100%;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.site-footer .footer-tagline em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.site-footer .footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-footer .footer-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(201, 169, 97, 0.35);
+  border-radius: 50%;
+  color: #d5bd8b;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.site-footer .footer-social-icon:hover {
+  color: #080807;
+  background: #c9a961;
+  border-color: #c9a961;
+}
+
+.site-footer .footer-column a,
+.site-footer .footer-bottom-right a {
+  font-size: 15px;
+}
+
+.site-footer .footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+}
+
+.site-footer .footer-bottom small {
+  color: #9A9282;
+}
+
+.site-footer .footer-trust {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 22px;
+  color: #b8ad99;
+  font-size: 12px;
+  letter-spacing: 0.025em;
+}
+
+.site-footer .footer-trust span {
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .site-footer .footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 34px;
+  }
+
+  .site-footer .footer-brand-column {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-footer .footer-trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+  }
+}
+/* END DHYSEM FOOTER PREMIUM FINISH */
