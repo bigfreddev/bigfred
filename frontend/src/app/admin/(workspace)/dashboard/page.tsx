@@ -263,7 +263,7 @@ function formatCurrency(value: number | string, currency = "GHS") {
 }
 
 function formatDate(value: string) {
-  if (!value) return "â€”";
+  if (!value) return "—";
 
   return new Date(value).toLocaleDateString("en-GH", {
     day: "numeric",
@@ -614,7 +614,7 @@ export default function AdminDashboard() {
       title: "Net Payments (Selected Period)",
       value: summary
         ? formatCurrency(summary.total_revenue, data?.currency)
-        : "â€”",
+        : "—",
       note: "Payments recorded in this period, less refunds",
       icon: "revenue" as const,
       accent: "bg-[#f7e9e7] text-[#a66c72]",
@@ -623,7 +623,7 @@ export default function AdminDashboard() {
       title: "Orders in Selected Period",
       value: summary
         ? summary.total_orders.toLocaleString()
-        : "â€”",
+        : "—",
       note: `${summary?.pending_orders ?? 0} awaiting confirmation (all time)`,
       icon: "orders" as const,
       accent: "bg-[#f5eee5] text-[#a17b53]",
@@ -632,8 +632,8 @@ export default function AdminDashboard() {
       title: "Total Products",
       value: summary
         ? summary.total_products.toLocaleString()
-        : "â€”",
-      note: `${summary?.low_stock_products ?? 0} low stock Â· ${summary?.out_of_stock_products ?? 0} out of stock`,
+        : "—",
+      note: `${summary?.low_stock_products ?? 0} low stock · ${summary?.out_of_stock_products ?? 0} out of stock`,
       icon: "products" as const,
       accent: "bg-[#edf0e9] text-[#78856c]",
     },
@@ -641,7 +641,7 @@ export default function AdminDashboard() {
       title: "Total Customers",
       value: summary
         ? summary.total_customers.toLocaleString()
-        : "â€”",
+        : "—",
       note: `${summary?.new_customers ?? 0} new in selected period`,
       icon: "customers" as const,
       accent: "bg-[#eeeaf2] text-[#8c789d]",
@@ -972,7 +972,7 @@ export default function AdminDashboard() {
                         {order.customer_name || "Customer"}
                       </p>
                       <p className="mt-1 text-xs text-[#a19891]">
-                        {order.order_number} Â·{" "}
+                        {order.order_number} ·{" "}
                         {formatDate(order.created_at)}
                       </p>
                       <p className="mt-1 text-[11px] text-[#a19891]">
@@ -1023,13 +1023,13 @@ export default function AdminDashboard() {
                 <div className="rounded-xl bg-[#faf7f4] p-4">
                   <p className="text-xs text-[#a19891]">Pending</p>
                   <p className="mt-2 font-sans text-2xl font-semibold text-[#a66c72]">
-                    {data?.reviews.pending ?? "â€”"}
+                    {data?.reviews.pending ?? "—"}
                   </p>
                 </div>
                 <div className="rounded-xl bg-[#f3f5ef] p-4">
                   <p className="text-xs text-[#a19891]">Approved</p>
                   <p className="mt-2 font-sans text-2xl font-semibold text-[#78856c]">
-                    {data?.reviews.approved ?? "â€”"}
+                    {data?.reviews.approved ?? "—"}
                   </p>
                 </div>
               </div>
@@ -1038,7 +1038,7 @@ export default function AdminDashboard() {
                 <div className="flex justify-between text-xs text-[#837873]">
                   <span>Total reviews</span>
                   <span className="font-semibold">
-                    {summary?.total_reviews ?? "â€”"}
+                    {summary?.total_reviews ?? "—"}
                   </span>
                 </div>
                 <div className="mt-2 h-2 overflow-hidden rounded-full bg-[#f1ebe6]">
@@ -1257,7 +1257,7 @@ export default function AdminDashboard() {
                   Products
                 </p>
                 <p className="mt-3 font-sans text-2xl font-semibold tracking-tight text-[#49352f] sm:text-3xl">
-                  {data?.inventory.total_products ?? "â€”"}
+                  {data?.inventory.total_products ?? "—"}
                 </p>
                 <p className="mt-1 text-[10px] text-[#a19891]">
                   Active
@@ -1269,7 +1269,7 @@ export default function AdminDashboard() {
                   Low Stock
                 </p>
                 <p className="mt-3 font-sans text-2xl font-semibold tracking-tight text-amber-800 sm:text-3xl">
-                  {data?.inventory.low_stock ?? "â€”"}
+                  {data?.inventory.low_stock ?? "—"}
                 </p>
                 <p className="mt-1 text-[10px] text-amber-700">
                   Restock soon
@@ -1281,7 +1281,7 @@ export default function AdminDashboard() {
                   Out of Stock
                 </p>
                 <p className="mt-3 font-sans text-2xl font-semibold tracking-tight text-rose-800 sm:text-3xl">
-                  {data?.inventory.out_of_stock ?? "â€”"}
+                  {data?.inventory.out_of_stock ?? "—"}
                 </p>
                 <p className="mt-1 text-[10px] text-rose-700">
                   Unavailable
@@ -1510,7 +1510,7 @@ export default function AdminDashboard() {
         {/* Footer */}
         <footer className="mt-10 border-t border-[#eae1db] py-6 text-center">
           <p className="text-[11px] tracking-wide text-[#aaa09a]">
-            Â© {new Date().getFullYear()} BigFred. All rights reserved.
+            © {new Date().getFullYear()} BigFred. All rights reserved.
           </p>
         </footer>
       </div>

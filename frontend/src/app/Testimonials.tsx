@@ -283,7 +283,7 @@ export default function Testimonials() {
     <section className="bf-testimonials" id="customer-reviews">
       <div className="bf-testimonials-inner">
         <div className="bf-testimonials-heading">
-          <span className="bf-eyebrow">THE BIGFRED EXPERIENCE</span>
+          <span className="bf-eyebrow">THE DHYSEM EXPERIENCE</span>
           <h2>A little love from our customers</h2>
           <p>
             Discover customer experiences and share a little love of your own.
@@ -421,7 +421,7 @@ export default function Testimonials() {
 
         <div className="bf-review-cta">
           <div>
-            <h3>Have a BigFred favourite?</h3>
+            <h3>Have a Dhysem favourite?</h3>
             <p>Share your experience with our community.</p>
           </div>
 

@@ -212,7 +212,7 @@ function formatMoney(value: number | string | null | undefined) {
 }
 
 function formatDate(value?: string | null) {
-  if (!value) return "â€”";
+  if (!value) return "—";
 
   const date = new Date(value);
 
@@ -736,7 +736,7 @@ export default function PromotionsPage() {
             className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700"
           >
             <span>{notice}</span>
-            <button type="button" onClick={() => setNotice("")}>Ã—</button>
+            <button type="button" onClick={() => setNotice("")}>×</button>
           </div>
         )}
 
@@ -746,17 +746,17 @@ export default function PromotionsPage() {
             className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
           >
             <span>{error}</span>
-            <button type="button" onClick={() => setError("")}>Ã—</button>
+            <button type="button" onClick={() => setError("")}>×</button>
           </div>
         )}
 
         <section className="mb-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {[
-            { label: "Total promotions", value: counts.total, icon: "âœ¦" },
-            { label: "Active", value: counts.active, icon: "âœ“" },
-            { label: "Scheduled", value: counts.scheduled, icon: "â—·" },
-            { label: "Expired", value: counts.expired, icon: "âŒ›" },
-            { label: "Disabled", value: counts.disabled, icon: "âŠ˜" },
+            { label: "Total promotions", value: counts.total, icon: "✦" },
+            { label: "Active", value: counts.active, icon: "✓" },
+            { label: "Scheduled", value: counts.scheduled, icon: "◷" },
+            { label: "Expired", value: counts.expired, icon: "⌛" },
+            { label: "Disabled", value: counts.disabled, icon: "⊘" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -825,7 +825,7 @@ export default function PromotionsPage() {
           ) : filteredPromotions.length === 0 ? (
             <div className="px-6 py-16 text-center">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f8f5f1] text-2xl text-[#a66c72]">
-                âœ¦
+                ✦
               </div>
 
               <h3 className="mt-4 font-serif text-xl text-[#49352f]">
@@ -982,7 +982,7 @@ export default function PromotionsPage() {
                 aria-label="Close promotion form"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f8f5f1] text-xl text-[#49352f] hover:bg-[#f0e7e1]"
               >
-                Ã—
+                ×
               </button>
             </div>
 
@@ -1238,7 +1238,7 @@ export default function PromotionsPage() {
                                         other.product_id === String(product.id)
                                     )}
                                   >
-                                    {product.name} â€” {formatMoney(product.price)}
+                                    {product.name} — {formatMoney(product.price)}
                                   </option>
                                 ))}
                               </select>
@@ -1540,7 +1540,7 @@ export default function PromotionsPage() {
                           <div className="flex justify-between gap-4">
                             <span className="text-gray-500">Product discount</span>
                             <span className="font-medium text-green-700">
-                              âˆ’{formatMoney(preview.product_discount_amount)}
+                              −{formatMoney(preview.product_discount_amount)}
                             </span>
                           </div>
 
@@ -1554,7 +1554,7 @@ export default function PromotionsPage() {
                           <div className="flex justify-between gap-4">
                             <span className="text-gray-500">Delivery discount</span>
                             <span className="font-medium text-green-700">
-                              âˆ’{formatMoney(preview.delivery_discount_amount)}
+                              −{formatMoney(preview.delivery_discount_amount)}
                             </span>
                           </div>
 

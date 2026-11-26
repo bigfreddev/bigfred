@@ -116,7 +116,7 @@ const savedOrder = response.data?.data;
       <main className="bf-confirm-page">
         <div className="bf-confirm-card">
           <div className="bf-confirm-mark">✳</div>
-          <p className="bf-confirm-eyebrow">BIGFRED ORDER</p>
+          <p className="bf-confirm-eyebrow">DHYSEM ORDER</p>
           <h1>Preparing your confirmation...</h1>
           <p>Please wait while we retrieve your order details.</p>
         </div>
@@ -129,7 +129,7 @@ const savedOrder = response.data?.data;
       <main className="bf-confirm-page">
         <div className="bf-confirm-card">
           <div className="bf-confirm-mark">♡</div>
-          <p className="bf-confirm-eyebrow">BIGFRED</p>
+          <p className="bf-confirm-eyebrow">DHYSEM</p>
           <h1>We couldn&apos;t load your order.</h1>
           <p>{error || "Please try again from your account."}</p>
 
@@ -150,14 +150,14 @@ const savedOrder = response.data?.data;
     <main className="bf-confirm-page">
       <div className="bf-confirm-card">
         <Link href="/" className="bf-confirm-brand">
-          bigfred<span>.</span>
+          dhysem<span>.</span>
         </Link>
 
         <div className="bf-confirm-mark">✓</div>
 
         <p className="bf-confirm-eyebrow">ORDER SUCCESSFULLY PLACED</p>
 
-        <h1>Thank you for choosing BigFred.</h1>
+        <h1>Thank you for choosing Dhysem.</h1>
 
         <p className="bf-confirm-message">
           Your order has been received and saved. We&apos;re looking forward to
@@ -244,7 +244,7 @@ const savedOrder = response.data?.data;
             </button>
           ) : (
             <p className="bf-confirm-note">
-              Your order is saved. You can also contact BigFred through your
+              Your order is saved. You can also contact Dhysem through your
               usual WhatsApp conversation.
             </p>
           )}
@@ -260,7 +260,7 @@ const savedOrder = response.data?.data;
         </div>
 
         <p className="bf-confirm-footer">
-          Thank you for making BigFred part of your everyday ritual. ♡
+          Thank you for making Dhysem part of your everyday ritual. ♡
         </p>
       </div>
     </main>

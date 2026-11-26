@@ -54,19 +54,19 @@ const statusConfig = {
     label: "Pending review",
     badge: "border-amber-200 bg-amber-50 text-amber-700",
     dot: "bg-amber-500",
-    icon: "â—·",
+    icon: "◷",
   },
   approved: {
     label: "Approved",
     badge: "border-emerald-200 bg-emerald-50 text-emerald-700",
     dot: "bg-emerald-500",
-    icon: "âœ“",
+    icon: "✓",
   },
   rejected: {
     label: "Rejected",
     badge: "border-red-200 bg-red-50 text-red-700",
     dot: "bg-red-500",
-    icon: "Ã—",
+    icon: "×",
   },
 };
 
@@ -225,7 +225,7 @@ export default function AdminReviewsPage() {
                 : "text-[#e8e0da]"
             }
           >
-            â˜…
+            ★
           </span>
         ))}
       </div>
@@ -237,7 +237,7 @@ export default function AdminReviewsPage() {
       label: "Total reviews",
       value: stats.total,
       description: "All customer feedback",
-      icon: "â—Ž",
+      icon: "◎",
       iconStyle: "bg-[#f7eee8] text-[#a66c72]",
       accent: "border-l-[#b88a7a]",
     },
@@ -245,7 +245,7 @@ export default function AdminReviewsPage() {
       label: "Awaiting review",
       value: stats.pending,
       description: "Require your attention",
-      icon: "â—·",
+      icon: "◷",
       iconStyle: "bg-amber-50 text-amber-700",
       accent: "border-l-amber-400",
     },
@@ -253,7 +253,7 @@ export default function AdminReviewsPage() {
       label: "Published reviews",
       value: stats.approved,
       description: "Visible to customers",
-      icon: "âœ“",
+      icon: "✓",
       iconStyle: "bg-emerald-50 text-emerald-700",
       accent: "border-l-emerald-500",
     },
@@ -261,7 +261,7 @@ export default function AdminReviewsPage() {
       label: "Rejected reviews",
       value: stats.rejected,
       description: "Not published",
-      icon: "Ã—",
+      icon: "×",
       iconStyle: "bg-red-50 text-red-600",
       accent: "border-l-red-400",
     },
@@ -304,7 +304,7 @@ export default function AdminReviewsPage() {
             disabled={loading}
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#e9dfd8] bg-white px-5 py-3 text-sm font-medium text-[#49352f] shadow-sm transition hover:border-[#c9aaa0] hover:bg-[#fdfbf9] disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <span className="text-base">â†»</span>
+            <span className="text-base">↻</span>
             {loading ? "Refreshing..." : "Refresh reviews"}
           </button>
         </div>
@@ -319,7 +319,7 @@ export default function AdminReviewsPage() {
 
         {notice && (
           <div className="mb-6 flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-800">
-            <span className="font-semibold">âœ“</span>
+            <span className="font-semibold">✓</span>
             <p>{notice}</p>
           </div>
         )}
@@ -399,7 +399,7 @@ export default function AdminReviewsPage() {
               >
                 <div className="relative min-w-0 flex-1">
                   <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-lg text-[#aa9a91]">
-                    âŒ•
+                    ⌕
                   </span>
 
                   <input
@@ -499,7 +499,7 @@ export default function AdminReviewsPage() {
             /* Empty state */
             <div className="px-6 py-20 text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#f8f0ed] text-3xl text-[#a66c72]">
-                â˜†
+                ☆
               </div>
 
               <h3 className="mt-5 font-serif text-xl text-[#49352f]">
@@ -593,7 +593,7 @@ export default function AdminReviewsPage() {
                           <div className="mt-5 rounded-xl border border-[#f0eae5] bg-[#fcfaf8] p-4 sm:p-5">
                             <div className="mb-2 flex items-center gap-2">
                               <span className="font-serif text-xl leading-none text-[#c39b8d]">
-                                â€œ
+                                “
                               </span>
                               <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#a69a93]">
                                 Customer feedback
@@ -608,13 +608,13 @@ export default function AdminReviewsPage() {
                           {/* Review metadata */}
                           <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
                             <span className="flex items-center gap-1.5 text-xs text-[#a1958e]">
-                              <span>â–¦</span>
+                              <span>▦</span>
                               {formatDate(review.created_at)}
                             </span>
 
                             {review.is_verified_purchase && (
                               <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold text-emerald-700">
-                                <span>âœ“</span>
+                                <span>✓</span>
                                 Verified purchase
                               </span>
                             )}
@@ -641,7 +641,7 @@ export default function AdminReviewsPage() {
                                   "Updating..."
                                 ) : (
                                   <>
-                                    <span>âœ“</span>
+                                    <span>✓</span>
                                     Approve review
                                   </>
                                 )}
@@ -655,7 +655,7 @@ export default function AdminReviewsPage() {
                                 }
                                 className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-[#efdedb] bg-white px-4 py-3 text-xs font-semibold text-[#a65f60] transition hover:border-red-200 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50 xl:flex-none"
                               >
-                                <span>Ã—</span>
+                                <span>×</span>
                                 Reject
                               </button>
                             </>
@@ -685,7 +685,7 @@ export default function AdminReviewsPage() {
                   <span className="font-semibold text-[#49352f]">
                     {pagination.last_page}
                   </span>
-                  <span className="mx-2 text-[#d1c4bb]">Â·</span>
+                  <span className="mx-2 text-[#d1c4bb]">·</span>
                   {pagination.total.toLocaleString()} total reviews
                 </p>
 
@@ -698,7 +698,7 @@ export default function AdminReviewsPage() {
                     }
                     className="rounded-xl border border-[#e9dfd8] bg-white px-4 py-2.5 text-xs font-medium text-[#49352f] transition hover:border-[#c9aaa0] hover:bg-[#fdfbf9] disabled:cursor-not-allowed disabled:opacity-40"
                   >
-                    â† Previous
+                    ← Previous
                   </button>
 
                   <button
@@ -712,7 +712,7 @@ export default function AdminReviewsPage() {
                     }
                     className="rounded-xl border border-[#e9dfd8] bg-white px-4 py-2.5 text-xs font-medium text-[#49352f] transition hover:border-[#c9aaa0] hover:bg-[#fdfbf9] disabled:cursor-not-allowed disabled:opacity-40"
                   >
-                    Next â†’
+                    Next →
                   </button>
                 </div>
               </div>
@@ -723,7 +723,7 @@ export default function AdminReviewsPage() {
         {/* Footer */}
         <footer className="py-8 text-center">
           <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#b0a49c]">
-            BigFred Â· Customer Experience Management
+            BigFred · Customer Experience Management
           </p>
         </footer>
       </div>

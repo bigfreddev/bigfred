@@ -86,11 +86,11 @@ export default function RegisterPage() {
       <main className="min-h-screen bg-[#f8f4ef] flex items-center justify-center px-5 py-12">
         <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-8 sm:p-12 text-center">
           <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-full bg-[#f5e8e6] text-3xl text-[#a66c72]">
-            âœ“
+            ✓
           </div>
 
           <p className="text-xs uppercase tracking-[0.25em] text-[#a66c72] font-semibold">
-            Welcome to BigFred
+            Welcome to Dhysem
           </p>
 
           <h1 className="mt-4 text-4xl font-serif text-[#49352f]">
@@ -98,7 +98,7 @@ export default function RegisterPage() {
           </h1>
 
           <p className="mt-5 text-sm leading-7 text-gray-500">
-            Thank you for joining BigFred, {name.trim()}. Your account has
+            Thank you for joining Dhysem, {name.trim()}. Your account has
             been created successfully and you are now signed in.
           </p>
 
@@ -106,7 +106,7 @@ export default function RegisterPage() {
             href="/"
             className="mt-9 block w-full rounded-xl bg-[#49352f] py-4 text-sm font-semibold text-white transition hover:bg-[#654b43]"
           >
-            Explore BigFred Store
+            Explore Dhysem Store
           </Link>
         </div>
       </main>
@@ -124,7 +124,7 @@ export default function RegisterPage() {
               href="/"
               className="text-3xl font-serif font-bold text-[#49352f]"
             >
-              BigFred<span className="text-[#a66c72]">.</span>
+              Dhysem<span className="text-[#a66c72]">.</span>
             </Link>
 
             <p className="mt-2 text-sm tracking-[0.25em] uppercase text-[#765c56]">
@@ -142,13 +142,13 @@ export default function RegisterPage() {
             </h1>
 
             <p className="mt-6 text-[#765c56] leading-7">
-              Create your BigFred account and enjoy a more personal shopping
+              Create your Dhysem account and enjoy a more personal shopping
               experience, with easy access to your profile and orders.
             </p>
           </div>
 
           <p className="text-sm text-[#765c56]">
-            Â© {new Date().getFullYear()} BigFred. All rights reserved.
+            © {new Date().getFullYear()} Dhysem. All rights reserved.
           </p>
         </section>
 
@@ -161,12 +161,12 @@ export default function RegisterPage() {
                 href="/"
                 className="text-3xl font-serif font-bold text-[#49352f]"
               >
-                BigFred<span className="text-[#a66c72]">.</span>
+                Dhysem<span className="text-[#a66c72]">.</span>
               </Link>
             </div>
 
             <p className="text-xs uppercase tracking-[0.25em] text-[#a66c72] font-semibold">
-              Join the BigFred family
+              Join the Dhysem family
             </p>
 
             <h2 className="text-4xl font-serif text-[#49352f] mt-3">
@@ -326,12 +326,12 @@ export default function RegisterPage() {
                 href="/"
                 className="text-sm text-gray-500 hover:text-[#a66c72]"
               >
-                â† Back to BigFred Store
+                ← Back to Dhysem Store
               </Link>
             </div>
 
             <p className="mt-10 text-center text-xs text-gray-400">
-              Your BigFred account Â· Your beauty shopping experience
+              Your Dhysem account · Your beauty shopping experience
             </p>
 
           </div>

@@ -2,6 +2,15 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faBagShopping,
+  faBars,
+  faHeart,
+  faMagnifyingGlass,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "next/navigation";
 import api from "@/lib/api";
 import { API_ORIGIN } from "@/lib/api";
@@ -244,7 +253,7 @@ export default function ProductDetailsPage() {
   if (error || !product) {
     return (
       <main className="bf-product-state">
-        <p className="eyebrow">BIGFRED BEAUTY</p>
+        <p className="eyebrow">DHYSEM BEAUTY</p>
         <h1>Product unavailable</h1>
         <p>{error || "This product could not be found."}</p>
         <Link href="/" className="button button-dark">
@@ -268,11 +277,11 @@ export default function ProductDetailsPage() {
           aria-label="Toggle navigation"
           aria-expanded={menuOpen}
         >
-          ☰
+          <FontAwesomeIcon icon={faBars} aria-hidden="true" />
         </button>
 
-        <Link className="brand" href="/" aria-label="BigFred home">
-          bigfred<span>.</span>
+        <Link className="brand" href="/" aria-label="Dhysem home">
+          dhysem<span>.</span>
         </Link>
 
         <nav className={`main-nav ${menuOpen ? "open" : ""}`}>
@@ -296,7 +305,7 @@ export default function ProductDetailsPage() {
             aria-label="Search products"
             title="Search products"
           >
-            ⌕
+            <FontAwesomeIcon icon={faMagnifyingGlass} aria-hidden="true" />
           </Link>
 
           <Link
@@ -323,12 +332,13 @@ export default function ProductDetailsPage() {
           </Link>
 
           <Link
-            href="/#shop"
+            href="/?cart=open"
             className="icon-btn bag-btn"
             aria-label={`Open shopping bag, ${cartCount} items`}
             title="Shopping bag"
           >
-            ♧ <span className="cart-count">{cartCount}</span>
+            <FontAwesomeIcon icon={faBagShopping} aria-hidden="true" />
+            <span className="cart-count" aria-hidden="true">{cartCount}</span>
           </Link>
         </div>
       </header>
@@ -345,7 +355,7 @@ export default function ProductDetailsPage() {
         <div className="bf-product-gallery">
           <div className="bf-product-main-image">
             {selectedImageUrl ? (
-              <Image src={selectedImageUrl} alt={images[selectedImage]?.alt_text || product.name} width={1200} height={1200} unoptimized />
+              <Image src={selectedImageUrl} alt={images[selectedImage]?.alt_text || product.name} width={1200} height={1200} priority unoptimized />
             ) : (
               <div className="bf-product-no-image">
                 Product image coming soon
@@ -377,7 +387,7 @@ export default function ProductDetailsPage() {
         </div>
         <div className="bf-product-information">
           <p className="eyebrow">
-            {product.category?.name ?? "BIGFRED BEAUTY"}
+            {product.category?.name ?? "DHYSEM BEAUTY"}
           </p>
           <h1>{product.name}</h1>
           {product.sku && (
@@ -447,8 +457,12 @@ export default function ProductDetailsPage() {
                 onClick={addToBag}
                 disabled={adding}
               >
-                {added ? "Added to your bag ✓" : "Add to bag"}
-                {!added && <span>＋</span>}
+                {added
+                  ? "Added to your bag ✓"
+                  : adding
+                    ? "Adding…"
+                    : "Add to bag"}
+                {!added && !adding && <span aria-hidden="true">＋</span>}
               </button>
             </div>
           )}
@@ -457,13 +471,27 @@ export default function ProductDetailsPage() {
               {cartError}
             </p>
           )}
+          <ul className="bf-product-trust" aria-label="Good to know">
+            <li>
+              <strong>Free delivery</strong>
+              <span>On orders over GH₵500</span>
+            </li>
+            <li>
+              <strong>Order on WhatsApp</strong>
+              <span>We confirm every order personally</span>
+            </li>
+            <li>
+              <strong>Curated care</strong>
+              <span>Thoughtfully selected essentials</span>
+            </li>
+          </ul>
           {added && (
             <div className="bf-product-added" role="status">
               <strong>Lovely choice!</strong>
               <p>
                 {quantity} × {product.name} added to your bag.
               </p>
-              <Link href="/">Return to the shop and open your bag.</Link>
+              <Link href="/?cart=open">Open your bag to check out.</Link>
             </div>
           )}
           {product.description && (
@@ -474,20 +502,37 @@ export default function ProductDetailsPage() {
           )}
           <div className="bf-product-benefits">
             <div>
-              <span>♡</span>
+              <span aria-hidden="true"><FontAwesomeIcon icon={faHeart} /></span>
               <p>Thoughtfully selected beauty essentials</p>
             </div>
             <div>
-              <span>✧</span>
+              <span aria-hidden="true"><FontAwesomeIcon icon={faStar} /></span>
               <p>Personalised customer assistance</p>
             </div>
             <div>
-              <span>→</span>
+              <span aria-hidden="true"><FontAwesomeIcon icon={faArrowRight} /></span>
               <p>Easy ordering through WhatsApp</p>
             </div>
           </div>
         </div>
       </section>
+      {inStock && (
+        <div className="bf-mobile-buy-bar" aria-label="Quick add to bag">
+          <div>
+            <small>{product.name}</small>
+            <strong>{money(Number(product.price))}</strong>
+          </div>
+          <button
+            type="button"
+            className="button button-dark"
+            onClick={addToBag}
+            disabled={adding || added}
+          >
+            {added ? "Added ✓" : adding ? "Adding…" : "Add to bag"}
+          </button>
+        </div>
+      )}
+
       <section className="bf-reviews-section">
         <div className="bf-reviews-heading">
           <p className="eyebrow">CUSTOMER EXPERIENCES</p>
@@ -573,7 +618,7 @@ export default function ProductDetailsPage() {
                       <span>Image coming soon</span>
                     )}
                   </div>
-                  <p>{item.category?.name ?? "BigFred Beauty"}</p>
+                  <p>{item.category?.name ?? "Dhysem Beauty"}</p>
                   <h3>{item.name}</h3>
                   <strong>{money(Number(item.price))}</strong>
                   <span className="bf-related-link">
@@ -587,7 +632,7 @@ export default function ProductDetailsPage() {
       )}
       <footer className="site-footer">
         <Link className="brand" href="/#top">
-          bigfred<span>.</span>
+          dhysem<span>.</span>
         </Link>
         <p>Body &amp; hair care, beautifully chosen.</p>
         <div className="footer-links">
@@ -596,7 +641,7 @@ export default function ProductDetailsPage() {
           <a href="mailto:hello@bigfred.example">Contact</a>
           <Link href="/#top">Back to top ↑</Link>
         </div>
-        <small>© 2026 BigFred. All rights reserved.</small>
+        <small>© 2026 Dhysem. All rights reserved.</small>
       </footer>
     </main>
   );

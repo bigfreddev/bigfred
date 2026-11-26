@@ -60,7 +60,7 @@ export default function LoginPage() {
 
           <Link href="/" className="inline-block">
             <h1 className="font-serif text-3xl font-bold text-[#49332b]">
-              BigFred.
+              Dhysem.
             </h1>
             <p className="mt-1 text-xs tracking-[0.2em] text-[#765c53]">
               BEAUTY & LIFESTYLE
@@ -69,7 +69,7 @@ export default function LoginPage() {
 
           <div className="relative z-10 my-12">
             <p className="mb-5 text-xs font-medium uppercase tracking-[0.25em] text-[#9a7165]">
-              WELCOME BACK TO BIGFRED
+              WELCOME BACK TO DHYSEM
             </p>
 
             <h2 className="max-w-sm font-serif text-4xl leading-tight text-[#49332b] sm:text-[40px]">
@@ -77,14 +77,14 @@ export default function LoginPage() {
             </h2>
 
             <p className="mt-6 max-w-sm text-sm leading-7 text-[#765f55]">
-              Sign in to your BigFred account and enjoy a more
+              Sign in to your Dhysem account and enjoy a more
               personal shopping experience, with easy access to
               your profile, favourite products and orders.
             </p>
           </div>
 
           <p className="text-xs text-[#765f55]">
-            © {new Date().getFullYear()} BigFred. All rights reserved.
+            © {new Date().getFullYear()} Dhysem. All rights reserved.
           </p>
 
           <div className="pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 rounded-full border border-white/30" />
@@ -203,12 +203,12 @@ export default function LoginPage() {
                 href="/"
                 className="text-xs text-[#806b61] hover:text-[#49332b]"
               >
-                ← Back to BigFred Store
+                ← Back to Dhysem Store
               </Link>
             </div>
 
             <p className="mt-9 text-center text-[10px] text-[#a18e85]">
-              Your BigFred account · Your beauty shopping experience
+              Your Dhysem account · Your beauty shopping experience
             </p>
 
           </div>

@@ -203,7 +203,7 @@ export default function AccountPage() {
         <div className="text-center">
           <div className="mx-auto h-9 w-9 animate-spin rounded-full border-2 border-[#ead5cf] border-t-[#49332b]" />
           <p className="mt-4 text-sm text-[#806b61]">
-            Preparing your BigFred experience...
+            Preparing your Dhysem experience...
           </p>
         </div>
       </main>
@@ -250,7 +250,7 @@ export default function AccountPage() {
 
           <Link href="/" className="group">
             <span className="font-serif text-3xl font-bold tracking-tight">
-              BigFred<span className="text-[#b47e70]">.</span>
+              Dhysem<span className="text-[#b47e70]">.</span>
             </span>
             <span className="mt-0.5 block text-[9px] tracking-[0.28em] text-[#967b70]">
               BEAUTY & LIFESTYLE
@@ -297,7 +297,7 @@ export default function AccountPage() {
             <p className="mt-4 max-w-lg text-sm leading-7 text-[#765f55]">
               Your beauty journey, all in one place. Manage your
               personal details, keep track of your orders and enjoy
-              a more personal BigFred experience.
+              a more personal Dhysem experience.
             </p>
 
             <Link
@@ -376,7 +376,7 @@ export default function AccountPage() {
                 A little self-care goes a long way.
               </p>
               <p className="mt-2 text-xs leading-5 text-[#927d73]">
-                Thank you for being part of the BigFred family.
+                Thank you for being part of the Dhysem family.
               </p>
             </div>
 
@@ -393,7 +393,7 @@ export default function AccountPage() {
                 Your dashboard
               </h2>
               <p className="mt-2 text-sm text-[#927d73]">
-                Everything you need to manage your BigFred account.
+                Everything you need to manage your Dhysem account.
               </p>
             </div>
 
@@ -432,7 +432,7 @@ export default function AccountPage() {
                   ♡
                 </div>
                 <p className="mt-5 text-xs text-[#927d73]">
-                  Your BigFred Account
+                  Your Dhysem Account
                 </p>
                 <p className="mt-1 font-serif text-xl text-[#49332b]">
                   Active
@@ -485,7 +485,7 @@ export default function AccountPage() {
                 <div>
                   <p className="text-xs text-[#a18e85]">Account Type</p>
                   <p className="mt-2 text-sm font-medium text-[#49332b]">
-                    BigFred Customer
+                    Dhysem Customer
                   </p>
                 </div>
               </div>
@@ -775,7 +775,7 @@ export default function AccountPage() {
       <footer className="mt-10 border-t border-[#eadfd8] bg-[#fffdfa]">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 px-5 py-7 text-xs text-[#927d73] sm:flex-row sm:px-8 lg:px-12">
           <p>
-            © {new Date().getFullYear()} BigFred. All rights reserved.
+            © {new Date().getFullYear()} Dhysem. All rights reserved.
           </p>
           <p>Beauty, confidence & lifestyle.</p>
         </div>

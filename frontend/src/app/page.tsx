@@ -1,4 +1,4 @@
-
+﻿
 
 "use client";
 import Image from "next/image";
@@ -113,13 +113,11 @@ type ApiProduct = {
 };
 
 type ApiCategory = {
-
   id: number;
-
   name: string;
-
   is_active: boolean;
-
+  description?: string | null;
+  image?: string | null;
 };
 
 type CustomerIdentity = {
@@ -152,6 +150,7 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
 
   const [categoryNames, setCategoryNames] = useState<string[]>([]);
+const [categoryItems, setCategoryItems] = useState<ApiCategory[]>([]);
 const [filter, setFilter] = useState("All");
 
   const [search, setSearch] = useState("");
@@ -232,6 +231,16 @@ const [filter, setFilter] = useState("All");
   const [liked, setLiked] = useState<number[]>([]);
 
   const [cartOpen, setCartOpen] = useState(false);
+
+  // Product pages link here with ?cart=open so the bag opens straight away.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("cart") === "open") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setCartOpen(true);
+      window.history.replaceState(null, "", "/#shop");
+    }
+  }, []);
 
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -370,35 +379,16 @@ const [filter, setFilter] = useState("All");
 
           categoriesResponse.data?.data ?? [];
 
-        const allowedCategories = [
+        // Show every active category from the database, in the order the API sends them
+        // (sort_order, then name). "Shop everything" is always the first chip.
+        const activeCategories = rawCategories.filter(
+  (category) => category.is_active
+);
 
-          "Body Oils",
-
-          "Body Creams",
-
-          "Hair Oils",
-
-        ];
-
-        setCategoryNames(
-
-          rawCategories
-
-            .filter(
-
-              (category) =>
-
-                category.is_active &&
-
-                allowedCategories.includes(category.name)
-
-            )
-
-            .sort((a, b) => a.id - b.id)
-
-            .map((category) => category.name)
-
-        );
+setCategoryItems(activeCategories);
+setCategoryNames(
+  activeCategories.map((category) => category.name)
+);
 
         const formattedProducts: Product[] = rawProducts.map((product) => {
 
@@ -1271,14 +1261,25 @@ const [filter, setFilter] = useState("All");
           <div className="hero-art">
 
             <div
-
               className="hero-image"
-
               role="img"
-
               aria-label="Dhysem hair-care ritual with nourishing hair oil"
-
-            />
+            >
+              {/* Optional looping video: add public/videos/dhysem-hero.mp4 to use it.
+                  Until then the photo behind it shows. */}
+              <video
+                className="hero-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/images/dhysem-hero.jpg"
+                aria-hidden="true"
+              >
+                <source src="/videos/dhysem-hero.mp4" type="video/mp4" />
+              </video>
+            </div>
 
             <div className="floating-note">
 
@@ -1353,15 +1354,22 @@ const [filter, setFilter] = useState("All");
             <div className="category-cards">
 
               {[
-
-                { name: "All", title: "Shop everything", desc: "All our essentials", image: "category-all" },
-
-                { name: "Body Oils", title: "Body oils", desc: "Glow from head to toe", image: "category-oil" },
-
-                { name: "Body Creams", title: "Body creams", desc: "Rich, lasting moisture", image: "category-cream" },
-
-                { name: "Hair Oils", title: "Hair oils", desc: "Care for your crown", image: "category-hair" },
-
+                {
+                  name: "All",
+                  title: "Shop everything",
+                  desc: "All our essentials",
+                  imageClass: "category-all",
+                  imageUrl: null as string | null,
+                },
+                ...categoryItems.map((category) => ({
+                  name: category.name,
+                  title: category.name,
+                  desc: category.description?.trim() || "Explore the collection",
+                  imageClass: "",
+                  imageUrl: category.image
+                    ? `${API_ORIGIN}/storage/${category.image}`
+                    : null,
+                })),
               ].map((category) => (
 
                 <button
@@ -1374,7 +1382,14 @@ const [filter, setFilter] = useState("All");
 
                 >
 
-                  <span className={`category-image ${category.image}`} />
+                  <span
+      className={`category-image ${category.imageClass}`}
+      style={
+        category.imageUrl
+          ? { backgroundImage: `url("${category.imageUrl}")` }
+          : undefined
+      }
+    />
 
                   <span className="category-card-copy">
 
@@ -1811,13 +1826,13 @@ const [filter, setFilter] = useState("All");
 
     <div className="footer-trust">
       <span>Delivery across Ghana</span>
-      <span>Mobile Money · Visa · Mastercard</span>
+      <span>Mobile Money Â· Visa Â· Mastercard</span>
     </div>
 
     <div className="footer-bottom-right">
       <a href="#privacy">Privacy</a>
       <a href="#terms">Terms</a>
-      <a href="#top" className="footer-back-top" aria-label="Back to top">↑</a>
+      <a href="#top" className="footer-back-top" aria-label="Back to top">â†‘</a>
     </div>
   </div>
 
@@ -2047,6 +2062,11 @@ const [filter, setFilter] = useState("All");
 
               </button>
 
+              <ol className="checkout-steps" aria-label="Checkout progress">
+                <li className="done"><span>1</span> Your bag</li>
+                <li className="current" aria-current="step"><span>2</span> Delivery</li>
+                <li><span>3</span> WhatsApp</li>
+              </ol>
               <div className="checkout-intro">
 
                 <h3>Almost yours.</h3>
@@ -2108,6 +2128,7 @@ const [filter, setFilter] = useState("All");
                     onChange={(event) => setCustomerPhone(event.target.value)}
 
                   />
+                  <small>We use this number to confirm your order on WhatsApp.</small>
 
                 </div>
 
@@ -2516,3 +2537,8 @@ const [filter, setFilter] = useState("All");
   );
 
 }
+
+
+
+
+

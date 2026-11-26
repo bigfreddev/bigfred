@@ -105,7 +105,7 @@ const orderStatuses = [
 
 
 const formatMoney = (value: string | number) =>
-  `GHâ‚µ ${Number(value || 0).toLocaleString("en-GH", {
+  `GH₵ ${Number(value || 0).toLocaleString("en-GH", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}`;
@@ -583,7 +583,7 @@ const loadProducts = async () => {
                 onClick={() => setError("")}
                 className="float-right font-bold"
               >
-                Ã—
+                ×
               </button>
             </div>
           )}
@@ -595,7 +595,7 @@ const loadProducts = async () => {
                 onClick={() => setNotice("")}
                 className="float-right font-bold"
               >
-                Ã—
+                ×
               </button>
             </div>
           )}
@@ -607,13 +607,13 @@ const loadProducts = async () => {
                 title: "Total Orders",
                 value: statistics?.total_orders ?? 0,
                 note: "All recorded orders",
-                icon: "â–£",
+                icon: "▣",
               },
               {
                 title: "Awaiting Confirmation",
                 value: statistics?.awaiting_confirmation ?? 0,
                 note: "Require your attention",
-                icon: "â—·",
+                icon: "◷",
               },
               {
                 title: "Processing",
@@ -621,13 +621,13 @@ const loadProducts = async () => {
                   (statistics?.processing ?? 0) +
                   (statistics?.ready_for_delivery ?? 0),
                 note: "Being prepared for delivery",
-                icon: "â—‡",
+                icon: "◇",
               },
               {
                 title: "Completed Revenue",
                 value: formatMoney(statistics?.total_revenue ?? 0),
                 note: "Revenue from completed orders",
-                icon: "â‚µ",
+                icon: "₵",
               },
             ].map((stat) => (
               <div
@@ -698,7 +698,7 @@ const loadProducts = async () => {
                   disabled={loading}
                   className="rounded-xl border border-[#e8dcd5] px-4 py-2.5 text-sm text-[#765c56] hover:bg-[#faf7f4] disabled:opacity-50"
                 >
-                  â†» Refresh
+                  ↻ Refresh
                 </button>
               </div>
 
@@ -755,7 +755,7 @@ const loadProducts = async () => {
             ) : orders.length === 0 ? (
               <div className="p-16 text-center">
                 <div className="mx-auto h-16 w-16 rounded-full bg-[#f8f0ed] flex items-center justify-center text-2xl text-[#a66c72]">
-                  â–£
+                  ▣
                 </div>
                 <h4 className="font-medium mt-4">No orders found</h4>
                 <p className="text-sm text-gray-400 mt-2">
@@ -860,7 +860,7 @@ const loadProducts = async () => {
                 <div className="px-6 py-5 border-t border-[#f0eae5] flex flex-col sm:flex-row items-center justify-between gap-4">
                   <p className="text-xs text-gray-400">
                     Showing page {pagination.current_page} of{" "}
-                    {pagination.last_page} Â· {pagination.total} orders
+                    {pagination.last_page} · {pagination.total} orders
                   </p>
 
                   <div className="flex items-center gap-2">
@@ -888,7 +888,7 @@ const loadProducts = async () => {
           </div>
 
           <footer className="text-center text-xs text-gray-400 py-8">
-            Â© {new Date().getFullYear()} BigFred. Admin Workspace.
+            © {new Date().getFullYear()} BigFred. Admin Workspace.
           </footer>
         </div>
       </div>
@@ -917,7 +917,7 @@ const loadProducts = async () => {
                 onClick={() => setSelectedOrder(null)}
                 className="h-9 w-9 rounded-full bg-[#f8f5f1] text-xl hover:bg-[#ead5d0]"
               >
-                Ã—
+                ×
               </button>
             </div>
 
@@ -979,7 +979,7 @@ const loadProducts = async () => {
                         </p>
                         <p className="text-xs text-gray-400 mt-1">
                           Quantity: {item.quantity}
-                          {item.product_sku ? ` Â· SKU: ${item.product_sku}` : ""}
+                          {item.product_sku ? ` · SKU: ${item.product_sku}` : ""}
                         </p>
                       </div>
                       <div className="text-right">
@@ -1158,7 +1158,7 @@ const loadProducts = async () => {
                               <p className="text-xs text-gray-500 mt-2">{formatDate(transaction.transaction_date || transaction.created_at)}</p>
                             </div>
                             <p className={`font-semibold ${transaction.type === "payment" ? "text-green-700" : "text-red-600"}`}>
-                              {transaction.type === "refund" ? "âˆ’" : "+"}{formatMoney(transaction.amount)}
+                              {transaction.type === "refund" ? "−" : "+"}{formatMoney(transaction.amount)}
                             </p>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-xs text-gray-500">
@@ -1185,7 +1185,7 @@ const loadProducts = async () => {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-gray-600 mb-1.5">Amount (GHâ‚µ)</label>
+                      <label className="block text-xs font-medium text-gray-600 mb-1.5">Amount (GH₵)</label>
                       <input required type="number" min="0.01" max={transactionType === "payment" ? paymentSummary.outstanding_balance : paymentSummary.net_paid} step="0.01" value={transactionAmount} onChange={(event) => setTransactionAmount(event.target.value)} placeholder="0.00" className="w-full rounded-xl border border-[#e8dcd5] px-4 py-3 text-sm outline-none focus:border-[#a66c72]" />
                       <p className="text-[11px] text-gray-400 mt-1">Maximum: {formatMoney(transactionType === "payment" ? paymentSummary.outstanding_balance : paymentSummary.net_paid)}</p>
                     </div>
@@ -1241,7 +1241,7 @@ const loadProducts = async () => {
                 onClick={() => setNewOrderOpen(false)}
                 className="h-9 w-9 rounded-full bg-[#f8f5f1] text-xl hover:bg-[#ead5d0]"
               >
-                Ã—
+                ×
               </button>
             </div>
 
@@ -1361,8 +1361,8 @@ const loadProducts = async () => {
                                 value={product.id}
                                 disabled={product.stock_quantity < 1}
                               >
-                                {product.name} â€”{" "}
-                                {formatMoney(product.price)} Â· Stock:{" "}
+                                {product.name} —{" "}
+                                {formatMoney(product.price)} · Stock:{" "}
                                 {product.stock_quantity}
                               </option>
                             ))}
@@ -1429,7 +1429,7 @@ const loadProducts = async () => {
                         delivery_fee: event.target.value,
                       })
                     }
-                    placeholder="Delivery fee (GHâ‚µ)"
+                    placeholder="Delivery fee (GH₵)"
                     className="w-full rounded-xl border border-[#e8dcd5] px-4 py-3 text-sm outline-none focus:border-[#a66c72]"
                   />
 
